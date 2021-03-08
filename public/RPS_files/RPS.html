@@ -1,0 +1,53 @@
+<!-- saved from url=(0023)https://mis.pens.ac.id/ -->
+<html>
+
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=windows-1252">
+    <title>Welcome EEPIS Information System</title>
+
+    <link rel="shortcut icon" href="https://mis.pens.ac.id/img/favicon.ico" type="image/x-icon">
+</head>
+
+<frameset rows="40,637*" frameborder="NO" cols="*">
+    <frame src="./RPS_files/menu.html" name="topFrame" id="topFrame" frameborder="No" scrolling="No" noresize="" marginwidth="0" marginheight="0" __idm_frm__="89">
+        <frame name="mainFrame" src="./RPS_files/eisnew.html" scrolling="auto" frameborder="no" __idm_frm__="90">
+            <script>
+                mendeleyWebImporter = {
+                    downloadPdfs(t) {
+                        return this._call('downloadPdfs', [t]);
+                    },
+                    open() {
+                        return this._call('open', []);
+                    },
+                    _call(methodName, methodArgs) {
+                        const id = Math.random();
+                        window.postMessage({
+                            id,
+                            token: '0.2349302694308122',
+                            methodName,
+                            methodArgs
+                        }, 'https://mis.pens.ac.id');
+                        return new Promise(resolve => {
+                            const listener = window.addEventListener('message', event => {
+                                const data = event.data;
+                                if (typeof data !== 'object' || !('result' in data) || data.id !==
+                                    id) return;
+                                window.removeEventListener('message', listener);
+                                resolve(data.result);
+                            });
+                        });
+                    }
+                };
+            </script>
+</frameset>
+<noframes></noframes>
+<noframes>
+
+    <body bgcolor="#FFFFFF">
+        Browser Anda tidak mendukung tampilan Frame
+    </body>
+
+</html>
+</noframes>
+
+</html>
