@@ -1,0 +1,85 @@
+/*
+    WHENEVER YOU FIND :
+        cursor: something
+    PLEASE DON'T DELETE IT, THANK YOU
+*/
+
+/* DON'T DELETE THIS ****** THINGS START */
+body {
+    -webkit-touch-callout: none; /* iOS Safari */
+    -webkit-user-select: none; /* Safari */
+    -khtml-user-select: none; /* Konqueror HTML */
+    -moz-user-select: none; /* Firefox */
+    -ms-user-select: none; /* Internet Explorer/Edge */
+    user-select: none; /* Non-prefixed version, currently supported by Chrome and Opera */
+}
+/* DON'T DELETE THIS ****** THINGS END*/
+
+.btn {
+    border-radius: 0px;
+}
+
+#page-siswa {
+    background-color: #cacaca;
+    min-height: 100vh;
+    padding-bottom: 35px;
+}
+
+#header-siswa {
+    cursor: default;
+    height: 97px;
+    background-color: #2e6499;
+    color: white;
+    margin-bottom: 40px;
+    -webkit-box-shadow: 0px 3px 2px #7e7e7e;
+    -moz-box-shadow: 0px 3px 2px #7e7e7e;
+    box-shadow: 0px 3px 2px #7e7e7e;
+}
+
+#header-siswa-left {
+    display: inline-block;
+    width: 500px;
+    height: 97px;
+    margin-left: 20px;
+    padding-top: 18px;
+}
+
+#header-main {
+    font-size: 20px;
+    font-weight: 700;
+}
+
+#header-desc {
+    font-size: 15px;
+    letter-spacing: 2px;
+}
+
+#header-siswa-right {
+    float: right;
+    width: 275px;
+    height: 97px;
+    background-color: #333333;
+}
+
+#header-profile-pic {
+    float: left;
+    margin-top: 18px;
+    margin-left: 26px;
+    margin-right: 20px;
+    margin-bottom: 19px;
+}
+
+#header-profile-info-1 {
+    margin-top: 10px;
+    font-weight: 600;
+}
+
+#header-profile-info-2 {
+    font-weight: 800;
+    min-height: 30px;
+}
+
+#header-profile-logout {
+    cursor: pointer;
+    color: #2e6499;
+}

@@ -1,0 +1,348 @@
+#container-soal {
+    margin: 20px;
+    background-color: white;
+}
+
+/* daftar-soal start*/
+#toggle-daftar-soal {
+    cursor: pointer;
+    display: inline-block;
+    height: 65px;
+    width: 50px;
+    top: 35vh;
+    position: fixed;
+    right: 0;
+    background-color: #f1786a;
+    color: white;
+    z-index: 10000;
+}
+
+#toggle-daftar-soal:hover {
+    background-color: #f05665;
+}
+
+#daftar-soal-arrow-left {
+    font-size: 35px;
+    margin-top: 15px;
+    padding: 0;
+}
+
+#daftar-soal-arrow-right {
+    padding: 0;
+    font-size: 35px;
+    margin-top: 15px;
+    display: none;
+}
+
+#daftar-soal-text {
+    font-size: 13px;
+    margin-top: 14px;
+    font-weight: 600;
+    padding: 0;
+}
+
+#daftar-soal {
+    cursor: default;
+    display: none;
+    height: 500px;
+    width: 300px;
+    top: 15%;
+    position: fixed;
+    right: 0;
+    background-color: lightgrey;
+    padding: 20px 20px 20px 20px;
+    z-index: 10000;
+}
+
+#inner-daftar-soal {
+    height: 460px;
+    overflow-y: scroll;
+    padding-left: 15px;
+    background-color: white;
+}
+
+.soal {
+    display: inline-block;
+    height: 70px;
+    width: 70px;
+    margin-top: 10px;
+}
+
+.jawaban-soal {
+    border-radius: 50%;
+    top: 2px;
+    border: 3px solid #333333;
+    text-align: center;
+    height: 32px;
+    width: 32px;
+    font-size: 120%;
+    line-height: 1.6;
+    background-color: white;
+    hover: blue;
+}
+
+.jawaban-sekarang {
+    color: #2e6499;
+    border-color: #2e6499;
+}
+
+.jawaban-ragu {
+    color: #f3c309;
+    border-color: #f3c309;
+}
+
+.jawaban-konten-soal {
+    border: 2px solid #cacaca;
+    color: #cacaca;
+}
+
+.opsi-selected {
+    cursor: default;
+    color: #2e6499;
+    background-color: #2e6499;
+    border: 3px solid #2e6499;
+}
+
+.nomor-soal-container {
+    cursor: pointer;
+    border: 3px solid #333333;
+    height: 48px;
+    width: 48px;
+    margin: 10px 10px 10px 10px;
+    font-size: 100%;
+}
+
+.nomor-sekarang {
+    color: #fff;
+    background-color: #333333;
+}
+
+.nomor-sudah {
+    color: #fff;
+    background-color: #2e6499;
+    border-color: #2e6499;
+}
+
+.nomor-ragu {
+    color: #333;
+    background-color: #f3c309;
+    border-color: #f3c309;
+}
+
+.nomor-soal {
+    margin-top: 11px;
+    /* I don't know why it's work :( */
+    border: 3px solid transparent;
+    padding-right: 3px;
+    width: inherit;
+    font-weight: 100;
+    font-size: 160%;
+    text-align: center;
+    line-height: 1;
+}
+
+/* daftar-soal end*/
+
+/* header-soal start */
+#header-soal {
+    position: static;
+    cursor: default;
+    height: 85px;
+    width: 100%;
+    background-color: #ffffff;
+    left: 0px;
+    z-index: 1000;
+}
+
+.header-soal-shadow {
+    -webkit-box-shadow: 0 8px 6px -6px #7e7e7e;
+    -moz-box-shadow: 0 8px 6px -6px #7e7e7e;
+    box-shadow: 0 8px 6px -6px #7e7e7e;
+}
+
+#header-soal-no {
+    margin-left: 10px;
+    margin-top: 28px;
+    font-size: 24px;
+    font-weight: 600;
+}
+
+#header-soal-nomor-box-ragu {
+    margin-left: 3px;
+    padding: 5px 9px 5px 9px;
+    color: white;
+    background-color: #f3c309;
+    text-align: center;
+}
+
+#header-soal-nomor-box {
+    margin-left: 3px;
+    padding: 5px 9px 5px 9px;
+    color: white;
+    background-color: #2e6499;
+    text-align: center;
+}
+
+#header-soal-sisa-waktu {
+    margin-top: 22px;
+    margin-right: 20px;
+    font-size: 17px;
+    font-weight: 500;
+    color: white;
+    text-align: center;
+}
+
+#header-soal-sw-text {
+    margin-top: 5px;
+    height: 36px;
+    width: 110px;
+    padding: 7px 0 7px 0;
+    background-color: #979797;
+}
+
+#header-soal-sw-timer {
+    margin-top: 5px;
+    height: 36px;
+    width: 110px;
+    padding: 7px 0 7px 0;
+    background-color: #2e6499;
+    font-weight: 700;
+}
+
+/* header-soal end */
+
+/* ukuran-soal start */
+#ukuran-soal {
+    height: 53px;
+    line-height: 46px;
+    border-top: solid lightgrey 2px;
+    border-bottom: solid lightgrey 2px;
+    background-color: #f6f6f6;
+}
+
+#ukuran-soal-text {
+    cursor: default;
+    font-weight: 500;
+    margin-left: 25px;
+    margin-right: 8px;
+}
+
+#ukuran-soal-small {
+    font-size: 14px;
+    margin-right: 6px;
+}
+
+#ukuran-soal-middle {
+    font-size: 18px;
+    margin-right: 6px;
+}
+
+#ukuran-soal-big {
+    font-size: 21px;
+}
+
+/* ukuran-soal end */
+
+/* konten-soal start */
+.konten-soal {
+    margin: 20px;
+    border: 2px;
+    /*padding: 10px 50px;*/
+    border-style: solid;
+    border-color: #c9c9c9;
+}
+
+.pilihan-jawaban {
+    margin: 20px 0px;
+}
+/* konten-soal end */
+
+/* navigasi-soal start */
+#navigasi-soal {
+    border-top: solid lightgrey 2px;
+}
+
+.navigasi {
+    margin-top: 20px;
+    margin-bottom: 20px;
+    padding-top: 10px;
+    padding-bottom: 10px;
+    border: none;
+    font-size: 1em;
+    font-weight: 600;
+    color: white;
+}
+
+.navigasi:hover {
+    color: white;
+}
+
+/*#navigasi-kiri {
+    margin-left: 15%;
+    background-color: #979797;
+}
+
+#navigasi-kiri:hover {
+    background-color: #676767;
+}
+
+#navigasi-kiri:active {
+    background-color: #5a5a5a;
+}*/
+#navigasi-kiri {
+    margin-left: 15%;
+    background-color: #2e6499;
+}
+
+#navigasi-kiri:hover {
+    background-color: #2f5e8c;
+}
+
+#navigasi-kiri:active {
+    background-color: #285077;
+}
+
+#navigasi-tengah {
+    margin-left: 10%;
+    background-color: #f3c309;
+}
+
+#navigasi-tengah:hover {
+    background-color: #dcbc06;
+}
+
+#navigasi-tengah:active {
+    background-color: #cbad06;
+}
+
+#navigasi-kanan {
+    margin-right: 50px;
+    background-color: #2e6499;
+}
+
+#navigasi-kanan:hover {
+    background-color: #2f5e8c;
+}
+
+#navigasi-kanan:active {
+    background-color: #285077;
+}
+
+#navigasi-selesai {
+    margin-right: 50px;
+    background-color: #d9534f;
+}
+
+#navigasi-selesai:hover {
+    background-color: #bc4743;
+}
+
+#navigasi-selesai:active {
+    background-color: #bc4743;
+}
+
+/* navigasi-soal end */
+
+.table td {
+   text-align: justify;
+}

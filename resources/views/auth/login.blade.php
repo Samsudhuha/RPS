@@ -1,56 +1,98 @@
-<x-guest-layout>
-    <!-- <x-jet-authentication-card>
-        <x-slot name="logo">
-            <x-jet-authentication-card-logo />
-        </x-slot> -->
+<!DOCTYPE html>
+<html>
 
-    <x-jet-validation-errors class="mb-4" />
-    <div class="p-10 min-h-screen flex items-center justify-center bg-teal-500">
-        <div class="mx-auto w-full max-w-sm space-y-6">
+<head>
+    <meta charset="UTF-8">
+    <meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
 
-            @if (session('status'))
-            <div class="mb-4 font-medium text-sm text-green-600">
-                {{ session('status') }}
-            </div>
-            @endif
-            <div class="p-8 bg-white shadow-2xl rounded-lg">
-                <h2 class="text-center text-3xl leading-9 font-extrabold text-black mb-10">Login MIS</h2>
-                <form method="POST" action="{{ route('login') }}">
-                    @csrf
+    <!-- Favicon-->
+    <link rel="icon" href="{{url('bower_components/adminbsb-materialdesign/favicon.ico')}}" type="image/x-icon">
 
-                    <div>
-                        <x-jet-label for="username" value="{{ __('Username') }}" />
-                        <x-jet-input id="username" class="block mt-1 w-full" type="email" name="username" :value="old('username')" required autofocus />
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css?family=Roboto:400,700&subset=latin,cyrillic-ext" rel="stylesheet" type="text/css">
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet" type="text/css">
+
+    <!-- Bootstrap Core Css -->
+    <link href="{{url('bower_components/adminbsb-materialdesign/plugins/bootstrap/css/bootstrap.css')}}" rel="stylesheet">
+
+    <!-- Waves Effect Css -->
+    <link href="{{url('bower_components/adminbsb-materialdesign/plugins/node-waves/waves.css')}}" rel="stylesheet" />
+
+    <!-- Animation Css -->
+    <link href="{{url('bower_components/adminbsb-materialdesign/plugins/animate-css/animate.css')}}" rel="stylesheet" />
+
+    <!-- Custom Css -->
+    <link href="{{url('bower_components/adminbsb-materialdesign/css/style.css')}}" rel="stylesheet">
+</head>
+
+<body class="login-page p-10 min-h-screen flex items-center justify-center bg-teal-500">
+    <div class="login-box">
+        <div class="logo">
+        </div>
+        @if (count($errors))
+        <div class="alert alert-danger">
+            <ul>
+                @foreach ($errors->all() as $err)
+                <li>{{ $err }}</li>
+                @endforeach
+            </ul>
+        </div>
+        @endif
+        @if (session('success'))
+        <div class="alert alert-success">
+            <ul>
+                <li>{{ session('success') }}</li>
+            </ul>
+        </div>
+        @endif
+        <div class="card">
+            <div class="body">
+                <form id="sign_in" method="POST" action="/login">
+                    {{ csrf_field() }}
+
+                    <div class="input-group">
+                        <span class="input-group-addon">
+                            <i class="material-icons">person</i>
+                        </span>
+                        <div class="form-line">
+                            <input type="text" class="form-control" name="username" placeholder="Username" required autofocus>
+                        </div>
                     </div>
-
-                    <div class="mt-4">
-
-                        <x-jet-label for="password" value="{{ __('Password') }}" />
-                        <x-jet-input id="password" class="block mt-1 w-full" type="password" name="password" required autocomplete="current-password" />
+                    <div class="input-group">
+                        <span class="input-group-addon">
+                            <i class="material-icons">lock</i>
+                        </span>
+                        <div class="form-line">
+                            <input type="password" class="form-control" name="password" placeholder="Password" required>
+                        </div>
                     </div>
-
-                    <!-- <div class="block mt-4">
-                        <label for="remember_me" class="flex items-center">
-                            <x-jet-checkbox id="remember_me" name="remember" />
-                            <span class="ml-2 text-sm text-gray-600">{{ __('Remember me') }}</span>
-                        </label>
-                    </div> -->
-
-                    <div class="flex items-center justify-end mt-4">
-                        <!-- @if (Route::has('password.request'))
-                        <a class="underline text-sm text-gray-600 hover:text-gray-900" href="{{ route('password.request') }}">
-                            {{ __('Forgot your password?') }}
-                        </a>
-                        @endif -->
-
-                        <button class="text-center w-full bg-blue-700 rounded-full text-white py-3 font-medium">Login</button>
-                        <!-- <x-jet-button class="ml-4">
-                            {{ __('Log in') }}
-                        </x-jet-button> -->
+                    <div class="row">
+                        <div class="col-xs-8 p-t-5">
+                        </div>
+                        <div class="col-xs-4">
+                            <button class="btn btn-block bg-green waves-effect" type="submit">SIGN IN</button>
+                        </div>
                     </div>
                 </form>
             </div>
         </div>
     </div>
-    <!-- </x-jet-authentication-card> -->
-</x-guest-layout>
+
+    <!-- Jquery Core Js -->
+    <script src="{{url('bower_components/adminbsb-materialdesign/plugins/jquery/jquery.min.js')}}"></script>
+
+    <!-- Bootstrap Core Js -->
+    <script src="{{url('bower_components/adminbsb-materialdesign/plugins/bootstrap/js/bootstrap.js')}}"></script>
+
+    <!-- Waves Effect Plugin Js -->
+    <script src="{{url('bower_components/adminbsb-materialdesign/plugins/node-waves/waves.js')}}"></script>
+
+    <!-- Validation Plugin Js -->
+    <script src="{{('bower_components/adminbsb-materialdesign/plugins/jquery-validation/jquery.validate.js')}}"></script>
+
+    <!-- Custom Js -->
+    <script src="{{url('bower_components/adminbsb-materialdesign/js/admin.js')}}"></script>
+    <script src="{{url('bower_components/adminbsb-materialdesign/js/pages/examples/sign-in.js')}}"></script>
+</body>
+
+</html>

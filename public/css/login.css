@@ -1,0 +1,53 @@
+#login-container {
+    margin-top: 100px;
+}
+
+#login-head {
+    font-size: 20px;
+    padding-top: 17px;
+    padding-bottom: 17px;
+}
+
+#login-panel {
+    padding-left: 40px;
+    padding-right: 40px;
+}
+
+#login-form {
+    margin-top: 30px;
+    margin-bottom: 30px;
+    padding-left: 15px;
+    padding-right: 35px;
+}
+
+#login-submit {
+    font-size: 15px;
+    font-weight: 700;
+    padding-top: 10px;
+    padding-bottom: 10px;
+}
+
+#show-password {
+    padding-top: 10px;
+    color: #cacaca;
+    cursor: pointer;
+}
+
+.form-group {
+    margin-top: 25px;
+    margin-bottom: 25px;
+}
+
+.input-group-addon {
+    border-radius: 0px;
+}
+
+.form-control {
+    border-radius: 0px;
+    height: 40px;
+}
+
+.login-icon {
+    color: white;
+    background-color: #cacaca;
+}
