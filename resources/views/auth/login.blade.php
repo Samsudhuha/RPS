@@ -1,34 +1,23 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 
 <head>
-    <meta charset="UTF-8">
-    <meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>AdminLTE 3 | Log in (v2)</title>
 
-    <!-- Favicon-->
-    <link rel="icon" href="{{url('bower_components/adminbsb-materialdesign/favicon.ico')}}" type="image/x-icon">
-
-    <!-- Google Fonts -->
-    <link href="https://fonts.googleapis.com/css?family=Roboto:400,700&subset=latin,cyrillic-ext" rel="stylesheet" type="text/css">
-    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet" type="text/css">
-
-    <!-- Bootstrap Core Css -->
-    <link href="{{url('bower_components/adminbsb-materialdesign/plugins/bootstrap/css/bootstrap.css')}}" rel="stylesheet">
-
-    <!-- Waves Effect Css -->
-    <link href="{{url('bower_components/adminbsb-materialdesign/plugins/node-waves/waves.css')}}" rel="stylesheet" />
-
-    <!-- Animation Css -->
-    <link href="{{url('bower_components/adminbsb-materialdesign/plugins/animate-css/animate.css')}}" rel="stylesheet" />
-
-    <!-- Custom Css -->
-    <link href="{{url('bower_components/adminbsb-materialdesign/css/style.css')}}" rel="stylesheet">
+    <!-- Google Font: Source Sans Pro -->
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700&display=fallback">
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="{{url('plugins/fontawesome-free/css/all.min.css')}}">
+    <!-- icheck bootstrap -->
+    <link rel="stylesheet" href="{{url('plugins/icheck-bootstrap/icheck-bootstrap.min.css')}}">
+    <!-- Theme style -->
+    <link rel="stylesheet" href="{{url('dist/css/adminlte.min.css')}}">
 </head>
 
-<body class="login-page p-10 min-h-screen flex items-center justify-center bg-teal-500">
+<body class="hold-transition login-page">
     <div class="login-box">
-        <div class="logo">
-        </div>
         @if (count($errors))
         <div class="alert alert-danger">
             <ul>
@@ -45,54 +34,47 @@
             </ul>
         </div>
         @endif
-        <div class="card">
-            <div class="body">
+        <!-- /.login-logo -->
+        <div class="card card-outline card-primary">
+            <div class="card-header text-center">
+                <h1><b>Login MIS</b></h1>
+            </div>
+            <div class="card-body">
+                <!-- <p class="login-box-msg">Sign in to start your session</p> -->
+
                 <form id="sign_in" method="POST" action="/login">
                     {{ csrf_field() }}
 
-                    <div class="input-group">
-                        <span class="input-group-addon">
-                            <i class="material-icons">person</i>
-                        </span>
-                        <div class="form-line">
+                    <div class="form-group">
+                        <div class="input-group">
+                            <span class="input-group-text"><i class="fa fa-user"></i></span>
                             <input type="text" class="form-control" name="username" placeholder="Username" required autofocus>
                         </div>
                     </div>
-                    <div class="input-group">
-                        <span class="input-group-addon">
-                            <i class="material-icons">lock</i>
-                        </span>
-                        <div class="form-line">
-                            <input type="password" class="form-control" name="password" placeholder="Password" required>
+                    <div class="form-group">
+                        <div class="input-group">
+                            <span class="input-group-text"><i class="fa fa-lock"></i></span>
+                            <input type="password" class="form-control" placeholder="Password" required autofocus>
                         </div>
                     </div>
-                    <div class="row">
-                        <div class="col-xs-8 p-t-5">
-                        </div>
-                        <div class="col-xs-4">
-                            <button class="btn btn-block bg-green waves-effect" type="submit">SIGN IN</button>
-                        </div>
+                    <div class="form-group">
+                        <button type="submit" class="btn btn-primary btn-block rounded-pill">LOGIN</button>
                     </div>
+
                 </form>
             </div>
+            <!-- /.card-body -->
         </div>
+        <!-- /.card -->
     </div>
+    <!-- /.login-box -->
 
-    <!-- Jquery Core Js -->
-    <script src="{{url('bower_components/adminbsb-materialdesign/plugins/jquery/jquery.min.js')}}"></script>
-
-    <!-- Bootstrap Core Js -->
-    <script src="{{url('bower_components/adminbsb-materialdesign/plugins/bootstrap/js/bootstrap.js')}}"></script>
-
-    <!-- Waves Effect Plugin Js -->
-    <script src="{{url('bower_components/adminbsb-materialdesign/plugins/node-waves/waves.js')}}"></script>
-
-    <!-- Validation Plugin Js -->
-    <script src="{{('bower_components/adminbsb-materialdesign/plugins/jquery-validation/jquery.validate.js')}}"></script>
-
-    <!-- Custom Js -->
-    <script src="{{url('bower_components/adminbsb-materialdesign/js/admin.js')}}"></script>
-    <script src="{{url('bower_components/adminbsb-materialdesign/js/pages/examples/sign-in.js')}}"></script>
+    <!-- jQuery -->
+    <script src="{{url('plugins/jquery/jquery.min.js')}}"></script>
+    <!-- Bootstrap 4 -->
+    <script src="{{url('plugins/bootstrap/js/bootstrap.bundle.min.js')}}"></script>
+    <!-- AdminLTE App -->
+    <script src="{{url('dist/js/adminlte.min.js')}}"></script>
 </body>
 
 </html>
