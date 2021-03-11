@@ -210,5 +210,7 @@
         });
     });
 </script>
-
+<script type="text/javascript">
+    $("#sidebar-home").addClass("active");
+</script>
 @endsection

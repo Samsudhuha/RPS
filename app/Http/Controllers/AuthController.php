@@ -47,7 +47,7 @@ class AuthController extends Controller
 
     public function home()
     {
-        return view('rps.list');
+        return view('rps.index');
     }
 
     public function logout()

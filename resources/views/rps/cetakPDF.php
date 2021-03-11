@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 
 <head>
     <title>Membuat Laporan PDF Dengan DOMPDF Laravel</title>
