@@ -54,10 +54,10 @@
                     <div class="form-group">
                         <div class="input-group">
                             <span class="input-group-text"><i class="fa fa-lock"></i></span>
-                            <input type="password" class="form-control" placeholder="Password" required autofocus>
+                            <input type="password" class="form-control" placeholder="Password" name="password" required>
                         </div>
                     </div>
-                    <div class="form-group">
+                    <div class=" form-group">
                         <button type="submit" class="btn btn-primary btn-block rounded-pill">LOGIN</button>
                     </div>
 

@@ -18,14 +18,12 @@ class AuthController extends Controller
     public function login(Request $request)
     {
         $user = User::where('username', $request->username)->first();
-        if ($user != null) {
-            if (Hash::check($request->input('password'), $user->password)) {
-                Auth::loginUsingId($user->id, TRUE);
-                return redirect('/home');
-            }
+        if ($user && Hash::check($request->input('password'), $user->password)) {
+            Auth::loginUsingId($user->id, TRUE);
+            return redirect('/home');
+        } else {
             return redirect('/')->withErrors('Username atau Password salah!');
         }
-        return redirect('/')->withErrors('Username tidak ada di database');
     }
 
     public function viewRegister()
@@ -39,7 +37,7 @@ class AuthController extends Controller
 
         $data = [
             'username' => $request->username,
-            'password' => bcrypt($request->password)
+            'password' => Hash::make($request->password)
         ];
 
         User::create($data);
@@ -49,7 +47,7 @@ class AuthController extends Controller
 
     public function home()
     {
-        return view('dashboard.index');
+        return view('rps.list');
     }
 
     public function logout()
