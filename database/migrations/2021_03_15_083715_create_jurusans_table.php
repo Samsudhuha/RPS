@@ -4,14 +4,8 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateUsersTable extends Migration
+class CreateJurusansTable extends Migration
 {
-    /**
-     * Schema table name to migrate
-     * @var string
-     */
-    public $set_schema_table = 'users';
-
     /**
      * Run the migrations.
      *
@@ -19,12 +13,10 @@ class CreateUsersTable extends Migration
      */
     public function up()
     {
-        Schema::create($this->set_schema_table, function (Blueprint $table) {
+        Schema::create('jurusans', function (Blueprint $table) {
             $table->uuid('id')->primary();
-            $table->string('username')->unique();
-            $table->string('password');
             $table->string('name', 150);
-            $table->string('remember_token')->nullable();
+            $table->foreignUuid('program_studi_id')->references('id')->on('program_studis')->cascadeOnDelete();
             $table->timestamps();
         });
     }
@@ -36,6 +28,6 @@ class CreateUsersTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists($this->set_schema_table);
+        Schema::dropIfExists('jurusans');
     }
 }
