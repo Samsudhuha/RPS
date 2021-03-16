@@ -7,6 +7,11 @@ use PDF;
 
 class RpsController extends Controller
 {
+    public function viewCreateRps()
+    {
+        return view('rps.create');
+    }
+
     public function getRpsById()
     {
         return view('rps.rps');

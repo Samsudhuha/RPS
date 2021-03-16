@@ -81,7 +81,7 @@
                         </div>
                         <div class="col-md-4">
                             <div class="form-group">
-                                <label>Jurusann</label>
+                                <label>Jurusan</label>
                                 <select class="form-control select2" style="width: 100%;">
                                     <option selected="selected">Teknik Informatika</option>
                                     <option>Sistem Informasi</option>
@@ -97,6 +97,9 @@
         <div class="card">
             <div class="card-header">
                 <h3 class="card-title">Rencana Pembelajaran Semester</h3>
+                <div class="float-right">
+                    <a class="btn btn-success" href="/rps/create"> Buat RPS</a>
+                </div>
             </div>
             <!-- /.card-header -->
             <div class="card-body">

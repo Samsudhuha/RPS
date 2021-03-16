@@ -16,6 +16,7 @@ Route::middleware(['auth'])->group(function () {
 
     Route::prefix('rps')->group(function () {
         Route::get('/cetakRPS', [RpsController::class, 'cetakPDF']);
+        Route::get('/create', [RpsController::class, 'viewCreateRps']);
         Route::get('/{id}', [RpsController::class, 'getRpsById']);
     });
 });
