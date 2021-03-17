@@ -6,9 +6,11 @@ use App\Services\RmkService;
 
 class RmkController extends Controller
 {
-    public function __construct(
-        private RmkService $rmkService
-    ) {
+    protected $rmkService;
+
+    public function __construct(RmkService $rmkService)
+    {
+        $this->rmkService = $rmkService;
     }
 
     public function getSubRmk($jurusan_id)

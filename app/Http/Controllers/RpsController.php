@@ -11,15 +11,30 @@ use PDF;
 
 class RpsController extends Controller
 {
+    protected $jurusanService;
+    protected $programStudiService;
+    protected $mataKuliahService;
+    protected $dosenService;
+    protected $jurusanController;
+    protected $rmkController;
+    protected $dosenController;
+
     public function __construct(
-        private JurusanService $jurusanService,
-        private ProgramStudiService $programStudiService,
-        private MataKuliahService $mataKuliahService,
-        private DosenService $dosenService,
-        private JurusanController $jurusanController,
-        private RmkController $rmkController,
-        private DosenController $dosenController,
+        JurusanService $jurusanService,
+        ProgramStudiService $programStudiService,
+        MataKuliahService $mataKuliahService,
+        DosenService $dosenService,
+        JurusanController $jurusanController,
+        RmkController $rmkController,
+        DosenController $dosenController,
     ) {
+        $this->jurusanService = $jurusanService;
+        $this->programStudiService = $programStudiService;
+        $this->mataKuliahService = $mataKuliahService;
+        $this->dosenService = $dosenService;
+        $this->jurusanController = $jurusanController;
+        $this->rmkController = $rmkController;
+        $this->dosenController = $dosenController;
     }
 
     public function viewCreateRps()

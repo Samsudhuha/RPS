@@ -8,9 +8,11 @@ use Illuminate\Http\Request;
 
 class MataKuliahController extends Controller
 {
-    public function __construct(
-        private MataKuliahService $mataKuliahService
-    ) {
+    protected $mataKuliahService;
+
+    public function __construct(MataKuliahService $mataKuliahService)
+    {
+        $this->mataKuliahService = $mataKuliahService;
     }
 
     public function create(CreateMataKuliahRequest $request)

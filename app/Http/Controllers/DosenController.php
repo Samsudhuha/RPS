@@ -7,9 +7,11 @@ use Illuminate\Http\Request;
 
 class DosenController extends Controller
 {
-    public function __construct(
-        private DosenService $dosenService
-    ) {
+    protected $dosenService;
+
+    public function __construct(DosenService $dosenService)
+    {
+        $this->dosenService = $dosenService;
     }
 
     public function getSubDosen($jurusan_id)
