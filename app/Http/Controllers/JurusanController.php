@@ -16,9 +16,7 @@ class JurusanController extends Controller
     public function getSubJurusan($program_studi_id)
     {
         try {
-            $jurusan = $this->jurusanService->getByProgramStudi($program_studi_id);
-
-            return $jurusan;
+            return $this->jurusanService->getByProgramStudi($program_studi_id);
         } catch (\Exception $e) {
             return $this->handleException($e);
         }

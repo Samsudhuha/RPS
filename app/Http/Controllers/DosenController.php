@@ -17,9 +17,7 @@ class DosenController extends Controller
     public function getSubDosen($jurusan_id)
     {
         try {
-            $dosen = $this->dosenService->getByJurusan($jurusan_id);
-
-            return $dosen;
+            return $this->dosenService->getByJurusan($jurusan_id);
         } catch (\Exception $e) {
             return $this->handleException($e);
         }

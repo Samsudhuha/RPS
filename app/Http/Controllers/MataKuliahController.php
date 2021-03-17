@@ -30,9 +30,7 @@ class MataKuliahController extends Controller
     public function getSubMataKuliah($rmk_id)
     {
         try {
-            $rmk = $this->mataKuliahService->getMataKuliahByRmk($rmk_id);
-
-            return $rmk;
+            return $this->mataKuliahService->getMataKuliahByRmk($rmk_id);
         } catch (\Exception $e) {
             return $this->handleException($e);
         }

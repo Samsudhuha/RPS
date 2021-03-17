@@ -3,6 +3,7 @@
 use Illuminate\Support\Facades\Route;
 
 use App\Http\Controllers\AuthController;
+use App\Http\Controllers\CplCpmkController;
 use App\Http\Controllers\DosenController;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\JurusanController;
@@ -22,12 +23,18 @@ Route::middleware(['auth'])->group(function () {
             Route::get('/', [RpsController::class, 'viewCreateRps']);
             Route::post('/matakuliah', [MataKuliahController::class, 'create']);
         });
+        Route::prefix('edit')->group(function () {
+            Route::post('/cplcpmk/{id}', [CplCpmkController::class, 'insertOrUpdate']);
+        });
         Route::get('/cetakRPS', [RpsController::class, 'cetakPDF']);
         Route::get('/{id}', [RpsController::class, 'getRpsById']);
+
         // get dropdown list
-        Route::get('/dropdownlist/getjurusan/{id}', [JurusanController::class, 'getSubJurusan']);
-        Route::get('/dropdownlist/getrmk/{id}', [RmkController::class, 'getSubRmk']);
-        Route::get('/dropdownlist/getmatakuliah/{id}', [MataKuliahController::class, 'getSubMataKuliah']);
-        Route::get('/dropdownlist/getdosen/{id}', [DosenController::class, 'getSubDosen']);
+        Route::prefix('dropdownlist')->group(function () {
+            Route::get('/getjurusan/{id}', [JurusanController::class, 'getSubJurusan']);
+            Route::get('/getrmk/{id}', [RmkController::class, 'getSubRmk']);
+            Route::get('/getmatakuliah/{id}', [MataKuliahController::class, 'getSubMataKuliah']);
+            Route::get('/getdosen/{id}', [DosenController::class, 'getSubDosen']);
+        });
     });
 });
