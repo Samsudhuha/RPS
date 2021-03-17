@@ -45,11 +45,6 @@ class AuthController extends Controller
         return redirect('/')->with('success', 'Berhasil membuat akun baru');
     }
 
-    public function home()
-    {
-        return view('rps.index');
-    }
-
     public function logout()
     {
         Auth::logout();

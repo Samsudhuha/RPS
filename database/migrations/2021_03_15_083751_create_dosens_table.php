@@ -15,7 +15,7 @@ class CreateDosensTable extends Migration
     {
         Schema::create('dosens', function (Blueprint $table) {
             $table->foreignUuid('id')->references('id')->on('users')->cascadeOnDelete()->primary();
-            $table->foreignUuid('rmk_id')->references('id')->on('rmks')->cascadeOnDelete();
+            $table->foreignUuid('jurusan_id')->references('id')->on('jurusans')->cascadeOnDelete();
             $table->timestamps();
         });
     }

@@ -5,7 +5,7 @@ namespace Database\Seeders;
 use Illuminate\Database\Seeder;
 use App\Models\User;
 use App\Models\Dosen;
-use App\Models\Rmk;
+use App\Models\Jurusan;
 
 class DosenSeeder extends Seeder
 {
@@ -22,37 +22,32 @@ class DosenSeeder extends Seeder
         $user_sr = User::where('name', 'Ir. Siti Rochimah, MT.,Ph.D.')->first();
         $user_ul = User::where('name', 'Dr. Umi Laili Yuhana S.Kom., M.Sc.')->first();
         $user_cf = User::where('name', 'Dr. Eng. Chastine Fatichah, S.Kom., M.Kom.')->first();
-        $rmk_rpl = Rmk::where('name', 'Rekayasa Perangkat Lunak')->first();
-        $rmk_kcv = Rmk::where('name', 'Komputasi Cerdas Visi')->first();
+        $jurusan_tc = Jurusan::where('name', 'Informatika')->first();
 
         $dosens = [
             [
                 'id' => $user_dn->id,
-                'rmk_id' => $rmk_rpl->id
+                'jurusan_id' => $jurusan_tc->id
             ],
             [
                 'id' => $user_sw->id,
-                'rmk_id' => $rmk_rpl->id
+                'jurusan_id' => $jurusan_tc->id
             ],
             [
                 'id' => $user_rj->id,
-                'rmk_id' => $rmk_rpl->id
+                'jurusan_id' => $jurusan_tc->id
             ],
             [
                 'id' => $user_sr->id,
-                'rmk_id' => $rmk_rpl->id
-            ],
-            [
-                'id' => $user_dn->id,
-                'rmk_id' => $rmk_rpl->id
+                'jurusan_id' => $jurusan_tc->id
             ],
             [
                 'id' => $user_ul->id,
-                'rmk_id' => $rmk_rpl->id
+                'jurusan_id' => $jurusan_tc->id
             ],
             [
                 'id' => $user_cf->id,
-                'rmk_id' => $rmk_kcv->id
+                'jurusan_id' => $jurusan_tc->id
             ],
         ];
         for ($i = 0; $i < count($dosens); $i++) {

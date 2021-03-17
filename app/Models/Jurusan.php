@@ -17,4 +17,8 @@ class Jurusan extends Model
     protected $fillable = [
         'name', 'program_studi_id'
     ];
+    protected $casts = [
+        'id' => 'string',
+        'program_studi_id' => 'string'
+    ];
 }

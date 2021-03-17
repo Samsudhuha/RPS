@@ -11,4 +11,9 @@ class EloquentUsersRepository implements UserRepository
     {
         return User::create($data);
     }
+
+    public function getById($id)
+    {
+        return User::where('id', $id)->first();
+    }
 }

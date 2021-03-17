@@ -39,6 +39,22 @@
     <!-- Main content -->
     <section class="content">
         <div class="container-fluid">
+            @if (count($errors))
+            <div class="alert alert-danger">
+                <ul>
+                    @foreach ($errors->all() as $err)
+                    <li>{{ $err }}</li>
+                    @endforeach
+                </ul>
+            </div>
+            @endif
+            @if (session('success'))
+            <div class="alert alert-success">
+                <ul>
+                    <li>{{ session('success') }}</li>
+                </ul>
+            </div>
+            @endif
             <!-- SELECT2 EXAMPLE -->
             <div class="card card-default">
                 <div class="card-header">
@@ -108,75 +124,32 @@
                         <tr>
                             <th>#</th>
                             <th>Kode/Matakuliah</th>
-                            <th>Kelas</th>
-                            <th>Jam</th>
-                            <th>SKS</th>
-                            <th>Jenis MK</th>
+                            <th>Bobot</th>
+                            <th>Semester</th>
                             <th>Dosen Pengembang RPS</th>
                             <th>Aksi</th>
                         </tr>
                     </thead>
                     <tbody>
+                        @foreach($datas as $data)
                         <tr>
-                            <td>1</td>
-                            <td>VI42103 : Algoritma dan Struktur Data</td>
-                            <td>1</td>
-                            <td>2</td>
-                            <td>2</td>
-                            <td>Matakuliah Teori - Keahlian</td>
-                            <td>Tri Hadiah Muliawati</td>
+                            <td>{{ $no }}</td>
+                            <td>{{ $data["kode"] }} : {{ $data["name"] }}</td>
+                            <td>{{ $data["bobot"] }} SKS</td>
+                            <td>{{ $data["semester"] }}</td>
                             <td>
-                                <a href="/rps/1"><i class="fas fa-eye" style="font-size: 25px;"></i></a>
+                                <?php $nomor = 1 ?>
+                                @foreach($data["dosen"] as $dosen)
+                                <?php echo $nomor ?>. {{ $dosen }}
+                                <br>
+                                <?php $nomor++ ?>
+                                @endforeach
+                            </td>
+                            <td>
+                                <a href="/rps/{{$data['id']}}" class="btn btn-primary">Lihat</a>
                             </td>
                         </tr>
-                        <tr>
-                            <td>1</td>
-                            <td>VI42104 : Sistem Operasi</td>
-                            <td>1</td>
-                            <td>2</td>
-                            <td>2</td>
-                            <td>Matakuliah Teori - Keahlian</td>
-                            <td>Fitri Setyorini</td>
-                            <td>
-                                <a href="/rps/1"><i class="fas fa-eye" style="font-size: 25px;"></i></a>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td>1</td>
-                            <td>VI42105 : Basis Data</td>
-                            <td>1</td>
-                            <td>2</td>
-                            <td>2</td>
-                            <td>Matakuliah Teori - Keahlian</td>
-                            <td>Arif Basori</td>
-                            <td>
-                                <a href="/rps/1"><i class="fas fa-eye" style="font-size: 25px;"></i></a>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td>1</td>
-                            <td>VI42106 : Metode Numerik</td>
-                            <td>1</td>
-                            <td>2</td>
-                            <td>2</td>
-                            <td>Matakuliah Teori - Keahlian</td>
-                            <td>Ira Prasetyaningrum</td>
-                            <td>
-                                <a href="/rps/1"><i class="fas fa-eye" style="font-size: 25px;"></i></a>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td>1</td>
-                            <td>VI42107 : Pemrograman Web</td>
-                            <td>1</td>
-                            <td>2</td>
-                            <td>2</td>
-                            <td>Matakuliah Teori - Keahlian</td>
-                            <td>Isbat Uzzin Nadhlori</td>
-                            <td>
-                                <a href="/rps/1"><i class="fas fa-eye" style="font-size: 25px;"></i></a>
-                            </td>
-                        </tr>
+                        @endforeach
                     </tbody>
                 </table>
             </div>
@@ -191,7 +164,7 @@
 @section('custom-js')
 
 <!-- DataTables  & Plugins -->
-<script src="{{url('plugins/datatables/jquery.dataTables.min.js')}}"></script>
+<script src=" {{url('plugins/datatables/jquery.dataTables.min.js')}}"></script>
 <script src="{{url('plugins/datatables-bs4/js/dataTables.bootstrap4.min.js')}}"></script>
 <script src="{{url('plugins/datatables-responsive/js/dataTables.responsive.min.js')}}"></script>
 <script src="{{url('plugins/datatables-responsive/js/responsive.bootstrap4.min.js')}}"></script>

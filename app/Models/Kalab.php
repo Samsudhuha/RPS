@@ -16,4 +16,8 @@ class Kalab extends Model
     ];
 
     public $timestamps = false;
+    protected $casts = [
+        'dosen_id' => 'string',
+        'rmk_id' => 'string'
+    ];
 }

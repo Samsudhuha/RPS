@@ -16,7 +16,8 @@ class MataKuliah extends Model
      */
     protected $fillable = [
         'rmk_id',
-        'program_studi',
+        'program_studi_id',
+        'jurusan_id',
         'kode',
         'name',
         'bobot',
@@ -24,5 +25,12 @@ class MataKuliah extends Model
         'deskripsi',
         'bahan_kajian',
         'pustaka'
+    ];
+
+    protected $casts = [
+        'id' => 'string',
+        'rmk_id' => 'string',
+        'program_studi_id' => 'string',
+        'jurusan_id' => 'string'
     ];
 }

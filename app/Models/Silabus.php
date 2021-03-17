@@ -25,4 +25,8 @@ class Silabus extends Model
         'pengalaman',
         'bobot'
     ];
+    protected $casts = [
+        'id' => 'string',
+        'mata_kuliah_id' => 'string',
+    ];
 }

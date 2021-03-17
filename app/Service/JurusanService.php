@@ -20,4 +20,9 @@ class JurusanService
     {
         return $this->jurusanRepository->getByName($name);
     }
+
+    public function getByProgramStudi($program_studi_id)
+    {
+        return $this->jurusanRepository->getByProgramStudi($program_studi_id);
+    }
 }

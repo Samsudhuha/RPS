@@ -19,10 +19,14 @@
     <!-- Select2 -->
     <link rel="stylesheet" href="{{url('plugins/select2/css/select2.min.css')}}">
     <link rel="stylesheet" href="{{url('plugins/select2-bootstrap4-theme/select2-bootstrap4.min.css')}}">
+    <!-- Bootstrap4 Duallistbox -->
+    <link rel="stylesheet" href="{{url('plugins/bootstrap4-duallistbox/bootstrap-duallistbox.min.css')}}">
     <!-- BS Stepper -->
     <link rel="stylesheet" href="{{url('plugins/bs-stepper/css/bs-stepper.min.css')}}">
     <!-- dropzonejs -->
     <link rel="stylesheet" href="{{url('plugins/dropzone/min/dropzone.min.css')}}">
+    <!-- Theme style -->
+    <link rel="stylesheet" href="{{url('dist/css/adminlte.min.css')}}">
 
     @section('include-css')
 
@@ -63,7 +67,8 @@
     </div>
 
     <!-- jQuery -->
-    <script src="{{url('plugins/jquery/jquery.min.js')}}"></script>
+    <script src="{{url('plugins/jquery/jquery.min.js')}}">
+    </script>
     <!-- Select2 -->
     <script src="{{url('plugins/select2/js/select2.full.min.js')}}"></script>
     <!-- Bootstrap 4 -->

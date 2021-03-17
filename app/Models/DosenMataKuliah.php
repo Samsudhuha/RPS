@@ -16,4 +16,8 @@ class DosenMataKuliah extends Model
     ];
 
     public $timestamps = false;
+    protected $casts = [
+        'dosen_id' => 'string',
+        'program_studi_id' => 'string'
+    ];
 }

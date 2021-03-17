@@ -4,6 +4,6 @@ namespace App\Repositories\Contracts;
 
 interface ProgramStudiRepository
 {
-    public function create($data);
+    public function getAll();
     public function getByName($name);
 }

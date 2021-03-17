@@ -28,4 +28,7 @@ class User extends Authenticatable
     protected $hidden = [
         'password',
     ];
+    protected $casts = [
+        'id' => 'string',
+    ];
 }

@@ -17,4 +17,8 @@ class Cpmk extends Model
     protected $fillable = [
         'name', 'mata_kuliah_id'
     ];
+    protected $casts = [
+        'id' => 'string',
+        'mata_kuliah_id' => 'string',
+    ];
 }

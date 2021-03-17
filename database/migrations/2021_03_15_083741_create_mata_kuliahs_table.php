@@ -16,6 +16,8 @@ class CreateMataKuliahsTable extends Migration
         Schema::create('mata_kuliahs', function (Blueprint $table) {
             $table->uuid('id')->primary();
             $table->foreignUuid('rmk_id')->references('id')->on('rmks')->cascadeOnDelete();
+            $table->foreignUuid('program_studi_id')->nullable()->references('id')->on('program_studis')->cascadeOnDelete();
+            $table->foreignUuid('jurusan_id')->references('id')->on('jurusans')->cascadeOnDelete();
             $table->string('kode', 10)->unique();
             $table->string('name', 150)->unique();
             $table->string('bobot', 1);

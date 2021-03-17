@@ -11,9 +11,9 @@ class ProgramStudiService
     ) {
     }
 
-    public function create($data)
+    public function getAll()
     {
-        return $this->programStudiRepository->create($data);
+        return $this->programStudiRepository->getAll();
     }
 
     public function getByName($name)

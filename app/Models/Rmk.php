@@ -17,4 +17,9 @@ class Rmk extends Model
     protected $fillable = [
         'name', 'jurusan_id'
     ];
+
+    protected $casts = [
+        'id' => 'string',
+        'jurusan_id' => 'string',
+    ];
 }

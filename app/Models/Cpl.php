@@ -19,4 +19,9 @@ class Cpl extends Model
     ];
 
     public $timestamps = false;
+
+    protected $casts = [
+        'id' => 'string',
+        'jurusan_id' => 'string',
+    ];
 }

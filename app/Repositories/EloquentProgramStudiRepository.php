@@ -7,9 +7,9 @@ use App\Repositories\Contracts\ProgramStudiRepository;
 
 class EloquentProgramStudiRepository implements ProgramStudiRepository
 {
-    public function create($data)
+    public function getAll()
     {
-        return ProgramStudi::create($data);
+        return ProgramStudi::orderBy('name')->get();
     }
 
     public function getByName($name)

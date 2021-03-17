@@ -16,4 +16,9 @@ class CplCpmk extends Model
     ];
 
     public $timestamps = false;
+    protected $casts = [
+        'mata_kuliah_id' => 'string',
+        'cpl_id' => 'string',
+        'cpmk_id' => 'string'
+    ];
 }
