@@ -6,9 +6,12 @@ use App\Repositories\Contracts\RmkRepository;
 
 class RmkService
 {
+    protected $rmkRepository;
+
     public function __construct(
-        private RmkRepository $rmkRepository
+        RmkRepository $rmkRepository
     ) {
+        $this->rmkRepository = $rmkRepository;
     }
 
     public function getByJurusan($jurusan_id)

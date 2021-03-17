@@ -8,11 +8,18 @@ use App\Services\UserService;
 
 class DosenService
 {
+    protected $dosenRepository;
+    protected $dosenMataKuliahRepository;
+    protected $userService;
+
     public function __construct(
-        private DosenRepository $dosenRepository,
-        private DosenMataKuliahRepository $dosenMataKuliahRepository,
-        private UserService $userService
+        DosenRepository $dosenRepository,
+        DosenMataKuliahRepository $dosenMataKuliahRepository,
+        UserService $userService
     ) {
+        $this->dosenRepository = $dosenRepository;
+        $this->dosenMataKuliahRepository = $dosenMataKuliahRepository;
+        $this->userService = $userService;
     }
 
     public function getByJurusan($jurusan_id)

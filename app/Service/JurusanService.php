@@ -6,9 +6,12 @@ use App\Repositories\Contracts\JurusanRepository;
 
 class JurusanService
 {
+    protected $jurusanRepository;
+
     public function __construct(
-        private JurusanRepository $jurusanRepository
+        JurusanRepository $jurusanRepository
     ) {
+        $this->jurusanRepository = $jurusanRepository;
     }
 
     public function create($data)

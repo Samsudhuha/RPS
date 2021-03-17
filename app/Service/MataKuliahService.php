@@ -7,11 +7,18 @@ use App\Repositories\Contracts\MataKuliahRepository;
 
 class MataKuliahService
 {
+    protected $mataKuliahRepository;
+    protected $dosenMataKuliahRepository;
+    protected $userService;
+
     public function __construct(
-        private MataKuliahRepository $mataKuliahRepository,
-        private DosenMataKuliahRepository $dosenMataKuliahRepository,
-        private UserService $userService,
+        MataKuliahRepository $mataKuliahRepository,
+        DosenMataKuliahRepository $dosenMataKuliahRepository,
+        UserService $userService
     ) {
+        $this->mataKuliahRepository = $mataKuliahRepository;
+        $this->dosenMataKuliahRepository = $dosenMataKuliahRepository;
+        $this->userService = $userService;
     }
 
     public function create($data)

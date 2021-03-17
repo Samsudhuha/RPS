@@ -6,9 +6,12 @@ use App\Repositories\Contracts\UserRepository;
 
 class UserService
 {
+    protected $userRepository;
+
     public function __construct(
-        private userRepository $userRepository
+        userRepository $userRepository
     ) {
+        $this->userRepository = $userRepository;
     }
 
     public function create($data)

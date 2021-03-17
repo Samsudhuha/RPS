@@ -6,9 +6,12 @@ use App\Repositories\Contracts\ProgramStudiRepository;
 
 class ProgramStudiService
 {
+    protected $programStudiRepository;
+
     public function __construct(
-        private ProgramStudiRepository $programStudiRepository
+        ProgramStudiRepository $programStudiRepository
     ) {
+        $this->programStudiRepository = $programStudiRepository;
     }
 
     public function getAll()
