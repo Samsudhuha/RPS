@@ -16,4 +16,9 @@ class EloquentJurusanRepository implements JurusanRepository
     {
         return Jurusan::where('program_studi_id', $program_studi_id)->get();
     }
+
+    public function getById($id)
+    {
+        return Jurusan::where('id', $id)->first();
+    }
 }

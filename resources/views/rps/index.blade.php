@@ -149,6 +149,7 @@
                                 <a href="/rps/{{$data['id']}}" class="btn btn-primary">Lihat</a>
                             </td>
                         </tr>
+                        <?php $no++ ?>
                         @endforeach
                     </tbody>
                 </table>

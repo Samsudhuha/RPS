@@ -16,4 +16,9 @@ class EloquentDosenMataKuliahRepository implements DosenMataKuliahRepository
     {
         return DosenMataKuliah::where('mata_kuliah_id', $mataKuliahId)->get();
     }
+
+    public function delete($mataKuliahId)
+    {
+        return DosenMataKuliah::where('mata_kuliah_id', $mataKuliahId)->delete();
+    }
 }

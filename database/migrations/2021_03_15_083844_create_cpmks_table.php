@@ -17,6 +17,7 @@ class CreateCpmksTable extends Migration
             $table->uuid('id')->primary();
             $table->foreignUuid('mata_kuliah_id')->references('id')->on('mata_kuliahs')->cascadeOnDelete();
             $table->longText('name');
+            $table->integer('no');
             $table->timestamps();
         });
     }

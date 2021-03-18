@@ -24,7 +24,9 @@ Route::middleware(['auth'])->group(function () {
             Route::post('/matakuliah', [MataKuliahController::class, 'create']);
         });
         Route::prefix('edit')->group(function () {
+            Route::post('/matakuliah/{id}', [MataKuliahController::class, 'update']);
             Route::post('/cplcpmk/{id}', [CplCpmkController::class, 'insertOrUpdate']);
+            Route::post('/petacplcpmk/{id}', [CplCpmkController::class, 'insertOrUpdatePeta']);
         });
         Route::get('/cetakRPS', [RpsController::class, 'cetakPDF']);
         Route::get('/{id}', [RpsController::class, 'getRpsById']);

@@ -20,14 +20,29 @@ class EloquentCplCpmkRepository implements CplCpmkRepository
         return CplMataKuliah::create($data);
     }
 
-    public function getCplAll()
+    public function createCplCpmk($data)
     {
-        return Cpl::orderBy('id')->get();
+        return CplCpmk::create($data);
     }
 
-    public function getCpmkAll()
+    public function getCplAll()
     {
-        return Cpmk::orderBy('id')->get();
+        return Cpl::orderBy('no')->get();
+    }
+
+    public function getCplByNo($no)
+    {
+        return Cpl::where('no', $no)->first();
+    }
+
+    public function getCpmkByNo($no)
+    {
+        return Cpmk::where('no', $no)->first();
+    }
+
+    public function getCpmkMataKuliahAll($mata_kuliah_id)
+    {
+        return Cpmk::where('mata_kuliah_id', $mata_kuliah_id)->orderBy('no')->get();
     }
 
     public function getCplCpmkAll($mata_kuliah_id)
@@ -48,5 +63,15 @@ class EloquentCplCpmkRepository implements CplCpmkRepository
     public function deleteCplCpmk($mata_kuliah_id)
     {
         return CplCpmk::where('mata_kuliah_id', $mata_kuliah_id)->delete();
+    }
+
+    public function deleteCplMatakuliah($mata_kuliah_id)
+    {
+        return CplMataKuliah::where('mata_kuliah_id', $mata_kuliah_id)->delete();
+    }
+
+    public function deleteCpmk($mata_kuliah_id)
+    {
+        return Cpmk::where('mata_kuliah_id', $mata_kuliah_id)->delete();
     }
 }

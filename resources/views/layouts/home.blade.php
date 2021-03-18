@@ -21,6 +21,8 @@
     <link rel="stylesheet" href="{{url('plugins/select2-bootstrap4-theme/select2-bootstrap4.min.css')}}">
     <!-- Bootstrap4 Duallistbox -->
     <link rel="stylesheet" href="{{url('plugins/bootstrap4-duallistbox/bootstrap-duallistbox.min.css')}}">
+    <!-- Ionicons -->
+    <link rel="stylesheet" href="https://code.ionicframework.com/ionicons/2.0.1/css/ionicons.min.css">
     <!-- BS Stepper -->
     <link rel="stylesheet" href="{{url('plugins/bs-stepper/css/bs-stepper.min.css')}}">
     <!-- dropzonejs -->

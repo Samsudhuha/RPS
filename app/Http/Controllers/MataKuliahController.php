@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Http\Requests\CreateMataKuliahRequest;
+use App\Http\Requests\UpdateMataKuliahRequest;
 use App\Services\MataKuliahService;
 use Illuminate\Http\Request;
 
@@ -22,6 +23,18 @@ class MataKuliahController extends Controller
             $mata_kuliah = $this->mataKuliahService->getMataKuliahById($request->mata_kuliah);
 
             return redirect('home')->with('success', 'Berhasil Menyimpan Data Mata Kuliah ' . $mata_kuliah["name"]);
+        } catch (\Exception $e) {
+            return $this->handleException($e);
+        }
+    }
+
+    public function update(UpdateMataKuliahRequest $request, $mata_kuliah_id)
+    {
+        try {
+            $this->mataKuliahService->update($request->validated(), $mata_kuliah_id);
+            $mata_kuliah = $this->mataKuliahService->getMataKuliahById($mata_kuliah_id);
+
+            return redirect('rps/' . $mata_kuliah_id)->with('success', 'Berhasil Menyimpan Data Mata Kuliah ' . $mata_kuliah["name"]);
         } catch (\Exception $e) {
             return $this->handleException($e);
         }

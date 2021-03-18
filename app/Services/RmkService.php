@@ -18,4 +18,9 @@ class RmkService
     {
         return $this->rmkRepository->getByJurusan($jurusan_id);
     }
+
+    public function getRmkById($id)
+    {
+        return $this->rmkRepository->getByid($id);
+    }
 }

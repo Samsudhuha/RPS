@@ -77,28 +77,16 @@
                         <div class="col-md-6">
                             <div class="form-group">
                                 <label>Program Studi</label>
-                                <select name="program_studi" class="form-control-lg select2" style="width: 100%;" value="">
-                                    @foreach($program_studis as $program_studi)
-                                    <option value="{{ $program_studi->id }}" @if( $program_studi->id == $mata_kuliah["program_studi_id"] )
-                                        selected
-                                        @endif
-                                        >{{ $program_studi->name }}
-                                    </option>
-                                    @endforeach
+                                <select name="program_studi" class="form-control-lg select2" style="width: 100%;" disabled>
+                                    <option value="{{ $program_studi->id }}">{{ $program_studi->name }} </option>
                                 </select>
                             </div>
                         </div>
                         <div class="col-md-6 jurusan">
                             <div class="form-group">
                                 <label>Jurusan</label>
-                                <select name="jurusan" class="form-control-lg select2" style="width: 100%;">
-                                    @foreach($jurusans as $jurusan)
-                                    <option value="{{ $jurusan->id }}" @if( $jurusan->id == $mata_kuliah["jurusan_id"] )
-                                        selected
-                                        @endif
-                                        >{{ $jurusan->name }}
-                                    </option>
-                                    @endforeach
+                                <select name="jurusan" class="form-control-lg select2" style="width: 100%;" disabled>
+                                    <option value="{{ $jurusan->id }}">{{ $jurusan->name }}</option>
                                 </select>
                             </div>
                         </div>
@@ -107,28 +95,16 @@
                         <div class="col-md-6 rmk">
                             <div class="form-group">
                                 <label>RMK</label>
-                                <select name="rmk" class="form-control-lg select2" style="width: 100%;">
-                                    @foreach($rmks as $rmk)
-                                    <option value="{{ $rmk->id }}" @if( $rmk->id == $mata_kuliah["rmk_id"] )
-                                        selected
-                                        @endif
-                                        >{{ $rmk->name }}
-                                    </option>
-                                    @endforeach
+                                <select name="rmk" class="form-control-lg select2" style="width: 100%;" disabled>
+                                    <option value="{{ $rmk->id }}">{{ $rmk->name }}</option>
                                 </select>
                             </div>
                         </div>
                         <div class="col-md-6 mata-kuliah">
                             <div class="form-group">
                                 <label>Mata Kuliah</label>
-                                <select name="mata_kuliah" class="form-control-lg select2" style="width: 100%;">
-                                    @foreach($mata_kuliahs as $matakuliah)
-                                    <option value="{{ $matakuliah->id }}" @if( $jurusan->id == $mata_kuliah["id"] )
-                                        selected
-                                        @endif
-                                        >{{ $matakuliah->name }}
-                                    </option>
-                                    @endforeach
+                                <select name="mata_kuliah" class="form-control-lg select2" style="width: 100%;" disabled>
+                                    <option value="{{ $mata_kuliah['id'] }}">{{ $mata_kuliah['name'] }}</option>
                                 </select>
                             </div>
                         </div>
@@ -137,7 +113,7 @@
                         <div class="col-md-6 dosen">
                             <div class="form-group">
                                 <label>Dosen Pengampu</label>
-                                <select name="dosen[]" class="form-control-lg select2" multiple="multiple" data-placeholder="Pilih Dosen Pengampu" style="width: 100%;">
+                                <select name="dosen[]" class="form-control-lg select2 data-mata-kuliah" multiple="multiple" data-placeholder="Pilih Dosen Pengampu" style="width: 100%;" disabled>
                                     @foreach($all_dosens as $dosen)
                                     @if(in_array($dosen["id"], $dosen_matakuliahs))
                                     <option value="{{ $dosen['id'] }}" selected>{{ $dosen['name'] }}</option>
@@ -153,7 +129,7 @@
                         <div class="col-md-6">
                             <div class="form-group">
                                 <label>Deskripsi</label>
-                                <textarea type="text" name="deskripsi" rows="5" class="form-control">{{ $mata_kuliah['deskripsi'] }}</textarea>
+                                <textarea type="text" name="deskripsi" rows="5" class="form-control data-mata-kuliah" disabled>{{ $mata_kuliah['deskripsi'] }}</textarea>
                             </div>
                         </div>
                         <div class=" col-md-6">
@@ -161,7 +137,7 @@
                             <div id="form-bahan-kajian-list">
                                 <div class="form-group">
                                     @foreach($mata_kuliah["bahan_kajian"] as $bahan_kajian)
-                                    <input type="text" name="bahan_kajian[]" class="form-control" value="{{$bahan_kajian}}" style="margin-bottom: 5px;" />
+                                    <input type="text" name="bahan_kajian[]" class="form-control data-mata-kuliah" value="{{$bahan_kajian}}" style="margin-bottom: 5px;" disabled />
                                     @endforeach
                                 </div>
                             </div>
@@ -174,7 +150,7 @@
                             <div id="form-daftar-pustaka-utama-list">
                                 <div class="form-group">
                                     @foreach($mata_kuliah["pustaka_utama"] as $pustaka_utama)
-                                    <input type="text" name="daftar_pustaka_utama[]" class="form-control" value="{{$pustaka_utama}}" style="margin-bottom: 5px;" />
+                                    <input type="text" name="daftar_pustaka_utama[]" class="form-control data-mata-kuliah" value="{{$pustaka_utama}}" style="margin-bottom: 5px;" disabled />
                                     @endforeach
                                 </div>
                             </div>
@@ -185,7 +161,7 @@
                             <div id="form-daftar-pustaka-pendukung-list">
                                 <div class="form-group">
                                     @foreach($mata_kuliah["pustaka_pendukung"] as $pustaka_pendukung)
-                                    <input type="text" name="daftar_pustaka_pendukung[]" class="form-control" value="{{$pustaka_pendukung}}" style="margin-bottom: 5px;" />
+                                    <input type="text" name="daftar_pustaka_pendukung[]" class="form-control data-mata-kuliah" value="{{$pustaka_pendukung}}" style="margin-bottom: 5px;" disabled />
                                     @endforeach
                                 </div>
                             </div>
@@ -227,8 +203,8 @@
                                             @foreach($cpls as $cpl)
                                             @if(in_array($cpl['id'], $cpl_matakuliahs_id))
                                             <div style="margin-bottom: 10px;text-align:justify">
-                                                <input class="form-check-input" type="checkbox" value="{{$cpl['id']}}" checked name="cpl[]">
-                                                <label class="form-check-label">{{$cpl['name']}}</label>
+                                                <input class="form-check-input" type="checkbox" value="{{$cpl['id']}}" checked name="cpl[]" disabled>
+                                                <label class="form-check-label">CPL {{$cpl['no']}} : {{$cpl['name']}}</label>
                                             </div>
                                             @endif
                                             @endforeach
@@ -236,7 +212,7 @@
                                             @foreach($cpls as $cpl)
                                             <div style="margin-bottom: 10px;text-align:justify">
                                                 <input class="form-check-input" type="checkbox" value="{{$cpl['id']}}" name="cpl[]">
-                                                <label class="form-check-label">{{$cpl['name']}}</label>
+                                                <label class="form-check-label">CPL {{$cpl['no']}} : {{$cpl['name']}}</label>
                                             </div>
                                             @endforeach
                                             @endif
@@ -261,38 +237,133 @@
                             </div>
                         </div>
                         <div class="col-md-6">
-                            <label>Capaian Pembelajaran Mata Kuliah</label>
-                            @if(count($cpmks)!=0)
-                            @foreach($cpmks as $cpmk)
-                            <div id="form-cpmk-list">
+                            <div class="form-group">
+                                <label>Capaian Pembelajaran Lulusan</label>
                                 <div class="form-group">
-                                    <input type="text" name="cpmk[]" class="form-control" value="{{$cpmk['name']}}" style="margin-bottom: 5px;" />
+                                    <div class="form-check">
+                                        @if(count($cpmks)!=0)
+                                        @foreach($cpmks as $cpmk)
+                                        <div id="form-cpmk-list">
+                                            <div class="form-group">
+                                                <input type="text" name="cpmk[]" class="form-control data-cpmk" value="{{$cpmk['name']}}" style="margin-bottom: 5px;" disabled />
+                                            </div>
+                                        </div>
+                                        @endforeach
+                                        @else
+                                        <div id="form-cpmk-list">
+                                            <div class="form-group">
+                                                <input type="text" name="cpmk[]" class="form-control data-cpmk" style="margin-bottom: 5px;" />
+                                            </div>
+                                        </div>
+                                        @endif
+                                        <button class="btn btn-primary js-add--cpmk-row">Tambah CPMK</button>
+                                    </div>
                                 </div>
                             </div>
-                            @endforeach
-                            @else
-                            <div id="form-cpmk-list">
-                                <div class="form-group">
-                                    <input type="text" name="cpmk[]" class="form-control" style="margin-bottom: 5px;" />
-                                </div>
-                            </div>
-                            @endif
-                            @if(count($cpmks)==0)
-                            <button class="btn btn-primary">Tambah CPMK</button>
-                            @endif
-                            <button class="btn btn-primary js-add--cpmk-row">Tambah CPMK</button>
                         </div>
                     </div>
-                    <div class="card-footer">
-                        <div class="float-right">
+                </div>
+                <div class="card-footer">
+                    <div class="float-right">
+                        @if(count($cpl_matakuliahs_id)!=0)
+                        <a class="btn btn-warning edit-cpl-cpmk">Edit</a>
+                        <a class="btn btn-warning batal-cpl-cpmk">Batal</a>
+                        @else
+                        <button class="btn btn-success" type="submit">Simpan</button>
+                        @endif
+                        <button class="btn btn-success simpan-cpl-cpmk" type="submit">Simpan</button>
+                    </div>
+                </div>
+            </form>
+        </div>
+
+        <!-- Peta CPL CPMK -->
+        <div class="card card-default">
+            <div class="card-header">
+                <h3 class="card-title">Peta CPL - CP MK</h3>
+                <div class="card-tools">
+                    <button type="button" class="btn btn-tool" data-card-widget="collapse">
+                        <i class="fas fa-minus"></i>
+                    </button>
+                </div>
+            </div>
+            <form action="/rps/edit/petacplcpmk/{{$mata_kuliah['id']}}" method="post">
+                {{ csrf_field() }}
+                <div class=" card-body">
+                    <div class="row">
+                        <div class="col-12">
                             @if(count($cpl_matakuliahs_id)!=0)
-                            <a class="btn btn-warning edit-cpl-cpmk">Edit</a>
-                            <a class="btn btn-warning batal-cpl-cpmk">Batal</a>
+                            <table class="table table-bordered table-hover">
+                                <thead>
+                                    <tr>
+                                        <th>#</th>
+                                        @foreach($cpls as $cpl)
+                                        @if(in_array($cpl['id'], $cpl_matakuliahs_id))
+                                        <th>CPL {{$cpl['no']}}</th>
+                                        @endif
+                                        @endforeach
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    @foreach($cpmks as $cpmk)
+                                    <tr data-widget="expandable-table" aria-expanded="false">
+                                        <td>CPMK {{ $cpmk["no"] }} : {{ $cpmk["name"] }}</td>
+                                        @foreach($cpls as $cpl)
+                                        <?php $i = 0 ?>
+                                        @if(in_array($cpl['id'], $cpl_matakuliahs_id))
+                                        @if(count($cpl_cpmks)!=0)
+                                        @foreach($cpl_cpmks as $cpl_cpmk)
+                                        @if($cpl_cpmk['cpl_id'] == $cpl['id'] && $cpl_cpmk['cpmk_id'] == $cpmk['id'])
+                                        <td>
+                                            <input type="checkbox" id="checkboxPrimary1" value="{{$cpmk['no']}}|{{$cpl['no']}}" name="peta[]" class="peta-cpl-cpmk" checked disabled>
+                                            <label for="checkboxPrimary1"></label>
+                                        </td>
+                                        <?php $i = 1 ?>
+                                        @break
+                                        @endif
+                                        @endforeach
+                                        @if($i == 0)
+                                        <td>
+                                            <input type="checkbox" id="checkboxPrimary1" value="{{$cpmk['no']}}|{{$cpl['no']}}" name="peta[]" class="peta-cpl-cpmk" disabled>
+                                            <label for="checkboxPrimary1"></label>
+                                        </td>
+                                        @endif
+                                        @else
+                                        <td>
+                                            <input type="checkbox" id="checkboxPrimary1" value="{{$cpmk['no']}}|{{$cpl['no']}}" name="peta[]" class="peta-cpl-cpmk">
+                                            <label for="checkboxPrimary1"></label>
+                                        </td>
+                                        @endif
+                                        @endif
+                                        @endforeach
+                                        <?php $i = 0 ?>
+                                    </tr>
+                                    @endforeach
+                                </tbody>
+                            </table>
                             @else
-                            <button class="btn btn-success" type="submit">Simpan</button>
+                            <div class="col-md-12">
+                                <div class="card bg-danger">
+                                    <center>
+                                        <div class="card-body">
+                                            Tidak Ada Data CPL - CP MK
+                                        </div>
+                                    </center>
+                                </div>
+                            </div>
                             @endif
-                            <button class="btn btn-success simpan-cpl-cpmk" type="submit">Simpan</button>
                         </div>
+                    </div>
+                </div>
+                <div class="card-footer">
+                    <div class="float-right">
+                        @if(count($cpl_cpmks)!=0)
+                        <a class="btn btn-warning edit-peta-cpl-cpmk">Edit</a>
+                        <a class="btn btn-warning batal-peta-cpl-cpmk">Batal</a>
+                        @else
+                        <button class="btn btn-success" type="submit">Simpan</button>
+                        @endif
+                        <button class="btn btn-success simpan-peta-cpl-cpmk" type="submit">Simpan</button>
                     </div>
                 </div>
             </form>
@@ -327,10 +398,14 @@
         $(".simpan").hide();
         $(".batal").hide();
         $(".simpan-cpl-cpmk").hide();
+        $(".simpan-peta-cpl-cpmk").hide();
         $(".batal-cpl-cpmk").hide();
+        $(".batal-peta-cpl-cpmk").hide();
         $(".edit-cpl").hide();
     });
+
     $(document).on('click', '.edit', function(e) {
+        $('.data-mata-kuliah').prop("disabled", false);
         $(".edit").hide();
         $(".batal").show();
         $(".simpan").show();
@@ -338,15 +413,9 @@
         $(".js-add--daftar-pustaka-utama-row").show();
         $(".js-add--daftar-pustaka-pendukung-row").show();
     });
-    $(document).on('click', '.edit-cpl-cpmk', function(e) {
-        $(".static-cpl").hide();
-        $(".edit-cpl").show();
-        $(".edit-cpl-cpmk").hide();
-        $(".batal-cpl-cpmk").show();
-        $(".simpan-cpl-cpmk").show();
-        $(".js-add--cpmk-row").show();
-    });
+
     $(document).on('click', '.batal', function(e) {
+        $('.data-mata-kuliah').prop("disabled", true);
         $(".edit").show();
         $(".batal").hide();
         $(".simpan").hide();
@@ -355,13 +424,37 @@
         $(".js-add--daftar-pustaka-pendukung-row").hide();
     });
 
+    $(document).on('click', '.edit-cpl-cpmk', function(e) {
+        $('.data-cpmk').prop("disabled", false);
+        $(".static-cpl").hide();
+        $(".edit-cpl").show();
+        $(".edit-cpl-cpmk").hide();
+        $(".batal-cpl-cpmk").show();
+        $(".simpan-cpl-cpmk").show();
+        $(".js-add--cpmk-row").show();
+    });
+
     $(document).on('click', '.batal-cpl-cpmk', function(e) {
+        $('.data-cpmk').prop("disabled", true);
+        $(".static-cpl").show();
+        $(".edit-cpl").hide();
         $(".edit-cpl-cpmk").show();
         $(".batal-cpl-cpmk").hide();
         $(".simpan-cpl-cpmk").hide();
-        $(".js-add--cpmk-row").hide();
-        $(".static-cpl").show();
-        $(".edit-cpl").hide();
+    });
+
+    $(document).on('click', '.edit-peta-cpl-cpmk', function(e) {
+        $('.peta-cpl-cpmk').prop("disabled", false);
+        $(".edit-peta-cpl-cpmk").hide();
+        $(".batal-peta-cpl-cpmk").show();
+        $(".simpan-peta-cpl-cpmk").show();
+    });
+
+    $(document).on('click', '.batal-peta-cpl-cpmk', function(e) {
+        $('.peta-cpl-cpmk').prop("disabled", true);
+        $(".edit-peta-cpl-cpmk").show();
+        $(".batal-peta-cpl-cpmk").hide();
+        $(".simpan-peta-cpl-cpmk").hide();
     });
 
     // Jurusan

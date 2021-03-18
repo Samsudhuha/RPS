@@ -16,4 +16,9 @@ class EloquentProgramStudiRepository implements ProgramStudiRepository
     {
         return ProgramStudi::where('name', $name)->first();
     }
+
+    public function getById($id)
+    {
+        return ProgramStudi::where('id', $id)->first();
+    }
 }

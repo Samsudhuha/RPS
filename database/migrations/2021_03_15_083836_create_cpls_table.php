@@ -16,6 +16,7 @@ class CreateCplsTable extends Migration
         Schema::create('cpls', function (Blueprint $table) {
             $table->uuid('id')->primary();
             $table->longText('name');
+            $table->integer('no');
             $table->foreignUuid('jurusan_id')->references('id')->on('jurusans')->cascadeOnDelete();
         });
     }

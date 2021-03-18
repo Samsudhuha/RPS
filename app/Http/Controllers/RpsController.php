@@ -7,6 +7,7 @@ use App\Services\DosenService;
 use App\Services\JurusanService;
 use App\Services\MataKuliahService;
 use App\Services\ProgramStudiService;
+use App\Services\RmkService;
 use Illuminate\Http\Request;
 use PDF;
 
@@ -17,8 +18,7 @@ class RpsController extends Controller
     protected $mataKuliahService;
     protected $dosenService;
     protected $cplCpmkService;
-    protected $jurusanController;
-    protected $rmkController;
+    protected $rmkService;
     protected $dosenController;
 
     public function __construct(
@@ -27,8 +27,7 @@ class RpsController extends Controller
         MataKuliahService $mataKuliahService,
         DosenService $dosenService,
         CplCpmkService $cplCpmkService,
-        JurusanController $jurusanController,
-        RmkController $rmkController,
+        RmkService $rmkService,
         DosenController $dosenController
     ) {
         $this->jurusanService = $jurusanService;
@@ -36,8 +35,7 @@ class RpsController extends Controller
         $this->mataKuliahService = $mataKuliahService;
         $this->dosenService = $dosenService;
         $this->cplCpmkService = $cplCpmkService;
-        $this->jurusanController = $jurusanController;
-        $this->rmkController = $rmkController;
+        $this->rmkService = $rmkService;
         $this->dosenController = $dosenController;
     }
 
@@ -57,17 +55,20 @@ class RpsController extends Controller
         try {
             $data['mata_kuliah'] = $this->mataKuliahService->getMataKuliahById($id);
             $data['mata_kuliah']['bahan_kajian'] = json_decode($data['mata_kuliah']['bahan_kajian']);
-            $data['program_studis'] = $this->programStudiService->getAll();
-            $data['jurusans'] = $this->jurusanController->getSubJurusan($data["mata_kuliah"]["program_studi_id"]);
-            $data['rmks'] = $this->rmkController->getSubRmk($data['mata_kuliah']["jurusan_id"]);
-            $data['mata_kuliahs'] = $this->mataKuliahService->getAllMataKuliahByRmk($data['mata_kuliah']["rmk_id"]);
+            $data['program_studi'] = $this->programStudiService->getById($data["mata_kuliah"]["program_studi_id"]);
+            $data['jurusan'] = $this->jurusanService->getById($data["mata_kuliah"]["jurusan_id"]);
+            $data['rmk'] = $this->rmkService->getRmkById($data['mata_kuliah']["rmk_id"]);
             $data['all_dosens'] = $this->dosenController->getSubDosen($data['mata_kuliah']["jurusan_id"])->toArray();
             $data['dosen_matakuliahs'] = $this->dosenService->getByMataKuliahId($data['mata_kuliah']["id"])->pluck("id")->toArray();
             $data['cpls'] = $this->cplCpmkService->getCplAll();
             $data['cpls_array'] = $this->cplCpmkService->getCplAll()->toArray();
-            $data['cpmks'] = $this->cplCpmkService->getCpmkAll();
+            $data['cpmks'] = $this->cplCpmkService->getCpmkMataKuliahAll($data['mata_kuliah']["id"]);
+            if ($cpl_matakuliahs_id = $this->cplCpmkService->getCplMataKuliahAll($data['mata_kuliah']["id"])) {
+                $data['cpl_matakuliahs_id'] = $cpl_matakuliahs_id->pluck("cpl_id")->toArray();
+            } else {
+                $data['cpl_matakuliahs_id'] = [];
+            }
             $data['cpl_cpmks'] = $this->cplCpmkService->getCplCpmkAll($data['mata_kuliah']["id"]);
-            $data['cpl_matakuliahs_id'] = $this->cplCpmkService->getCplMataKuliahAll($data['mata_kuliah']["id"])->pluck("cpl_id")->toArray();
 
             return view('rps.show', $data);
         } catch (\Exception $e) {

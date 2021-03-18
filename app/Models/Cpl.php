@@ -15,7 +15,7 @@ class Cpl extends Model
      * @var array
      */
     protected $fillable = [
-        'name', 'jurusan_id'
+        'name', 'jurusan_id', 'no'
     ];
 
     public $timestamps = false;

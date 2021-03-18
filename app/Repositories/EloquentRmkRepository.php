@@ -11,4 +11,8 @@ class EloquentRmkRepository implements RmkRepository
     {
         return Rmk::where('jurusan_id', $jurusan_id)->get();
     }
+    public function getById($id)
+    {
+        return Rmk::where('id', $id)->first();
+    }
 }

@@ -22,6 +22,7 @@ class EloquentMataKuliahRepository implements MataKuliahRepository
         return MataKuliah::where('deskripsi', '<>', null)
             ->where('bahan_kajian', '<>', null)
             ->where('pustaka', '<>', null)
+            ->orderBy('kode')
             ->get();
     }
 
@@ -31,12 +32,8 @@ class EloquentMataKuliahRepository implements MataKuliahRepository
             ->where('bahan_kajian', null)
             ->where('pustaka', null)
             ->where('rmk_id', $rmk_id)
+            ->orderBy('kode')
             ->get();
-    }
-
-    public function getAllByRmkId($rmk_id)
-    {
-        return MataKuliah::where('rmk_id', $rmk_id)->get();
     }
 
     public function getById($id)

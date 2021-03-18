@@ -19,6 +19,11 @@ class ProgramStudiService
         return $this->programStudiRepository->getAll();
     }
 
+    public function getById($id)
+    {
+        return $this->programStudiRepository->getById($id);
+    }
+
     public function getByName($name)
     {
         return $this->programStudiRepository->getByName($name);

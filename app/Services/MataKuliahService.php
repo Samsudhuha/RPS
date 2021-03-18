@@ -30,7 +30,6 @@ class MataKuliahService
         ];
         $mata_kuliah = [
             'program_studi_id' => $data["program_studi"],
-            'program_studi_id' => $data["program_studi"],
             'deskripsi' => $data["deskripsi"],
             'bahan_kajian' => json_encode($data["bahan_kajian"]),
             'pustaka' => $pustaka
@@ -44,7 +43,30 @@ class MataKuliahService
             $this->dosenMataKuliahRepository->create($dosen_mata_kuliah);
         }
 
-        return $this->mataKuliahRepository->update($mata_kuliah, $id);;
+        return $this->mataKuliahRepository->update($mata_kuliah, $id);
+    }
+
+    public function update($data, $mata_kuliah_id)
+    {
+        $pustaka = [
+            'pustaka_utama' => json_encode($data["daftar_pustaka_utama"]),
+            'pustaka_pendukung' => json_encode($data["daftar_pustaka_pendukung"]),
+        ];
+        $mata_kuliah = [
+            'deskripsi' => $data["deskripsi"],
+            'bahan_kajian' => json_encode($data["bahan_kajian"]),
+            'pustaka' => $pustaka
+        ];
+        $this->dosenMataKuliahRepository->delete($mata_kuliah_id);
+        for ($i = 0; $i < count($data["dosen"]); $i++) {
+            $dosen_mata_kuliah = [
+                'dosen_id' => $data["dosen"][$i],
+                'mata_kuliah_id' => $mata_kuliah_id
+            ];
+            $this->dosenMataKuliahRepository->create($dosen_mata_kuliah);
+        }
+
+        return $this->mataKuliahRepository->update($mata_kuliah, $mata_kuliah_id);
     }
 
     public function getAll()
@@ -75,11 +97,6 @@ class MataKuliahService
     public function getMataKuliahByRmk($rmk_id)
     {
         return $this->mataKuliahRepository->getByRmkId($rmk_id);
-    }
-
-    public function getAllMataKuliahByRmk($rmk_id)
-    {
-        return $this->mataKuliahRepository->getAllByRmkId($rmk_id);
     }
 
     public function getMataKuliahById($id)
