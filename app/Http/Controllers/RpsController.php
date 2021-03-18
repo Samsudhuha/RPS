@@ -29,7 +29,7 @@ class RpsController extends Controller
         CplCpmkService $cplCpmkService,
         JurusanController $jurusanController,
         RmkController $rmkController,
-        DosenController $dosenController,
+        DosenController $dosenController
     ) {
         $this->jurusanService = $jurusanService;
         $this->programStudiService = $programStudiService;
