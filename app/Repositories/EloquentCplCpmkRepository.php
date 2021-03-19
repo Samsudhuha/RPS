@@ -30,14 +30,14 @@ class EloquentCplCpmkRepository implements CplCpmkRepository
         return Cpl::orderBy('no')->get();
     }
 
-    public function getCplByNo($no)
+    public function getCplByNo($no, $jurusan_id)
     {
-        return Cpl::where('no', $no)->first();
+        return Cpl::where('no', $no)->where('jurusan_id', $jurusan_id)->first();
     }
 
-    public function getCpmkByNo($no)
+    public function getCpmkByNo($no, $mata_kuliah_id)
     {
-        return Cpmk::where('no', $no)->first();
+        return Cpmk::where('no', $no)->where('mata_kuliah_id', $mata_kuliah_id)->first();
     }
 
     public function getCpmkMataKuliahAll($mata_kuliah_id)

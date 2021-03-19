@@ -10,6 +10,7 @@ use App\Http\Controllers\JurusanController;
 use App\Http\Controllers\MataKuliahController;
 use App\Http\Controllers\RmkController;
 use App\Http\Controllers\RpsController;
+use App\Http\Controllers\SilabusController;
 
 Route::get('/', [AuthController::class, 'viewLogin']);
 Route::post('/login', [AuthController::class, 'login']);
@@ -19,16 +20,27 @@ Route::middleware(['auth'])->group(function () {
     Route::get('/logout', [AuthController::class, 'logout']);
 
     Route::prefix('rps')->group(function () {
-        Route::prefix('create')->group(function () {
-            Route::get('/', [RpsController::class, 'viewCreateRps']);
-            Route::post('/matakuliah', [MataKuliahController::class, 'create']);
+        Route::prefix('cplcpmk')->group(function () {
+            Route::post('/peta/{id}', [CplCpmkController::class, 'insertOrUpdatePeta']);
+            Route::post('/{id}', [CplCpmkController::class, 'insertOrUpdate']);
         });
-        Route::prefix('edit')->group(function () {
-            Route::post('/matakuliah/{id}', [MataKuliahController::class, 'update']);
-            Route::post('/cplcpmk/{id}', [CplCpmkController::class, 'insertOrUpdate']);
-            Route::post('/petacplcpmk/{id}', [CplCpmkController::class, 'insertOrUpdatePeta']);
+
+        Route::prefix('matakuliah')->group(function () {
+            Route::get('/', [MataKuliahController::class, 'viewCreate']);
+            Route::post('/edit/{id}', [MataKuliahController::class, 'update']);
+            Route::post('/create', [MataKuliahController::class, 'create']);
         });
-        Route::get('/cetakRPS', [RpsController::class, 'cetakPDF']);
+
+        Route::prefix('silabus')->group(function () {
+            Route::get('/create/{id}', [SilabusController::class, 'viewCreate']);
+            Route::post('/create/{id}', [SilabusController::class, 'create']);
+            Route::post('/delete/{id}', [SilabusController::class, 'delete']);
+            Route::get('/{id}', [SilabusController::class, 'viewEdit']);
+            Route::post('/{id}', [SilabusController::class, 'update']);
+        });
+
+        Route::get('/cetakRPS/{id}', [RpsController::class, 'cetakPDF']);
+        Route::post('/delete/{id}', [RpsController::class, 'delete']);
         Route::get('/{id}', [RpsController::class, 'getRpsById']);
 
         // get dropdown list

@@ -114,7 +114,7 @@
             <div class="card-header">
                 <h3 class="card-title">Rencana Pembelajaran Semester</h3>
                 <div class="float-right">
-                    <a class="btn btn-success" href="/rps/create"> Buat RPS</a>
+                    <a class="btn btn-success" href="/rps/matakuliah">Tambah Data Mata Kuliah</a>
                 </div>
             </div>
             <!-- /.card-header -->
@@ -147,6 +147,35 @@
                             </td>
                             <td>
                                 <a href="/rps/{{$data['id']}}" class="btn btn-primary">Lihat</a>
+                                <button type="button" class="btn btn-danger" data-toggle="modal" data-target="#modal-default">Delete</button>
+                                <!-- Modal -->
+                                <div class="modal fade" id="modal-default">
+                                    <div class="modal-dialog">
+                                        <div class="modal-content">
+                                            <center>
+                                                <div class="modal-header">
+                                                    <h4 class="modal-title">Menghapus Data Mata Kuliah</h4>
+                                                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                                        <span aria-hidden="true">&times;</span>
+                                                    </button>
+                                                </div>
+                                                <div class="modal-body">
+                                                    <p>Apakah anda yakin untuk menghapus data rencana pembelajaran semester mata kuliah
+                                                    <pre>{{ $data["name"] }}?</pre>
+                                                    </p>
+                                                </div>
+                                                <div class="modal-footer justify-content-between">
+                                                    <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                                                    <form action="/rps/delete/{{$data['id']}}" method="post">
+                                                        {{ csrf_field() }}
+                                                        <button class=" btn btn-danger" type="submit">delete</button>
+                                                    </form>
+                                                </div>
+                                            </center>
+                                        </div>
+                                    </div>
+                                </div>
+                                <a class="btn btn-success" href="/rps/cetakRPS/{{$data['id']}}"> Cetak PDF</a>
                             </td>
                         </tr>
                         <?php $no++ ?>

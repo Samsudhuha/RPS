@@ -23,7 +23,7 @@ class CreateSilabusesTable extends Migration
             $table->json('estimasi_waktu');
             $table->text('kriteria_penilaian');
             $table->text('pengamalan');
-            $table->string('bobot', 4);
+            $table->string('bobot', 4)->nullable();
             $table->timestamps();
         });
     }

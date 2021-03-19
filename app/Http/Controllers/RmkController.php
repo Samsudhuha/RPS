@@ -17,7 +17,7 @@ class RmkController extends Controller
     {
         try {
             return $this->rmkService->getByJurusan($jurusan_id);
-        } catch (\Exception $e) {
+        } catch (Exception $e) {
             return $this->handleException($e);
         }
     }

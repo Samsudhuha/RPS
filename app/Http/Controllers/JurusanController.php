@@ -17,7 +17,7 @@ class JurusanController extends Controller
     {
         try {
             return $this->jurusanService->getByProgramStudi($program_studi_id);
-        } catch (\Exception $e) {
+        } catch (Exception $e) {
             return $this->handleException($e);
         }
     }

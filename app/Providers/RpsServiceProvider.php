@@ -11,6 +11,7 @@ use App\Repositories\Contracts\UserRepository;
 use App\Repositories\Contracts\JurusanRepository;
 use App\Repositories\Contracts\MataKuliahRepository;
 use App\Repositories\Contracts\RmkRepository;
+use App\Repositories\Contracts\SilabusRepository;
 use App\Repositories\EloquentCplCpmkRepository;
 use App\Repositories\EloquentDosenMataKuliahRepository;
 use App\Repositories\EloquentDosenRepository;
@@ -19,6 +20,7 @@ use App\Repositories\EloquentUsersRepository;
 use App\Repositories\EloquentJurusanRepository;
 use App\Repositories\EloquentMataKuliahRepository;
 use App\Repositories\EloquentRmkRepository;
+use App\Repositories\EloquentSilabusRepository;
 
 class RpsServiceProvider extends ServiceProvider
 {
@@ -31,6 +33,7 @@ class RpsServiceProvider extends ServiceProvider
         DosenRepository::class => EloquentDosenRepository::class,
         DosenMataKuliahRepository::class => EloquentDosenMataKuliahRepository::class,
         CplCpmkRepository::class => EloquentCplCpmkRepository::class,
+        SilabusRepository::class => EloquentSilabusRepository::class,
     ];
 
     /**

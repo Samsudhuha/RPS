@@ -59,7 +59,7 @@
                         </button>
                     </div>
                 </div>
-                <form action="/rps/create/matakuliah" method="post">
+                <form action="/rps/matakuliah/create" method="post">
                     {{ csrf_field() }}
                     <div class="card-body">
                         <div class="row">
@@ -67,6 +67,7 @@
                                 <div class="form-group">
                                     <label>Program Studi</label>
                                     <select name="program_studi" class="form-control-lg select2" style="width: 100%;" value="{{ old('program_studi') }}">
+                                        <option disabled selected>Pilih Program Studi</option>
                                         @foreach($program_studis as $program_studi)
                                         <option value="{{ $program_studi->id }}">{{ $program_studi->name }}</option>
                                         @endforeach

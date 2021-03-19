@@ -5,8 +5,8 @@ namespace App\Repositories\Contracts;
 interface CplCpmkRepository
 {
     public function getCplAll();
-    public function getCplByNo($no);
-    public function getCpmkByNo($no);
+    public function getCplByNo($no, $jurusan_id);
+    public function getCpmkByNo($no, $mata_kuliah_id);
     public function getCpmkMataKuliahAll($mata_kuliah_id);
     public function getCplCpmkAll($mata_kuliah_id);
     public function getCplMataKuliahAll($mata_kuliah_id);

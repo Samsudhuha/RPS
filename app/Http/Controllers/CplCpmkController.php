@@ -18,9 +18,13 @@ class CplCpmkController extends Controller
     public function insertOrUpdate(InsertOrUpdateCplCpmkRequest $request, $id)
     {
         try {
-            $this->cplCpmkService->insertOrUpdateCplCpmk($id, $request);
+            $cplCplmk = $this->cplCpmkService->insertOrUpdateCplCpmk($id, $request);
+            if ($cplCplmk) {
+                return redirect('rps/' . $id)
+                    ->withErrors(["error" => "The cpmk field is required."]);
+            }
             return redirect('rps/' . $id)->with('success', 'Berhasil Menyimpan Capaian Pembelajaran');
-        } catch (\Exception $e) {
+        } catch (Exception $e) {
             return $this->handleException($e);
         }
     }
@@ -35,7 +39,7 @@ class CplCpmkController extends Controller
                     ->withErrors(["error" => "CPMK " . $cpmk . " Belum Terisi"]);
             }
             return redirect('rps/' . $id)->with('success', 'Berhasil Menyimpan Peta CPL - CP MK');
-        } catch (\Exception $e) {
+        } catch (Exception $e) {
             return $this->handleException($e);
         }
     }

@@ -18,11 +18,11 @@ class Silabus extends Model
         'mata_kuliah_id',
         'tatap_muka',
         'kemampuan_akhir',
-        'kelulusan',
+        'keluasan',
         'metode_pembelajaran',
         'estimasi_waktu',
         'kriteria_penilaian',
-        'pengalaman',
+        'pengamalan',
         'bobot'
     ];
     protected $casts = [

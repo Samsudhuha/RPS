@@ -8,6 +8,7 @@ use App\Services\JurusanService;
 use App\Services\MataKuliahService;
 use App\Services\ProgramStudiService;
 use App\Services\RmkService;
+use App\Services\SilabusService;
 use Illuminate\Http\Request;
 use PDF;
 
@@ -19,6 +20,7 @@ class RpsController extends Controller
     protected $dosenService;
     protected $cplCpmkService;
     protected $rmkService;
+    protected $silabusService;
     protected $dosenController;
 
     public function __construct(
@@ -28,7 +30,8 @@ class RpsController extends Controller
         DosenService $dosenService,
         CplCpmkService $cplCpmkService,
         RmkService $rmkService,
-        DosenController $dosenController
+        SilabusService $silabusService,
+        DosenController $dosenController,
     ) {
         $this->jurusanService = $jurusanService;
         $this->programStudiService = $programStudiService;
@@ -36,18 +39,8 @@ class RpsController extends Controller
         $this->dosenService = $dosenService;
         $this->cplCpmkService = $cplCpmkService;
         $this->rmkService = $rmkService;
+        $this->silabusService = $silabusService;
         $this->dosenController = $dosenController;
-    }
-
-    public function viewCreateRps()
-    {
-        try {
-            $data['program_studis'] = $this->programStudiService->getAll();
-
-            return view('rps.create', $data);
-        } catch (\Exception $e) {
-            return $this->handleException($e);
-        }
     }
 
     public function getRpsById($id)
@@ -69,15 +62,36 @@ class RpsController extends Controller
                 $data['cpl_matakuliahs_id'] = [];
             }
             $data['cpl_cpmks'] = $this->cplCpmkService->getCplCpmkAll($data['mata_kuliah']["id"]);
+            $data['silabuses'] = $this->silabusService->getAll($data['mata_kuliah']["id"]);
 
             return view('rps.show', $data);
-        } catch (\Exception $e) {
+        } catch (Exception $e) {
             return $this->handleException($e);
         }
     }
 
-    public function cetakPDF()
+    public function delete($id)
     {
+        try {
+            $mata_kuliah = $this->mataKuliahService->getMataKuliahById($id);
+            $this->cplCpmkService->deleteAll($id);
+            $this->silabusService->deleteAll($id);
+            $this->mataKuliahService->deleteAll($id);
+
+            return redirect('home')->with('success', 'Berhasil Menghapus Data Rencana Pembelajaran Semester Mata Kuliah ' . $mata_kuliah["name"]);
+        } catch (Exception $e) {
+            return $this->handleException($e);
+        }
+    }
+
+    public function cetakPDF($id)
+    {
+        try {
+            return redirect('home')->withErrors(["error" => "Maaf, Cetak PDF Belum Tersedia"]);
+        } catch (Exception $e) {
+            return $this->handleException($e);
+        }
+
         $pdf = PDF::loadview('rps.cetakPDF');
         return $pdf->download('RPS.pdf');
     }

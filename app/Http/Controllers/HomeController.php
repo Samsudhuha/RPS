@@ -21,8 +21,8 @@ class HomeController extends Controller
             $data['no'] = 1;
 
             return view('rps.index', $data);
-        } catch (\Exception $e) {
-            return ["Gagal Load"];
+        } catch (Exception $e) {
+            return $this->handleException($e);
         }
     }
 }

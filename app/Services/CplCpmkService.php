@@ -4,15 +4,19 @@ namespace App\Services;
 
 use App\Models\Cpl;
 use App\Repositories\Contracts\CplCpmkRepository;
+use App\Repositories\Contracts\MataKuliahRepository;
 
 class CplCpmkService
 {
     protected $cplCpmkRepository;
+    protected $mataKuliahRepository;
 
     public function __construct(
-        CplCpmkRepository $cplCpmkRepository
+        CplCpmkRepository $cplCpmkRepository,
+        MataKuliahRepository $mataKuliahRepository
     ) {
         $this->cplCpmkRepository = $cplCpmkRepository;
+        $this->mataKuliahRepository = $mataKuliahRepository;
     }
 
     public function getCplAll()
@@ -37,6 +41,9 @@ class CplCpmkService
 
     public function insertOrUpdateCplCpmk($mata_kuliah_id, $data)
     {
+        if ($data->cpmk[0] == null) {
+            return 'error';
+        }
         $this->cplCpmkRepository->deleteCplCpmk($mata_kuliah_id);
         $this->cplCpmkRepository->deleteCpmk($mata_kuliah_id);
         $this->cplCpmkRepository->deleteCplMatakuliah($mata_kuliah_id);
@@ -71,10 +78,11 @@ class CplCpmkService
                 return $jumlahCpmk[$i];
             }
         }
+        $jurusan_id = $this->mataKuliahRepository->getById($mata_kuliah_id)->jurusan_id;
         $this->cplCpmkRepository->deleteCplCpmk($mata_kuliah_id);
         for ($i = 0; $i < count($data->peta); $i++) {
-            $cpmk_id = $this->cplCpmkRepository->getCpmkByNo($cpmk[$i]);
-            $cpl_id = $this->cplCpmkRepository->getCplByNo($cpl[$i]);
+            $cpmk_id = $this->cplCpmkRepository->getCpmkByNo($cpmk[$i], $mata_kuliah_id);
+            $cpl_id = $this->cplCpmkRepository->getCplByNo($cpl[$i], $jurusan_id);
             $cpl_cpmk = [
                 'mata_kuliah_id' => $mata_kuliah_id,
                 'cpl_id' => $cpl_id->id,
@@ -83,6 +91,14 @@ class CplCpmkService
             $this->cplCpmkRepository->createCplCpmk($cpl_cpmk);
         }
 
+        return [];
+    }
+
+    public function deleteAll($id)
+    {
+        $this->cplCpmkRepository->deleteCplCpmk($id);
+        $this->cplCpmkRepository->deleteCpmk($id);
+        $this->cplCpmkRepository->deleteCplMatakuliah($id);
         return [];
     }
 }

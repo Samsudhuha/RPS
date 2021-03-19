@@ -118,4 +118,16 @@ class MataKuliahService
 
         return $params;
     }
+
+    public function deleteAll($mata_kuliah_id)
+    {
+        $this->dosenMataKuliahRepository->delete($mata_kuliah_id);
+
+        $data = [
+            'deskripsi' => null,
+            'bahan_kajian' => null,
+            'pustaka' => null
+        ];
+        return $this->mataKuliahRepository->update($data, $mata_kuliah_id);
+    }
 }

@@ -18,7 +18,7 @@ class DosenController extends Controller
     {
         try {
             return $this->dosenService->getByJurusan($jurusan_id);
-        } catch (\Exception $e) {
+        } catch (Exception $e) {
             return $this->handleException($e);
         }
     }
