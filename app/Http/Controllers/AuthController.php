@@ -26,25 +26,6 @@ class AuthController extends Controller
         }
     }
 
-    public function viewRegister()
-    {
-        return view('auth.register');
-    }
-
-    public function register(CreateUserRequest $request)
-    {
-        $request->validated();
-
-        $data = [
-            'username' => $request->username,
-            'password' => Hash::make($request->password)
-        ];
-
-        User::create($data);
-
-        return redirect('/')->with('success', 'Berhasil membuat akun baru');
-    }
-
     public function logout()
     {
         Auth::logout();

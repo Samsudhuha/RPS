@@ -31,7 +31,7 @@ class RpsController extends Controller
         CplCpmkService $cplCpmkService,
         RmkService $rmkService,
         SilabusService $silabusService,
-        DosenController $dosenController,
+        DosenController $dosenController
     ) {
         $this->jurusanService = $jurusanService;
         $this->programStudiService = $programStudiService;
@@ -94,5 +94,10 @@ class RpsController extends Controller
 
         $pdf = PDF::loadview('rps.cetakPDF');
         return $pdf->download('RPS.pdf');
+    }
+
+    public function pdf()
+    {
+        return view('rps.cetakPDF');
     }
 }

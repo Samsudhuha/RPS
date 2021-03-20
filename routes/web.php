@@ -14,6 +14,7 @@ use App\Http\Controllers\SilabusController;
 
 Route::get('/', [AuthController::class, 'viewLogin']);
 Route::post('/login', [AuthController::class, 'login']);
+Route::get('/pdf', [RpsController::class, 'pdf']);
 
 Route::middleware(['auth'])->group(function () {
     Route::get('/home', [HomeController::class, 'index']);
@@ -39,10 +40,6 @@ Route::middleware(['auth'])->group(function () {
             Route::post('/{id}', [SilabusController::class, 'update']);
         });
 
-        Route::get('/cetakRPS/{id}', [RpsController::class, 'cetakPDF']);
-        Route::post('/delete/{id}', [RpsController::class, 'delete']);
-        Route::get('/{id}', [RpsController::class, 'getRpsById']);
-
         // get dropdown list
         Route::prefix('dropdownlist')->group(function () {
             Route::get('/getjurusan/{id}', [JurusanController::class, 'getSubJurusan']);
@@ -50,5 +47,9 @@ Route::middleware(['auth'])->group(function () {
             Route::get('/getmatakuliah/{id}', [MataKuliahController::class, 'getSubMataKuliah']);
             Route::get('/getdosen/{id}', [DosenController::class, 'getSubDosen']);
         });
+
+        Route::get('/cetakRPS/{id}', [RpsController::class, 'cetakPDF']);
+        Route::post('/delete/{id}', [RpsController::class, 'delete']);
+        Route::get('/{id}', [RpsController::class, 'getRpsById']);
     });
 });
