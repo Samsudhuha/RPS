@@ -62,16 +62,8 @@ class RpsController extends Controller
                 $data['cpl_matakuliahs_id'] = [];
             }
             $data['cpl_cpmks'] = $this->cplCpmkService->getCplCpmkAll($data['mata_kuliah']["id"]);
-<<<<<<< HEAD
             $data['silabuses'] = $this->silabusService->getAll($data['mata_kuliah']["id"]);
 
-=======
-            $data['cpl_matakuliahs_id'] =[];
-            // if ($cpl_matakuliahs_id = $this->cplCpmkService->getCplMataKuliahAll($data['mata_kuliah']["id"])) {
-            //     dd($cpl_matakuliahs_id);
-            //     $data['cpl_matakuliahs_id'] = $cpl_matakuliahs_id->pluck("cpl_id")->toArray();
-            // }
->>>>>>> 0c2b96db8e4b4be458d27d2989bd0e2c1c96c96e
             return view('rps.show', $data);
         } catch (Exception $e) {
             return $this->handleException($e);
