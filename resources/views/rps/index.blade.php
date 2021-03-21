@@ -148,7 +148,6 @@
                             </td>
                             <td>
                                 <a href="/rps/{{$data['id']}}" class="btn btn-primary">Lihat</a>
-<<<<<<< HEAD
                                 <button type="button" class="btn btn-danger" data-toggle="modal" data-target="#modal-default">Delete</button>
                                 <!-- Modal -->
                                 <div class="modal fade" id="modal-default">
@@ -178,9 +177,6 @@
                                     </div>
                                 </div>
                                 <a class="btn btn-success" href="/rps/cetakRPS/{{$data['id']}}"> Cetak PDF</a>
-=======
-                                <a class="btn btn-danger" id="delete">Hapus</a>
->>>>>>> 0c2b96db8e4b4be458d27d2989bd0e2c1c96c96e
                             </td>
                         </tr>
                         <?php $no++ ?>
@@ -229,7 +225,7 @@
 <!-- Sweet Alert -->
 <script>
     const deletebtn = document.querySelector('#delete');
-    deletebtn.addEventListener('click', (e)=>{
+    deletebtn.addEventListener('click', (e) => {
         Swal.fire({
             title: 'Anda yakin menghapus ini?',
             text: "File yang terhapus tidak akan dapat kembali",
@@ -239,12 +235,12 @@
             cancelButtonColor: '#d33',
             confirmButtonText: 'Ya!',
             cancelButtonText: 'Tidak'
-            }).then((result) => {
+        }).then((result) => {
             if (result.isConfirmed) {
                 Swal.fire(
-                'Hapus',
-                'File anda berhasil dihapus.',
-                'success'
+                    'Hapus',
+                    'File anda berhasil dihapus.',
+                    'success'
                 )
             }
         })

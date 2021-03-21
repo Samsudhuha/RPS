@@ -52,17 +52,6 @@
                 </ul>
             </div>
             @endif
-<<<<<<< HEAD
-=======
-            <!-- <div class="card card-default" style="width: 20%;">
-                <div class="card-header">
-                    <center>
-                        <a class="btn btn-primary" href="/home"> Kembali </a>
-                        <a class="btn btn-success" href="/rps/cetakRPS"> Cetak PDF</a>
-                    </center>
-                </div>
-            </div> -->
->>>>>>> 0c2b96db8e4b4be458d27d2989bd0e2c1c96c96e
         </div>
 
         <!-- Data Mata Kuliah -->
@@ -70,17 +59,8 @@
             <div class="card-header">
                 <h3 class="card-title">Data Mata Kuliah</h3>
                 <div class="card-tools">
-<<<<<<< HEAD
                     <button type="button" class="btn btn-tool" data-card-widget="collapse"><i class="fas fa-plus"></i>
                     </button>
-=======
-                <a class="btn btn-primary" href="/home"> Kembali </a>
-                        <a class="btn btn-success" href="/rps/cetakRPS"> Cetak PDF</a>
-                    <!-- <button type="button" class="btn btn-tool" data-card-widget="collapse">
-
-                        <i class="fas fa-minus"></i>
-                    </button> -->
->>>>>>> 0c2b96db8e4b4be458d27d2989bd0e2c1c96c96e
                 </div>
             </div>
             <div class="card-body">
