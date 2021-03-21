@@ -52,22 +52,25 @@
                 </ul>
             </div>
             @endif
-            <div class="card card-default" style="width: 20%;">
+            <!-- <div class="card card-default" style="width: 20%;">
                 <div class="card-header">
                     <center>
                         <a class="btn btn-primary" href="/home"> Kembali </a>
                         <a class="btn btn-success" href="/rps/cetakRPS"> Cetak PDF</a>
                     </center>
                 </div>
-            </div>
+            </div> -->
         </div>
         <div class="card card-default">
             <div class="card-header">
                 <h3 class="card-title">Data Mata Kuliah</h3>
                 <div class="card-tools">
-                    <button type="button" class="btn btn-tool" data-card-widget="collapse">
+                <a class="btn btn-primary" href="/home"> Kembali </a>
+                        <a class="btn btn-success" href="/rps/cetakRPS"> Cetak PDF</a>
+                    <!-- <button type="button" class="btn btn-tool" data-card-widget="collapse">
+
                         <i class="fas fa-minus"></i>
-                    </button>
+                    </button> -->
                 </div>
             </div>
             <form action="/rps/edit/matakuliah/{{$mata_kuliah['id']}}" method="post">

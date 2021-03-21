@@ -15,6 +15,7 @@
 <link rel="stylesheet" href="{{url('plugins/datatables-bs4/css/dataTables.bootstrap4.min.css')}}">
 <link rel="stylesheet" href="{{url('plugins/datatables-responsive/css/responsive.bootstrap4.min.css')}}">
 <link rel="stylesheet" href="{{url('plugins/datatables-buttons/css/buttons.bootstrap4.min.css')}}">
+<link rel="stylesheet" href="{{url('plugins/sweetalert2/sweetalert2.min.css')}}">
 @endsection
 
 @section('content')
@@ -147,6 +148,7 @@
                             </td>
                             <td>
                                 <a href="/rps/{{$data['id']}}" class="btn btn-primary">Lihat</a>
+                                <a class="btn btn-danger" id="delete">Hapus</a>
                             </td>
                         </tr>
                         @endforeach
@@ -176,6 +178,7 @@
 <script src="{{url('plugins/datatables-buttons/js/buttons.html5.min.js')}}"></script>
 <script src="{{url('plugins/datatables-buttons/js/buttons.print.min.js')}}"></script>
 <script src="{{url('plugins/datatables-buttons/js/buttons.colVis.min.js')}}"></script>
+<script src="{{url('plugins/sweetalert2/sweetalert2.min.js')}}"></script>
 
 <!-- Page specific script -->
 <script>
@@ -188,5 +191,30 @@
 </script>
 <script type="text/javascript">
     $("#sidebar-home").addClass("active");
+</script>
+
+<!-- Sweet Alert -->
+<script>
+    const deletebtn = document.querySelector('#delete');
+    deletebtn.addEventListener('click', (e)=>{
+        Swal.fire({
+            title: 'Anda yakin menghapus ini?',
+            text: "File yang terhapus tidak akan dapat kembali",
+            icon: 'warning',
+            showCancelButton: true,
+            confirmButtonColor: '#3085d6',
+            cancelButtonColor: '#d33',
+            confirmButtonText: 'Ya!',
+            cancelButtonText: 'Tidak'
+            }).then((result) => {
+            if (result.isConfirmed) {
+                Swal.fire(
+                'Hapus',
+                'File anda berhasil dihapus.',
+                'success'
+                )
+            }
+        })
+    })
 </script>
 @endsection
