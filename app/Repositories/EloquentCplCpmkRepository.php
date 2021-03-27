@@ -25,9 +25,9 @@ class EloquentCplCpmkRepository implements CplCpmkRepository
         return CplCpmk::create($data);
     }
 
-    public function getCplAll()
+    public function getCplByJurusanAll($jurusan_id)
     {
-        return Cpl::orderBy('no')->get();
+        return Cpl::where('jurusan_id', $jurusan_id)->orderBy('no')->get();
     }
 
     public function getCplByNo($no, $jurusan_id)

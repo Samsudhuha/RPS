@@ -19,9 +19,9 @@ class CplCpmkService
         $this->mataKuliahRepository = $mataKuliahRepository;
     }
 
-    public function getCplAll()
+    public function getCplByJurusanAll($jurusan_id)
     {
-        return $this->cplCpmkRepository->getCplAll();
+        return $this->cplCpmkRepository->getCplByJurusanAll($jurusan_id);
     }
 
     public function getCpmkMataKuliahAll($mata_kuliah_id)

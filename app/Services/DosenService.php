@@ -36,6 +36,20 @@ class DosenService
         return $dosen;
     }
 
+    public function getKaprodiByJurusan($jurusan_id)
+    {
+        $kaprodi = $this->dosenRepository->getKaprodiByJurusan($jurusan_id);
+
+        return $this->userService->getById($kaprodi->dosen_id)->name;
+    }
+
+    public function getKalabsByRmk($rmk_id)
+    {
+        $kalabs = $this->dosenRepository->getKalabsByRmk($rmk_id);
+
+        return $this->userService->getById($kalabs->dosen_id)->name;
+    }
+
     public function getByMataKuliahId($mata_kuliah_id)
     {
         $dosen = $this->dosenMataKuliahRepository->getByMataKuliahId($mata_kuliah_id);

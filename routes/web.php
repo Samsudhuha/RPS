@@ -14,7 +14,6 @@ use App\Http\Controllers\SilabusController;
 
 Route::get('/', [AuthController::class, 'viewLogin']);
 Route::post('/login', [AuthController::class, 'login']);
-Route::get('/pdf', [RpsController::class, 'pdf']);
 
 Route::middleware(['auth'])->group(function () {
     Route::get('/home', [HomeController::class, 'index']);

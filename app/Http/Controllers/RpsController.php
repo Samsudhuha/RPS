@@ -11,6 +11,7 @@ use App\Services\RmkService;
 use App\Services\SilabusService;
 use Illuminate\Http\Request;
 use PDF;
+use DateTime;
 
 class RpsController extends Controller
 {
@@ -53,8 +54,8 @@ class RpsController extends Controller
             $data['rmk'] = $this->rmkService->getRmkById($data['mata_kuliah']["rmk_id"]);
             $data['all_dosens'] = $this->dosenController->getSubDosen($data['mata_kuliah']["jurusan_id"])->toArray();
             $data['dosen_matakuliahs'] = $this->dosenService->getByMataKuliahId($data['mata_kuliah']["id"])->pluck("id")->toArray();
-            $data['cpls'] = $this->cplCpmkService->getCplAll();
-            $data['cpls_array'] = $this->cplCpmkService->getCplAll()->toArray();
+            $data['cpls'] = $this->cplCpmkService->getCplByJurusanAll($data["mata_kuliah"]["jurusan_id"]);
+            $data['cpls_array'] = $this->cplCpmkService->getCplByJurusanAll($data["mata_kuliah"]["jurusan_id"])->toArray();
             $data['cpmks'] = $this->cplCpmkService->getCpmkMataKuliahAll($data['mata_kuliah']["id"]);
             if ($cpl_matakuliahs_id = $this->cplCpmkService->getCplMataKuliahAll($data['mata_kuliah']["id"])) {
                 $data['cpl_matakuliahs_id'] = $cpl_matakuliahs_id->pluck("cpl_id")->toArray();
@@ -87,17 +88,73 @@ class RpsController extends Controller
     public function cetakPDF($id)
     {
         try {
-            return redirect('home')->withErrors(["error" => "Maaf, Cetak PDF Belum Tersedia"]);
+            $data['mata_kuliah'] = $this->mataKuliahService->getMataKuliahById($id);
+            $data['mata_kuliah']['bahan_kajian'] = json_decode($data['mata_kuliah']['bahan_kajian']);
+            $datetime = new DateTime($data['mata_kuliah']['updated_at']);
+            $data['mata_kuliah']['waktu'] = $this->tgl_indo($datetime->format('Y-m-d'));
+            $data['mata_kuliah']['kaprodi'] = $this->dosenService->getKaprodiByJurusan($data["mata_kuliah"]["jurusan_id"]);
+            $data['mata_kuliah']['kalabs'] = $this->dosenService->getKalabsByRmk($data["mata_kuliah"]["rmk_id"]);
+            $data['mata_kuliah']['program_studi'] = $this->programStudiService->getById($data["mata_kuliah"]["program_studi_id"]);
+            $data['mata_kuliah']['jurusan'] = $this->jurusanService->getById($data["mata_kuliah"]["jurusan_id"]);
+            $data['mata_kuliah']['rmk'] = $this->rmkService->getRmkById($data['mata_kuliah']["rmk_id"]);
+            $data['mata_kuliah']['cpmks'] = $this->cplCpmkService->getCpmkMataKuliahAll($data['mata_kuliah']["id"]);
+            $data['mata_kuliah']['cpl_matakuliahs'] = $this->cplCpmkService->getCplMataKuliahAll($data['mata_kuliah']["id"])->pluck("cpl_id")->toArray();
+            $data['mata_kuliah']['count_cpl_cpmk'] = count($data['mata_kuliah']['cpmks']) + count($data['mata_kuliah']['cpl_matakuliahs']) + 2;
+            $data['cpls_array'] = $this->cplCpmkService->getCplByJurusanAll($data["mata_kuliah"]["jurusan_id"])->toArray();
+            $data['cpl_cpmks'] = $this->cplCpmkService->getCplCpmkAll($data['mata_kuliah']["id"]);
+            $data['silabuses'] = $this->silabusService->getAll($data['mata_kuliah']["id"]);
+            $flag = 0;
+            if (count($data["mata_kuliah"]["cpl_matakuliahs"]) == 0) {
+                $flag = 1;
+                $errors[0] = "Data Cpl belum terisi.";
+            }
+            if (count($data["mata_kuliah"]["cpmks"]) == 0) {
+                $flag = 1;
+                $errors[1] = "Data Cpmk belum terisi.";
+            }
+            if (count($data["cpl_cpmks"]) == 0) {
+                $flag = 1;
+                $errors[2] = "Peta Cpl Cpmk belum terisi.";
+            }
+            if (count($data["silabuses"]) == 0) {
+                $flag = 1;
+                $errors[3] = "Data Silabus belum terisi.";
+            }
+            if ($flag == 1) {
+                return redirect('home')->withErrors(["errors" => $errors]);
+            } else {
+                // dd($data);
+                // return view('rps.cetakPDF', $data);
+                $pdf = PDF::loadview('rps.cetakPDF', $data);
+                return $pdf->download('RPS - ' . $data['mata_kuliah']['name'] . '.pdf');
+            }
         } catch (Exception $e) {
             return $this->handleException($e);
         }
-
-        $pdf = PDF::loadview('rps.cetakPDF');
-        return $pdf->download('RPS.pdf');
     }
 
-    public function pdf()
+    public function tgl_indo($tanggal)
     {
-        return view('rps.cetakPDF');
+        $bulan = array(
+            1 =>   'Januari',
+            'Februari',
+            'Maret',
+            'April',
+            'Mei',
+            'Juni',
+            'Juli',
+            'Agustus',
+            'September',
+            'Oktober',
+            'November',
+            'Desember'
+        );
+        $pecahkan = explode('-', $tanggal);
+
+        // variabel pecahkan 0 = tanggal
+        // variabel pecahkan 1 = bulan
+        // variabel pecahkan 2 = tahun
+
+        return $pecahkan[2] . ' ' . $bulan[(int)$pecahkan[1]] . ' ' . $pecahkan[0];
     }
 }
