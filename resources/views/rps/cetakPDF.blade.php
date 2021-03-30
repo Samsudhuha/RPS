@@ -163,7 +163,9 @@
                 <span class="font-weight-bold">Bahan Kajian: </span>Materi Pembelajaran
             </td>
             <td colspan="7">
-                1. HCI/New Interactive Technologies <br> 2. HCI/Mixed, Augmented and Virtual Reality
+                @foreach($mata_kuliah["bahan_kajian"] as $key => $bahan_kajian)
+                {{ $key + 1 }}. {{ $bahan_kajian}} <br>
+                @endforeach
             </td>
         </tr>
         <tr>
@@ -193,7 +195,7 @@
         </tr>
         <tr>
             <td class="font-weight-bold">Matakuliah syarat</td>
-            <td colspan="7 ">
+            <td colspan="7">
                 -
             </td>
         </tr>
