@@ -74,6 +74,15 @@
                                     </select>
                                 </div>
                             </div>
+                            <div class="col-md-6 fakultas">
+                                <div class="form-group">
+                                    <label>Fakultas</label>
+                                    <select name="fakultas" class="form-control-lg select2" style="width: 100%;">
+                                    </select>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">
                             <div class="col-md-6 jurusan">
                                 <div class="form-group">
                                     <label>Jurusan</label>
@@ -81,8 +90,6 @@
                                     </select>
                                 </div>
                             </div>
-                        </div>
-                        <div class="row">
                             <div class="col-md-6 rmk">
                                 <div class="form-group">
                                     <label>RMK</label>
@@ -90,6 +97,8 @@
                                     </select>
                                 </div>
                             </div>
+                        </div>
+                        <div class="row">
                             <div class="col-md-6 mata-kuliah">
                                 <div class="form-group">
                                     <label>Mata Kuliah</label>
@@ -97,8 +106,6 @@
                                     </select>
                                 </div>
                             </div>
-                        </div>
-                        <div class="row">
                             <div class="col-md-6 dosen">
                                 <div class="form-group">
                                     <label>Dosen Pengampu</label>
@@ -162,15 +169,44 @@
 <!-- Get List Dropdown -->
 <script type="text/javascript">
     $(document).ready(function() {
+        $(".fakultas").hide();
         $(".jurusan").hide();
         $(".rmk").hide();
         $(".mata-kuliah").hide();
         $(".dosen").hide();
     });
 
-    // Jurusan
+    // Fakultas
     jQuery(document).ready(function() {
         jQuery('select[name="program_studi"]').on('change', function() {
+            $(".fakultas").hide();
+            $(".jurusan").hide();
+            $(".rmk").hide();
+            $(".mata-kuliah").hide();
+            $(".dosen").hide();
+            var programStudiID = jQuery(this).val();
+            console.log(programStudiID);
+            if (programStudiID) {
+                jQuery.ajax({
+                    url: '/dropdownlist/getfakultas/' + programStudiID,
+                    type: "GET",
+                    dataType: "json",
+                    success: function(data) {
+                        $(".fakultas").show();
+                        jQuery('select[name="fakultas"]').empty();
+                        $('select[name="fakultas"]').append('<option disabled selected>Pilih Fakultas</option>');
+                        jQuery.each(data, function(key, value) {
+                            $('select[name="fakultas"]').append('<option value="' + value['id'] + '">' + value['name'] + '</option>');
+                        });
+                    }
+                });
+            }
+        });
+    });
+
+    // Jurusan
+    jQuery(document).ready(function() {
+        jQuery('select[name="fakultas"]').on('change', function() {
             $(".jurusan").hide();
             $(".rmk").hide();
             $(".mata-kuliah").hide();
@@ -178,7 +214,7 @@
             var programStudiID = jQuery(this).val();
             if (programStudiID) {
                 jQuery.ajax({
-                    url: '/rps/dropdownlist/getjurusan/' + programStudiID,
+                    url: '/dropdownlist/getjurusan/' + programStudiID,
                     type: "GET",
                     dataType: "json",
                     success: function(data) {
@@ -203,7 +239,7 @@
             var jurusanID = jQuery(this).val();
             if (jurusanID) {
                 jQuery.ajax({
-                    url: '/rps/dropdownlist/getrmk/' + jurusanID,
+                    url: '/dropdownlist/getrmk/' + jurusanID,
                     type: "GET",
                     dataType: "json",
                     success: function(data) {
@@ -227,7 +263,7 @@
             var rmkID = jQuery(this).val();
             if (rmkID) {
                 jQuery.ajax({
-                    url: '/rps/dropdownlist/getmatakuliah/' + rmkID,
+                    url: '/dropdownlist/getmatakuliah/' + rmkID,
                     type: "GET",
                     dataType: "json",
                     success: function(data) {
@@ -254,7 +290,7 @@
             var jurusanID = jQuery(this).val();
             if (jurusanID) {
                 jQuery.ajax({
-                    url: '/rps/dropdownlist/getdosen/' + jurusanID,
+                    url: '/dropdownlist/getdosen/' + jurusanID,
                     type: "GET",
                     dataType: "json",
                     success: function(data) {

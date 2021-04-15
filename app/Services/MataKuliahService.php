@@ -3,92 +3,149 @@
 namespace App\Services;
 
 use App\Repositories\Contracts\DosenMataKuliahRepository;
+use App\Repositories\Contracts\FakultasRepository;
+use App\Repositories\Contracts\JurusanRepository;
 use App\Repositories\Contracts\MataKuliahRepository;
+use App\Repositories\Contracts\ProgramStudiRepository;
+use App\Repositories\Contracts\RmkRepository;
 
 class MataKuliahService
 {
     protected $mataKuliahRepository;
     protected $dosenMataKuliahRepository;
     protected $userService;
+    protected $fakultasRepository;
+    protected $jurusanRepository;
+    protected $programStudiRepository;
+    protected $rmkRepository;
 
     public function __construct(
         MataKuliahRepository $mataKuliahRepository,
         DosenMataKuliahRepository $dosenMataKuliahRepository,
+        FakultasRepository $fakultasRepository,
+        JurusanRepository $jurusanRepository,
+        ProgramStudiRepository $programStudiRepository,
+        RmkRepository $rmkRepository,
         UserService $userService
     ) {
         $this->mataKuliahRepository = $mataKuliahRepository;
         $this->dosenMataKuliahRepository = $dosenMataKuliahRepository;
+        $this->fakultasRepository = $fakultasRepository;
+        $this->jurusanRepository = $jurusanRepository;
+        $this->programStudiRepository = $programStudiRepository;
+        $this->rmkRepository = $rmkRepository;
         $this->userService = $userService;
     }
 
-    public function create($data)
+    public function create($data, $level)
     {
-        $id = $data["mata_kuliah"];
-        $pustaka = [
-            'pustaka_utama' => json_encode($data["daftar_pustaka_utama"]),
-            'pustaka_pendukung' => json_encode($data["daftar_pustaka_pendukung"]),
-        ];
-        $mata_kuliah = [
-            'program_studi_id' => $data["program_studi"],
-            'deskripsi' => $data["deskripsi"],
-            'bahan_kajian' => json_encode($data["bahan_kajian"]),
-            'pustaka' => $pustaka
-        ];
-
-        for ($i = 0; $i < count($data["dosen"]); $i++) {
-            $dosen_mata_kuliah = [
-                'dosen_id' => $data["dosen"][$i],
-                'mata_kuliah_id' => $id
+        if ($level == 'Dosen') {
+            $id = $data["mata_kuliah"];
+            $pustaka = [
+                'pustaka_utama' => json_encode($data["daftar_pustaka_utama"]),
+                'pustaka_pendukung' => json_encode($data["daftar_pustaka_pendukung"]),
             ];
-            $this->dosenMataKuliahRepository->create($dosen_mata_kuliah);
-        }
-
-        return $this->mataKuliahRepository->update($mata_kuliah, $id);
-    }
-
-    public function update($data, $mata_kuliah_id)
-    {
-        $pustaka = [
-            'pustaka_utama' => json_encode($data["daftar_pustaka_utama"]),
-            'pustaka_pendukung' => json_encode($data["daftar_pustaka_pendukung"]),
-        ];
-        $mata_kuliah = [
-            'deskripsi' => $data["deskripsi"],
-            'bahan_kajian' => json_encode($data["bahan_kajian"]),
-            'pustaka' => $pustaka
-        ];
-        $this->dosenMataKuliahRepository->delete($mata_kuliah_id);
-        for ($i = 0; $i < count($data["dosen"]); $i++) {
-            $dosen_mata_kuliah = [
-                'dosen_id' => $data["dosen"][$i],
-                'mata_kuliah_id' => $mata_kuliah_id
+            $mata_kuliah = [
+                'program_studi_id' => $data["program_studi"],
+                'deskripsi' => $data["deskripsi"],
+                'bahan_kajian' => json_encode($data["bahan_kajian"]),
+                'pustaka' => $pustaka
             ];
-            $this->dosenMataKuliahRepository->create($dosen_mata_kuliah);
-        }
 
-        return $this->mataKuliahRepository->update($mata_kuliah, $mata_kuliah_id);
-    }
-
-    public function getAll()
-    {
-        $mata_kuliah = $this->mataKuliahRepository->getAll();
-        if (count($mata_kuliah) == 0) {
-            return [];
-        }
-        for ($i = 0; $i < count($mata_kuliah); $i++) {
-            $dosen = $this->dosenMataKuliahRepository->getByMataKuliahId($mata_kuliah[$i]["id"]);
-            for ($j = 0; $j < count($dosen); $j++) {
-                $nama_dosen[$j] =  $this->userService->getById($dosen[$j]["dosen_id"])->name;
+            for ($i = 0; $i < count($data["dosen"]); $i++) {
+                $dosen_mata_kuliah = [
+                    'dosen_id' => $data["dosen"][$i],
+                    'mata_kuliah_id' => $id
+                ];
+                $this->dosenMataKuliahRepository->create($dosen_mata_kuliah);
             }
-            $dosen =  [
-                "dosen" => $nama_dosen
+
+            return $this->mataKuliahRepository->update($mata_kuliah, $id);
+        } elseif ($level == 'PT') {
+            $params = [
+                'name' => $data['matakuliah'],
+                'kode' => $data['kode'],
+                'bobot' => $data['sks'],
+                'semester' => $data['semester'],
+                'program_studi_id' => $data['program_studi'],
+                'fakultas_id' => $data['fakultas'],
+                'jurusan_id' => $data['jurusan'],
+                'rmk_id' => $data['rmk'],
+                'pt_id' => $data['user'],
             ];
-            $pustaka = json_decode($mata_kuliah[$i]["pustaka"]);
-            $pustaka_all = [
-                "pustaka_utama" => json_decode($pustaka->pustaka_utama),
-                "pustaka_pendukung" => json_decode($pustaka->pustaka_pendukung)
+            return $this->mataKuliahRepository->create($params);
+        }
+    }
+
+    public function update($data, $mata_kuliah_id, $level)
+    {
+        if ($level == 'PT') {
+            $params = [
+                'name' => $data['matakuliah'],
+                'kode' => $data['kode'],
+                'bobot' => $data['sks'],
+                'semester' => $data['semester'],
+                'program_studi_id' => $data['program_studi'],
+                'fakultas_id' => $data['fakultas'],
+                'jurusan_id' => $data['jurusan'],
+                'rmk_id' => $data['rmk'],
             ];
-            $params[$i] = array_merge(json_decode(json_encode($dosen), true), json_decode(json_encode($pustaka_all), true), json_decode(json_encode($mata_kuliah[$i]), true));
+            return $this->mataKuliahRepository->update($params, $mata_kuliah_id);
+        } else if ($level == 'Dosen') {
+            $pustaka = [
+                'pustaka_utama' => json_encode($data["daftar_pustaka_utama"]),
+                'pustaka_pendukung' => json_encode($data["daftar_pustaka_pendukung"]),
+            ];
+            $mata_kuliah = [
+                'deskripsi' => $data["deskripsi"],
+                'bahan_kajian' => json_encode($data["bahan_kajian"]),
+                'pustaka' => $pustaka
+            ];
+            $this->dosenMataKuliahRepository->delete($mata_kuliah_id);
+            for ($i = 0; $i < count($data["dosen"]); $i++) {
+                $dosen_mata_kuliah = [
+                    'dosen_id' => $data["dosen"][$i],
+                    'mata_kuliah_id' => $mata_kuliah_id
+                ];
+                $this->dosenMataKuliahRepository->create($dosen_mata_kuliah);
+            }
+
+            return $this->mataKuliahRepository->update($mata_kuliah, $mata_kuliah_id);
+        }
+    }
+
+    public function getAll($pt_id, $level)
+    {
+        if ($level == "Dosen") {
+            $mata_kuliah = $this->mataKuliahRepository->getAll($pt_id);
+            $params = [];
+            for ($i = 0; $i < count($mata_kuliah); $i++) {
+                $dosen = $this->dosenMataKuliahRepository->getByMataKuliahId($mata_kuliah[$i]["id"]);
+                for ($j = 0; $j < count($dosen); $j++) {
+                    $nama_dosen[$j] =  $this->userService->getById($dosen[$j]["dosen_id"])->name;
+                }
+                $dosen =  [
+                    "dosen" => $nama_dosen
+                ];
+                $pustaka = json_decode($mata_kuliah[$i]["pustaka"]);
+                $pustaka_all = [
+                    "pustaka_utama" => json_decode($pustaka->pustaka_utama),
+                    "pustaka_pendukung" => json_decode($pustaka->pustaka_pendukung)
+                ];
+                $params[$i] = array_merge(json_decode(json_encode($dosen), true), json_decode(json_encode($pustaka_all), true), json_decode(json_encode($mata_kuliah[$i]), true));
+            }
+        } else {
+            $mata_kuliah = $this->mataKuliahRepository->getAllMK($pt_id);
+            $params = [];
+            for ($i = 0; $i < count($mata_kuliah); $i++) {
+                $data_pt = [
+                    'program_studi_name' => $this->programStudiRepository->getById($mata_kuliah[$i]['program_studi_id'])->name,
+                    'fakultas_name' => $this->fakultasRepository->getById($mata_kuliah[$i]['fakultas_id'])->name,
+                    'jurusan_name' => $this->jurusanRepository->getById($mata_kuliah[$i]['jurusan_id'])->name,
+                    'rmk_name' => $this->rmkRepository->getById($mata_kuliah[$i]['rmk_id'])->name,
+                ];
+                $params[$i] = array_merge(json_decode(json_encode($data_pt), true), json_decode(json_encode($mata_kuliah[$i]), true));
+            }
         }
 
         return $params;
@@ -99,24 +156,33 @@ class MataKuliahService
         return $this->mataKuliahRepository->getByRmkId($rmk_id);
     }
 
-    public function getMataKuliahById($id)
+    public function getMataKuliahById($id, $level)
     {
-        $mata_kuliah = $this->mataKuliahRepository->getById($id);
-        $dosen = $this->dosenMataKuliahRepository->getByMataKuliahId($mata_kuliah["id"]);
-        for ($j = 0; $j < count($dosen); $j++) {
-            $nama_dosen[$j] =  $this->userService->getById($dosen[$j]["dosen_id"])->name;
-        }
-        $dosen =  [
-            "dosen" => $nama_dosen
-        ];
-        $pustaka = json_decode($mata_kuliah["pustaka"]);
-        $pustaka_all = [
-            "pustaka_utama" => json_decode($pustaka->pustaka_utama),
-            "pustaka_pendukung" => json_decode($pustaka->pustaka_pendukung)
-        ];
-        $params = array_merge(json_decode(json_encode($dosen), true), json_decode(json_encode($pustaka_all), true), json_decode(json_encode($mata_kuliah), true));
+        if ($level == 'PT') {
+            return $this->mataKuliahRepository->getById($id);
+        } else if ($level == 'Dosen') {
+            $mata_kuliah = $this->mataKuliahRepository->getById($id);
+            $dosen = $this->dosenMataKuliahRepository->getByMataKuliahId($mata_kuliah["id"]);
+            for ($j = 0; $j < count($dosen); $j++) {
+                $nama_dosen[$j] =  $this->userService->getById($dosen[$j]["dosen_id"])->name;
+            }
+            $dosen =  [
+                "dosen" => $nama_dosen
+            ];
+            $pustaka = json_decode($mata_kuliah["pustaka"]);
+            $pustaka_all = [
+                "pustaka_utama" => json_decode($pustaka->pustaka_utama),
+                "pustaka_pendukung" => json_decode($pustaka->pustaka_pendukung)
+            ];
+            $params = array_merge(json_decode(json_encode($dosen), true), json_decode(json_encode($pustaka_all), true), json_decode(json_encode($mata_kuliah), true));
 
-        return $params;
+            return $params;
+        }
+    }
+
+    public function delete($mata_kuliah_id)
+    {
+        return $this->mataKuliahRepository->delete($mata_kuliah_id);
     }
 
     public function deleteAll($mata_kuliah_id)

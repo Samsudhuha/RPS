@@ -4,6 +4,8 @@ namespace App\Http\Controllers;
 
 use App\Http\Requests\InsertOrUpdateCplCpmkRequest;
 use App\Http\Requests\InsertOrUpdatePetaCplCpmkRequest;
+use App\Http\Requests\Pt\CreateCPLRequest;
+use App\Http\Requests\Pt\UpdateCPLRequest;
 use App\Services\CplCpmkService;
 
 class CplCpmkController extends Controller
@@ -15,10 +17,79 @@ class CplCpmkController extends Controller
         $this->cplCpmkService = $cplCpmkService;
     }
 
+    public function getAll($id)
+    {
+        try {
+            $data['cpls'] = $this->cplCpmkService->getCplByJurusanAll($id);
+            $data['id'] = $id;
+
+            return view('pt.cpl.index', $data);
+        } catch (Exception $e) {
+            return $this->handleException($e);
+        }
+    }
+
+    public function show($id)
+    {
+        try {
+            $data['cpl'] = $this->cplCpmkService->getCplById($id);
+            $data['id'] = $id;
+
+            return view('pt.cpl.edit', $data);
+        } catch (Exception $e) {
+            return $this->handleException($e);
+        }
+    }
+
+    public function viewCreate($id)
+    {
+        try {
+            $data['id'] = $id;
+            return view('pt.cpl.create', $data);
+        } catch (Exception $e) {
+            return $this->handleException($e);
+        }
+    }
+
+    public function store(CreateCPLRequest $request, $id)
+    {
+        try {
+            $this->cplCpmkService->insertCpl($request->validated(), $id);
+
+            return redirect('cpl/' . $id);
+        } catch (Exception $e) {
+            return $this->handleException($e);
+        }
+    }
+
+    public function update(UpdateCPLRequest $request, $id)
+    {
+        try {
+            $this->cplCpmkService->updateCpl($request->validated(), $id);
+            $cpl = $this->cplCpmkService->getCplById($id);
+
+            return redirect('cpl/' . $cpl->jurusan_id);
+        } catch (Exception $e) {
+            return $this->handleException($e);
+        }
+    }
+
+    public function delete($id)
+    {
+        try {
+            $cpl = $this->cplCpmkService->getCplById($id);
+            $this->cplCpmkService->deleteCpl($id);
+
+            return redirect('cpl/' . $cpl->jurusan_id);
+        } catch (Exception $e) {
+            return $this->handleException($e);
+        }
+    }
+
     public function insertOrUpdate(InsertOrUpdateCplCpmkRequest $request, $id)
     {
         try {
-            $cplCplmk = $this->cplCpmkService->insertOrUpdateCplCpmk($id, $request);
+            $cplCplmk = $this->cplCpmkService->insertOrUpdateCplCpmk($id, $request->validated());
             if ($cplCplmk) {
                 return redirect('rps/' . $id)
                     ->withErrors(["error" => "The cpmk field is required."]);
@@ -32,7 +103,7 @@ class CplCpmkController extends Controller
     public function insertOrUpdatePeta(InsertOrUpdatePetaCplCpmkRequest $request, $id)
     {
         try {
-            $cpmk = $this->cplCpmkService->insertOrUpdatePetaCplCpmk($id, $request);
+            $cpmk = $this->cplCpmkService->insertOrUpdatePetaCplCpmk($id, $request->validated());
 
             if ($cpmk) {
                 return redirect('rps/' . $id)

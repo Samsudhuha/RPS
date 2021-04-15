@@ -219,7 +219,7 @@
     });
 </script>
 <script type="text/javascript">
-    $("#sidebar-home").addClass("active");
+    $("#sidebar-dosen-rps").addClass("active");
 </script>
 
 <!-- Sweet Alert -->

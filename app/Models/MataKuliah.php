@@ -15,9 +15,11 @@ class MataKuliah extends Model
      * @var array
      */
     protected $fillable = [
-        'rmk_id',
+        'pt_id',
         'program_studi_id',
+        'fakultas_id',
         'jurusan_id',
+        'rmk_id',
         'kode',
         'name',
         'bobot',
@@ -29,8 +31,10 @@ class MataKuliah extends Model
 
     protected $casts = [
         'id' => 'string',
-        'rmk_id' => 'string',
+        'pt_id' => 'string',
         'program_studi_id' => 'string',
-        'jurusan_id' => 'string'
+        'fakultas_id' => 'string',
+        'jurusan_id' => 'string',
+        'rmk_id' => 'string'
     ];
 }

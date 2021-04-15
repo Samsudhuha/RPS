@@ -16,7 +16,7 @@ class CreateJurusansTable extends Migration
         Schema::create('jurusans', function (Blueprint $table) {
             $table->uuid('id')->primary();
             $table->string('name', 150);
-            $table->foreignUuid('program_studi_id')->references('id')->on('program_studis')->cascadeOnDelete();
+            $table->foreignUuid('fakultas_id')->references('id')->on('fakultases')->cascadeOnDelete();
             $table->timestamps();
         });
     }

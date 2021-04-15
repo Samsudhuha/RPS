@@ -17,6 +17,16 @@ class EloquentCplCpmkRepository implements CplCpmkRepository
 
     public function createCpl($data)
     {
+        return Cpl::create($data);
+    }
+
+    public function updateCpl($data, $id)
+    {
+        return Cpl::where('id', $id)->update($data);
+    }
+
+    public function createCplMataKuliah($data)
+    {
         return CplMataKuliah::create($data);
     }
 
@@ -33,6 +43,11 @@ class EloquentCplCpmkRepository implements CplCpmkRepository
     public function getCplByNo($no, $jurusan_id)
     {
         return Cpl::where('no', $no)->where('jurusan_id', $jurusan_id)->first();
+    }
+
+    public function getCplById($id)
+    {
+        return Cpl::where('id', $id)->first();
     }
 
     public function getCpmkByNo($no, $mata_kuliah_id)
@@ -73,5 +88,10 @@ class EloquentCplCpmkRepository implements CplCpmkRepository
     public function deleteCpmk($mata_kuliah_id)
     {
         return Cpmk::where('mata_kuliah_id', $mata_kuliah_id)->delete();
+    }
+
+    public function deleteCplById($id)
+    {
+        return Cpl::where('id', $id)->delete();
     }
 }

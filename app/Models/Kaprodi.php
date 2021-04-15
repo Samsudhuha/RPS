@@ -12,13 +12,14 @@ class Kaprodi extends Model
      * @var array
      */
     protected $fillable = [
-        'dosen_id', 'jurusan_id'
+        'dosen_id', 'jurusan_id', 'program_studi_id'
     ];
 
     public $timestamps = false;
 
     protected $casts = [
         'dosen_id' => 'string',
-        'jurusan_id' => 'string'
+        'jurusan_id' => 'string',
+        'program_studi_id' => 'string'
     ];
 }

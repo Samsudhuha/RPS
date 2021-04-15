@@ -6,6 +6,7 @@ use App\Http\Requests\CreateSilabusRequest;
 use App\Services\MataKuliahService;
 use App\Services\SilabusService;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class SilabusController extends Controller
 {
@@ -24,7 +25,7 @@ class SilabusController extends Controller
     {
         try {
             $data['id'] = $id;
-            return view('silabus.create', $data);
+            return view('dosen.silabus.create', $data);
         } catch (Exception $e) {
             return $this->handleException($e);
         }
@@ -33,9 +34,9 @@ class SilabusController extends Controller
     public function viewEdit($id)
     {
         try {
-            $data['silabus'] = $this->silabusService->getById($id);
+            $data['silabus'] = $this->silabusService->getById($id, Auth::user()->id);
 
-            return view('silabus.edit', $data);
+            return view('dosen.silabus.edit', $data);
         } catch (Exception $e) {
             return $this->handleException($e);
         }
@@ -45,7 +46,7 @@ class SilabusController extends Controller
     {
         try {
             $this->silabusService->create($request, $id);
-            $mata_kuliah = $this->mataKuliahService->getMataKuliahById($id);
+            $mata_kuliah = $this->mataKuliahService->getMataKuliahById($id, Auth::user()->level);
 
             return redirect('rps/' . $id)->with('success', 'Berhasil Menambah Data Silabus ' . $mata_kuliah["name"]);
         } catch (Exception $e) {
@@ -59,7 +60,7 @@ class SilabusController extends Controller
             $this->silabusService->update($request, $id);
             $id = $this->silabusService->getById($id)->mata_kuliah_id;
 
-            $mata_kuliah = $this->mataKuliahService->getMataKuliahById($id);
+            $mata_kuliah = $this->mataKuliahService->getMataKuliahById($id, Auth::user()->level);
 
             return redirect('rps/' . $id)->with('success', 'Berhasil Mengubah Data Silabus ' . $mata_kuliah["name"] . ' ID ' . $id);
         } catch (Exception $e) {

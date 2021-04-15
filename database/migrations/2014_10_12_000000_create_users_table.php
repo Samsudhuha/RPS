@@ -21,9 +21,12 @@ class CreateUsersTable extends Migration
     {
         Schema::create($this->set_schema_table, function (Blueprint $table) {
             $table->uuid('id')->primary();
+            $table->uuid('pt_id')->nullable();
             $table->string('username')->unique();
             $table->string('password');
             $table->string('name', 150);
+            $table->string('level', 50);
+            $table->string('logo')->nullable();
             $table->string('remember_token')->nullable();
             $table->timestamps();
         });

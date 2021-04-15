@@ -1,10 +1,17 @@
 <aside class="main-sidebar sidebar-dark-primary elevation-4">
     <a class="brand-link">
         <img src="../../dist/img/AdminLTELogo.png" alt="AdminLTE Logo" class="brand-image img-circle elevation-3" style="opacity: .8">
-        <span class="brand-text font-weight-light">RPS</span>
+        <span class="brand-text font-weight-light">RPS - {{ Auth::user()->level }}</span>
     </a>
     <div class="sidebar">
         <nav class="mt-2">
+            <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu" data-accordion="false">
+                <li class="nav-item">
+                    <a href="#" class="nav-link">
+                        <p>{{ Auth::user()->name }}</p>
+                    </a>
+                </li>
+            </ul>
             <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu" data-accordion="false">
                 <li class="nav-header">Dashboard</li>
                 <li class="nav-item">
@@ -13,6 +20,62 @@
                         <p>Home</p>
                     </a>
                 </li>
+                @switch(Auth::user()->level)
+                @case('PT')
+                <li class="nav-header">Data</li>
+                <li class="nav-item">
+                    <a href="/pt" class="nav-link" id='sidebar-pt-pt'>
+                        <i class="fas fa-home"></i>
+                        <p>Perguruan Tinggi</p>
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a href="/fakultas" class="nav-link" id='sidebar-pt-fakultas'>
+                        <i class="fas fa-home"></i>
+                        <p>Fakultas</p>
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a href="/jurusan" class="nav-link" id='sidebar-pt-jurusan'>
+                        <i class="fas fa-home"></i>
+                        <p>Jurusan</p>
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a href="/rmk" class="nav-link" id='sidebar-pt-rmk'>
+                        <i class="fas fa-home"></i>
+                        <p>Rumpun Mata Kuliah</p>
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a href="/matakuliah" class="nav-link" id='sidebar-pt-matakuliah'>
+                        <i class="fas fa-home"></i>
+                        <p>Mata Kuliah</p>
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a href="/dosen" class="nav-link" id='sidebar-pt-dosen'>
+                        <i class="fas fa-home"></i>
+                        <p>Dosen</p>
+                    </a>
+                </li>
+                @break
+                @case('Dosen')
+                <li class="nav-header">Data</li>
+                <li class="nav-item">
+                    <a href="/rps/dosen" class="nav-link" id='sidebar-dosen-dosen'>
+                        <i class="fas fa-home"></i>
+                        <p>Dosen</p>
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a href="/rps" class="nav-link" id='sidebar-dosen-rps'>
+                        <i class="fas fa-home"></i>
+                        <p>Rencana Pembelajaran Semester</p>
+                    </a>
+                </li>
+                @break
+                @endswitch
                 <!-- <li class="nav-header">Dropdown</li>
                 <li class="nav-item">
                     <a href="#" class="nav-link">

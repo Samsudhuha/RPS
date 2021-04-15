@@ -17,13 +17,6 @@ class DatabaseSeeder extends Seeder
         $this->call([
             UserSeeder::class,
             ProgramStudiSeeder::class,
-            JurusanSeeder::class,
-            RmkSeeder::class,
-            MataKuliahSeeder::class,
-            DosenSeeder::class,
-            KaprodiSeeder::class,
-            KalabSeeder::class,
-            CplSeeder::class,
         ]);
     }
 }

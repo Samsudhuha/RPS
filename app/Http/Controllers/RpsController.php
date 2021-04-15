@@ -12,6 +12,7 @@ use App\Services\SilabusService;
 use Illuminate\Http\Request;
 use PDF;
 use DateTime;
+use Illuminate\Support\Facades\Auth;
 
 class RpsController extends Controller
 {
@@ -44,10 +45,21 @@ class RpsController extends Controller
         $this->dosenController = $dosenController;
     }
 
+    public function index()
+    {
+        try {
+            $pt_id = Auth::user()->pt_id;
+            $data['datas'] = $this->mataKuliahService->getAll($pt_id, 'Dosen');
+            $data['no'] = 1;
+            return view('dosen.rps.index', $data);
+        } catch (Exception $e) {
+            return $this->handleException($e);
+        }
+    }
     public function getRpsById($id)
     {
         try {
-            $data['mata_kuliah'] = $this->mataKuliahService->getMataKuliahById($id);
+            $data['mata_kuliah'] = $this->mataKuliahService->getMataKuliahById($id, 'Dosen');
             $data['mata_kuliah']['bahan_kajian'] = json_decode($data['mata_kuliah']['bahan_kajian']);
             $data['program_studi'] = $this->programStudiService->getById($data["mata_kuliah"]["program_studi_id"]);
             $data['jurusan'] = $this->jurusanService->getById($data["mata_kuliah"]["jurusan_id"]);
@@ -65,7 +77,7 @@ class RpsController extends Controller
             $data['cpl_cpmks'] = $this->cplCpmkService->getCplCpmkAll($data['mata_kuliah']["id"]);
             $data['silabuses'] = $this->silabusService->getAll($data['mata_kuliah']["id"]);
 
-            return view('rps.show', $data);
+            return view('dosen.rps.show', $data);
         } catch (Exception $e) {
             return $this->handleException($e);
         }
@@ -74,12 +86,12 @@ class RpsController extends Controller
     public function delete($id)
     {
         try {
-            $mata_kuliah = $this->mataKuliahService->getMataKuliahById($id);
+            $mata_kuliah = $this->mataKuliahService->getMataKuliahById($id, 'Dosen');
             $this->cplCpmkService->deleteAll($id);
             $this->silabusService->deleteAll($id);
             $this->mataKuliahService->deleteAll($id);
 
-            return redirect('home')->with('success', 'Berhasil Menghapus Data Rencana Pembelajaran Semester Mata Kuliah ' . $mata_kuliah["name"]);
+            return redirect('rps')->with('success', 'Berhasil Menghapus Data Rencana Pembelajaran Semester Mata Kuliah ' . $mata_kuliah["name"]);
         } catch (Exception $e) {
             return $this->handleException($e);
         }
@@ -88,7 +100,7 @@ class RpsController extends Controller
     public function cetakPDF($id)
     {
         try {
-            $data['mata_kuliah'] = $this->mataKuliahService->getMataKuliahById($id);
+            $data['mata_kuliah'] = $this->mataKuliahService->getMataKuliahById($id, 'Dosen');
             $data['mata_kuliah']['bahan_kajian'] = json_decode($data['mata_kuliah']['bahan_kajian']);
             $datetime = new DateTime($data['mata_kuliah']['updated_at']);
             $data['mata_kuliah']['waktu'] = $this->tgl_indo($datetime->format('Y-m-d'));
@@ -120,12 +132,20 @@ class RpsController extends Controller
                 $flag = 1;
                 $errors[3] = "Data Silabus belum terisi.";
             }
+            if ($data['mata_kuliah']["kaprodi"] == 0) {
+                $flag = 1;
+                $errors[4] = "Tidak ada data Kepala Program Studi.";
+            }
+            if ($data['mata_kuliah']["kalabs"] == 0) {
+                $flag = 1;
+                $errors[5] = "Tidak ada data Kepala Lab.";
+            }
             if ($flag == 1) {
-                return redirect('home')->withErrors(["errors" => $errors]);
+                return redirect('rps')->withErrors(["errors" => $errors]);
             } else {
                 // dd($data);
                 // return view('rps.cetakPDF', $data);
-                $pdf = PDF::loadview('rps.cetakPDF', $data);
+                $pdf = PDF::loadview('dosen.rps.cetakPDF', $data);
                 return $pdf->download('RPS - ' . $data['mata_kuliah']['name'] . '.pdf');
             }
         } catch (Exception $e) {

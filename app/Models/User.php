@@ -15,9 +15,12 @@ class User extends Authenticatable
      * @var array
      */
     protected $fillable = [
+        'pt_id',
         'username',
         'password',
         'name',
+        'level',
+        'logo'
     ];
 
     /**
@@ -30,5 +33,6 @@ class User extends Authenticatable
     ];
     protected $casts = [
         'id' => 'string',
+        'pt_id' => 'string',
     ];
 }

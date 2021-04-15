@@ -12,10 +12,12 @@ class Dosen extends Model
      * @var array
      */
     protected $fillable = [
-        'id', 'jurusan_id'
+        'id', 'jurusan_id', 'rmk_id', 'fakultas_id'
     ];
     protected $casts = [
         'id' => 'string',
         'jurusan_id' => 'string',
+        'fakultas_id' => 'string',
+        'rmk_id' => 'string',
     ];
 }

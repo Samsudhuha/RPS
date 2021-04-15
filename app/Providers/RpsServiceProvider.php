@@ -2,10 +2,11 @@
 
 namespace App\Providers;
 
+use Illuminate\Support\ServiceProvider;
 use App\Repositories\Contracts\CplCpmkRepository;
 use App\Repositories\Contracts\DosenMataKuliahRepository;
 use App\Repositories\Contracts\DosenRepository;
-use Illuminate\Support\ServiceProvider;
+use App\Repositories\Contracts\FakultasRepository;
 use App\Repositories\Contracts\ProgramStudiRepository;
 use App\Repositories\Contracts\UserRepository;
 use App\Repositories\Contracts\JurusanRepository;
@@ -15,6 +16,7 @@ use App\Repositories\Contracts\SilabusRepository;
 use App\Repositories\EloquentCplCpmkRepository;
 use App\Repositories\EloquentDosenMataKuliahRepository;
 use App\Repositories\EloquentDosenRepository;
+use App\Repositories\EloquentFakultasRepository;
 use App\Repositories\EloquentProgramStudiRepository;
 use App\Repositories\EloquentUsersRepository;
 use App\Repositories\EloquentJurusanRepository;
@@ -34,6 +36,7 @@ class RpsServiceProvider extends ServiceProvider
         DosenMataKuliahRepository::class => EloquentDosenMataKuliahRepository::class,
         CplCpmkRepository::class => EloquentCplCpmkRepository::class,
         SilabusRepository::class => EloquentSilabusRepository::class,
+        FakultasRepository::class => EloquentFakultasRepository::class,
     ];
 
     /**

@@ -15,10 +15,10 @@ class Jurusan extends Model
      * @var array
      */
     protected $fillable = [
-        'name', 'program_studi_id'
+        'name', 'fakultas_id'
     ];
     protected $casts = [
         'id' => 'string',
-        'program_studi_id' => 'string'
+        'fakultas_id' => 'string'
     ];
 }
