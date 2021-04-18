@@ -15,7 +15,7 @@ class RmkController extends Controller
 
     public function __construct(
         RmkService $rmkService,
-        JurusanService $jurusanService,
+        JurusanService $jurusanService
     ) {
         $this->rmkService = $rmkService;
         $this->jurusanService = $jurusanService;
