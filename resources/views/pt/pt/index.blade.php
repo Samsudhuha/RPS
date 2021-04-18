@@ -100,19 +100,24 @@
                             </div>
                             <br>
                             @if($pt->logo != null)
-                            <div class="row">
-                                <button class="btn btn-warning" id="editLogo">Edit Logo</button>
-                            </div>
+                                <div class="float-right">
+                                    <button class="btn btn-warning mb-2" id="editLogo">Edit Logo</button>
+                                </div>
                             <div class="row" id="formEditLogo">
                                 <div class="col-lg-5 col-md-5 col-sm-5 col-xs-5">
-                                    <button class="btn btn-warning" id="batalEditLogo">Batal Edit Logo</button>
+                                    <!-- <button class="btn btn-warning" id="batalEditLogo">Batal Edit Logo</button> -->
                                 </div>
                                 <div class="col-lg-7 col-md-7 col-sm-7 col-xs-7">
                                     : <form action="pt/uploadFoto" method="post" enctype="multipart/form-data">
                                         {{ csrf_field() }}
                                         <input type='file' name="file" onchange=" readURL(this);" />
-                                        <button class="btn btn-success" type="submit"> Simpan</button>
-                                    </form>
+                                            <!-- <div class="col-lg-7 col-md-7 col-sm-7 col-xs-7 mt-1 float-left"> -->
+                                            <div class="float-right mb-2">
+                                                <button class="btn btn-warning" id="batalEditLogo">Batal Edit Logo</button>
+                                                <button class="btn btn-success" type="submit"> Simpan</button>
+
+                                            <!-- </div> -->
+                                        </form>
                                     <img id="blah" src="#" alt="your image" />
                                 </div>
                             </div>

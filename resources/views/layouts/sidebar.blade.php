@@ -25,37 +25,37 @@
                 <li class="nav-header">Data</li>
                 <li class="nav-item">
                     <a href="/pt" class="nav-link" id='sidebar-pt-pt'>
-                        <i class="fas fa-home"></i>
+                        <i class="fas fa-university"></i>
                         <p>Perguruan Tinggi</p>
                     </a>
                 </li>
                 <li class="nav-item">
                     <a href="/fakultas" class="nav-link" id='sidebar-pt-fakultas'>
-                        <i class="fas fa-home"></i>
+                        <i class="fas fa-school"></i>
                         <p>Fakultas</p>
                     </a>
                 </li>
                 <li class="nav-item">
                     <a href="/jurusan" class="nav-link" id='sidebar-pt-jurusan'>
-                        <i class="fas fa-home"></i>
+                        <i class="far fa-building"></i>
                         <p>Jurusan</p>
                     </a>
                 </li>
                 <li class="nav-item">
                     <a href="/rmk" class="nav-link" id='sidebar-pt-rmk'>
-                        <i class="fas fa-home"></i>
+                        <i class="fas fa-book"></i>
                         <p>Rumpun Mata Kuliah</p>
                     </a>
                 </li>
                 <li class="nav-item">
                     <a href="/matakuliah" class="nav-link" id='sidebar-pt-matakuliah'>
-                        <i class="fas fa-home"></i>
+                        <i class="fas fa-book-open"></i>
                         <p>Mata Kuliah</p>
                     </a>
                 </li>
                 <li class="nav-item">
                     <a href="/dosen" class="nav-link" id='sidebar-pt-dosen'>
-                        <i class="fas fa-home"></i>
+                        <i class="fas fa-user"></i>
                         <p>Dosen</p>
                     </a>
                 </li>

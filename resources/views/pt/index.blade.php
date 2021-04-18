@@ -64,7 +64,7 @@
                                     Data Perguruan Tinggi
                                 </div>
                                 <div class="card-body">
-                                    <i class="fas fa-home" style="font-size:100px"></i>
+                                    <i class="fas fa-university" style="font-size:100px"></i>
                                 </div>
                             </div>
                         </a>
@@ -76,7 +76,7 @@
                                     Data Fakultas
                                 </div>
                                 <div class="card-body">
-                                    <i class="fas fa-home" style="font-size:100px"></i>
+                                    <i class="fas fa-school" style="font-size:100px"></i>
                                 </div>
                             </div>
                         </a>
@@ -88,7 +88,7 @@
                                     Data Jurusan
                                 </div>
                                 <div class="card-body">
-                                    <i class="fas fa-home" style="font-size:100px"></i>
+                                    <i class="far fa-building" style="font-size:100px"></i>
                                 </div>
                             </div>
                         </a>
@@ -100,7 +100,7 @@
                                     Data Rumpun Mata Kuliah
                                 </div>
                                 <div class="card-body">
-                                    <i class="fas fa-home" style="font-size:100px"></i>
+                                    <i class="fas fa-book" style="font-size:100px"></i>
                                 </div>
                             </div>
                         </a>
@@ -112,7 +112,7 @@
                                     Data Mata Kuliah
                                 </div>
                                 <div class="card-body">
-                                    <i class="fas fa-home" style="font-size:100px"></i>
+                                    <i class="fas fa-book-open" style="font-size:100px"></i>
                                 </div>
                             </div>
                         </a>
@@ -124,7 +124,7 @@
                                     Data Dosen
                                 </div>
                                 <div class="card-body">
-                                    <i class="fas fa-home" style="font-size:100px"></i>
+                                    <i class="fas fa-user" style="font-size:100px"></i>
                                 </div>
                             </div>
                         </a>
