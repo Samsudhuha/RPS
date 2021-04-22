@@ -170,8 +170,7 @@
 @section('custom-js')
 
 <script type="text/javascript">
-    $("#sidebar-silabus-create").addClass("active");
+    $("#sidebar-dosen-rps").addClass("active");
 </script>
-
 
 @endsection

@@ -106,6 +106,15 @@
                                     </select>
                                 </div>
                             </div>
+                            <div class="col-md-6 mata-kuliah-syarat">
+                                <div class="form-group">
+                                    <label>Mata Kuliah Syarat</label>
+                                    <select name="mata_kuliah_syarat[]" class="form-control-lg select2" multiple="multiple" data-placeholder="Pilih Mata Kuliah Syarat" style="width: 100%;">
+                                    </select>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">
                             <div class="col-md-6 dosen">
                                 <div class="form-group">
                                     <label>Dosen Pengampu</label>
@@ -173,6 +182,7 @@
         $(".jurusan").hide();
         $(".rmk").hide();
         $(".mata-kuliah").hide();
+        $(".mata-kuliah-syarat").hide();
         $(".dosen").hide();
     });
 
@@ -183,6 +193,7 @@
             $(".jurusan").hide();
             $(".rmk").hide();
             $(".mata-kuliah").hide();
+            $(".mata-kuliah-syarat").hide();
             $(".dosen").hide();
             var programStudiID = jQuery(this).val();
             console.log(programStudiID);
@@ -210,6 +221,7 @@
             $(".jurusan").hide();
             $(".rmk").hide();
             $(".mata-kuliah").hide();
+            $(".mata-kuliah-syarat").hide();
             $(".dosen").hide();
             var programStudiID = jQuery(this).val();
             if (programStudiID) {
@@ -235,6 +247,7 @@
         jQuery('select[name="jurusan"]').on('change', function() {
             $(".rmk").hide();
             $(".mata-kuliah").hide();
+            $(".mata-kuliah-syarat").hide();
             $(".dosen").hide();
             var jurusanID = jQuery(this).val();
             if (jurusanID) {
@@ -259,6 +272,7 @@
     jQuery(document).ready(function() {
         jQuery('select[name="rmk"]').on('change', function() {
             $(".mata-kuliah").hide();
+            $(".mata-kuliah-syarat").hide();
             $(".dosen").hide();
             var rmkID = jQuery(this).val();
             if (rmkID) {
@@ -297,6 +311,29 @@
                         jQuery('select[name="dosen[]"]').empty();
                         jQuery.each(data, function(key, value) {
                             $('select[name="dosen[]"]').append('<option value="' + value['id'] + '">' + value['name'] + '</option>');
+                        });
+                    }
+                });
+            }
+        });
+    });
+    
+    // Mata Kuliah Syarat
+    jQuery(document).ready(function() {
+        jQuery('select[name="mata_kuliah"]').on('change', function() {
+            $(".mata-kuliah-syarat").hide();
+            var matakuliahID = jQuery(this).val();
+            console.log(matakuliahID);
+            if (matakuliahID) {
+                jQuery.ajax({
+                    url: '/dropdownlist/getmatakuliahsyarat/' + matakuliahID,
+                    type: "GET",
+                    dataType: "json",
+                    success: function(data) {
+                        $(".mata-kuliah-syarat").show();
+                        jQuery('select[name="mata_kuliah_syarat[]"]').empty();
+                        jQuery.each(data, function(key, value) {
+                            $('select[name="mata_kuliah_syarat[]"]').append('<option value="' + value['id'] + '">' + value['name'] + '</option>');
                         });
                     }
                 });

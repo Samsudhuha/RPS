@@ -28,6 +28,7 @@ class CreateMataKuliahRequest extends FormRequest
             'jurusan' => 'required',
             'rmk' => 'required',
             'mata_kuliah' => 'required',
+            'mata_kuliah_syarat' => '',
             'dosen' => 'required',
             'deskripsi' => 'required',
             'bahan_kajian' => 'required',

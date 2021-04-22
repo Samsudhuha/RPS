@@ -146,4 +146,13 @@ class MataKuliahController extends Controller
             return $this->handleException($e);
         }
     }
+
+    public function getSubMataKuliahSyarat($mk_id)
+    {
+        try {
+            return $this->mataKuliahService->getMataKuliahSyaratByMk($mk_id);
+        } catch (Exception $e) {
+            return $this->handleException($e);
+        }
+    }
 }

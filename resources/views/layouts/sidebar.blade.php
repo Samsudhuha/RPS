@@ -21,6 +21,21 @@
                     </a>
                 </li>
                 @switch(Auth::user()->level)
+                @case('Admin')
+                <li class="nav-header">Data</li>
+                <li class="nav-item">
+                    <a href="/admin/pt" class="nav-link" id='sidebar-admin-pt'>
+                        <i class="fas fa-university"></i>
+                        <p>Perguruan Tinggi</p>
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a href="/admin/taksonomi-bloom" class="nav-link" id='sidebar-admin-taksonomi'>
+                        <i class="fas fa-school"></i>
+                        <p>Taksonomi Bloom</p>
+                    </a>
+                </li>
+                @break
                 @case('PT')
                 <li class="nav-header">Data</li>
                 <li class="nav-item">

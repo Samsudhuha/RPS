@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Services\CplCpmkService;
 use App\Services\DosenService;
+use App\Services\FakultasService;
 use App\Services\JurusanService;
 use App\Services\MataKuliahService;
 use App\Services\ProgramStudiService;
@@ -18,6 +19,7 @@ class RpsController extends Controller
 {
     protected $jurusanService;
     protected $programStudiService;
+    protected $fakultasService;
     protected $mataKuliahService;
     protected $dosenService;
     protected $cplCpmkService;
@@ -28,6 +30,7 @@ class RpsController extends Controller
     public function __construct(
         JurusanService $jurusanService,
         ProgramStudiService $programStudiService,
+        FakultasService $fakultasService,
         MataKuliahService $mataKuliahService,
         DosenService $dosenService,
         CplCpmkService $cplCpmkService,
@@ -37,6 +40,7 @@ class RpsController extends Controller
     ) {
         $this->jurusanService = $jurusanService;
         $this->programStudiService = $programStudiService;
+        $this->fakultasService = $fakultasService;
         $this->mataKuliahService = $mataKuliahService;
         $this->dosenService = $dosenService;
         $this->cplCpmkService = $cplCpmkService;
@@ -61,7 +65,10 @@ class RpsController extends Controller
         try {
             $data['mata_kuliah'] = $this->mataKuliahService->getMataKuliahById($id, 'Dosen');
             $data['mata_kuliah']['bahan_kajian'] = json_decode($data['mata_kuliah']['bahan_kajian']);
+            $data['mata_kuliah_syarat_all'] = $this->mataKuliahService->getMataKuliahSyaratByMk($id);
+            $data['mata_kuliah_syarat'] = $this->mataKuliahService->getMataKuliahSyaratById($id);
             $data['program_studi'] = $this->programStudiService->getById($data["mata_kuliah"]["program_studi_id"]);
+            $data['fakultas'] = $this->fakultasService->getById($data["mata_kuliah"]["fakultas_id"]);
             $data['jurusan'] = $this->jurusanService->getById($data["mata_kuliah"]["jurusan_id"]);
             $data['rmk'] = $this->rmkService->getRmkById($data['mata_kuliah']["rmk_id"]);
             $data['all_dosens'] = $this->dosenController->getSubDosen($data['mata_kuliah']["jurusan_id"])->toArray();

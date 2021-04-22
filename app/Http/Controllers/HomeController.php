@@ -23,11 +23,9 @@ class HomeController extends Controller
     public function index()
     {
         try {
-            $pt_id = Auth::user()->id;
             switch (Auth::user()->level) {
                 case 'Admin':
-                    $data['datas'] = $this->userService->getAllPT();
-                    return view('admin.index', $data);
+                    return view('admin.index');
                     break;
                 case 'PT':
                     return view('pt.index');

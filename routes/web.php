@@ -13,6 +13,7 @@ use App\Http\Controllers\PTController;
 use App\Http\Controllers\RmkController;
 use App\Http\Controllers\RpsController;
 use App\Http\Controllers\SilabusController;
+use App\Http\Controllers\TaksonomiBloomController;
 
 Route::get('/', [AuthController::class, 'viewLogin']);
 Route::post('/login', [AuthController::class, 'login']);
@@ -22,8 +23,19 @@ Route::middleware(['auth'])->group(function () {
     Route::get('/logout', [AuthController::class, 'logout']);
 
     Route::middleware(['admin'])->group(function () {
-        Route::get('/create/pt', [PTController::class, 'viewCreate']);
-        Route::post('/store/pt', [PTController::class, 'store']);
+        Route::prefix('admin')->group(function () {
+            Route::prefix('pt')->group(function () {
+                Route::get('/', [PTController::class, 'adminPt']);
+                Route::get('/create', [PTController::class, 'viewCreate']);
+                Route::post('/store', [PTController::class, 'store']);
+            });
+            Route::prefix('taksonomi-bloom')->group(function () {
+                Route::get('/', [TaksonomiBloomController::class, 'index']);
+                Route::get('/create/{role}', [TaksonomiBloomController::class, 'viewCreate']);
+                Route::post('/store', [TaksonomiBloomController::class, 'store']);
+                Route::post('/delete/{id}', [TaksonomiBloomController::class, 'delete']);
+            });
+        });
     });
 
     Route::middleware(['dosen'])->group(function () {
@@ -140,6 +152,7 @@ Route::middleware(['auth'])->group(function () {
         Route::get('/getjurusan/{id}', [JurusanController::class, 'getSubJurusan']);
         Route::get('/getrmk/{id}', [RmkController::class, 'getSubRmk']);
         Route::get('/getmatakuliah/{id}', [MataKuliahController::class, 'getSubMataKuliah']);
+        Route::get('/getmatakuliahsyarat/{id}', [MataKuliahController::class, 'getSubMataKuliahSyarat']);
         Route::get('/getdosen/{id}', [DosenController::class, 'getSubDosen']);
         Route::get('/getdosenfakultas/{id}', [DosenController::class, 'getSubDosenByFakultas']);
         Route::get('/getdosenrmk/{id}', [DosenController::class, 'getSubDosenByRmk']);

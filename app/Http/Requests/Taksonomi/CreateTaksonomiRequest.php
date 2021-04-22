@@ -1,10 +1,10 @@
 <?php
 
-namespace App\Http\Requests;
+namespace App\Http\Requests\Taksonomi;
 
 use Illuminate\Foundation\Http\FormRequest;
 
-class UpdateMataKuliahRequest extends FormRequest
+class CreateTaksonomiRequest extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -24,12 +24,8 @@ class UpdateMataKuliahRequest extends FormRequest
     public function rules()
     {
         return [
-            'mata_kuliah_syarat' => '',
-            'dosen' => 'required',
-            'deskripsi' => 'required',
-            'bahan_kajian' => 'required',
-            'daftar_pustaka_utama' => 'required',
-            'daftar_pustaka_pendukung' => 'required',
+            'role' => 'required',
+            'name' => 'required|unique:taksonomis,name'
         ];
     }
 }

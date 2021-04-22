@@ -66,7 +66,7 @@
             </div>
             <!-- /.card-header -->
             <div class="card-body">
-                <table id="tableRps" class="table table-bordered table-striped">
+                <table id="tableDosen" class="table table-bordered table-striped">
                     <thead>
                         <tr>
                             <th>#</th>
@@ -82,9 +82,9 @@
                             <td>{{ $data["name"] }}</td>
                             <td>{{ $data["username"] }}</td>
                             <td>
-                                <button type="button" class="btn btn-danger" data-toggle="modal" data-target="#modal-default">Delete</button>
+                                <button type="button" class="btn btn-danger" data-toggle="modal" data-target="#modal-default-{{$no}}">Delete</button>
                                 <!-- Modal -->
-                                <div class="modal fade" id="modal-default">
+                                <div class="modal fade" id="modal-default-{{$no}}">
                                     <div class="modal-dialog">
                                         <div class="modal-content">
                                             <center>
@@ -128,7 +128,7 @@
             </div>
             <!-- /.card-header -->
             <div class="card-body">
-                <table id="tableRps" class="table table-bordered table-striped">
+                <table id="tableDetailDosen" class="table table-bordered table-striped">
                     <thead>
                         <tr>
                             <th>#</th>
@@ -147,9 +147,9 @@
                             <td>{{ $data['rmk_name'] }}</td>
                             <td>{{ $data["name"] }}</td>
                             <td>
-                                <button type="button" class="btn btn-danger" data-toggle="modal" data-target="#modal-detail">Delete</button>
+                                <button type="button" class="btn btn-danger" data-toggle="modal" data-target="#modal-detail-{{$no}}">Delete</button>
                                 <!-- Modal -->
-                                <div class="modal fade" id="modal-detail">
+                                <div class="modal fade" id="modal-detail-{{$no}}">
                                     <div class="modal-dialog">
                                         <div class="modal-content">
                                             <center>
@@ -193,7 +193,7 @@
             </div>
             <!-- /.card-header -->
             <div class="card-body">
-                <table id="tableRps" class="table table-bordered table-striped">
+                <table id="tableKalab" class="table table-bordered table-striped">
                     <thead>
                         <tr>
                             <th>#</th>
@@ -210,9 +210,9 @@
                             <td>{{ $data['name'] }}</td>
                             <td>{{ $data["dosen_name"] }}</td>
                             <td>
-                                <button type="button" class="btn btn-danger" data-toggle="modal" data-target="#modal-kalabs">Delete</button>
+                                <button type="button" class="btn btn-danger" data-toggle="modal" data-target="#modal-kalabs-{{$no}}">Delete</button>
                                 <!-- Modal -->
-                                <div class="modal fade" id="modal-kalabs">
+                                <div class="modal fade" id="modal-kalabs-{{$no}}">
                                     <div class="modal-dialog">
                                         <div class="modal-content">
                                             <center>
@@ -256,7 +256,7 @@
             </div>
             <!-- /.card-header -->
             <div class="card-body">
-                <table id="tableRps" class="table table-bordered table-striped">
+                <table id="tableKaprodi" class="table table-bordered table-striped">
                     <thead>
                         <tr>
                             <th>#</th>
@@ -275,9 +275,9 @@
                             <td>{{ $data['jurusan_name'] }}</td>
                             <td>{{ $data["dosen_name"] }}</td>
                             <td>
-                                <button type="button" class="btn btn-danger" data-toggle="modal" data-target="#modal-kaprodi">Delete</button>
+                                <button type="button" class="btn btn-danger" data-toggle="modal" data-target="#modal-kaprodi-{{$no}}">Delete</button>
                                 <!-- Modal -->
-                                <div class="modal fade" id="modal-kaprodi">
+                                <div class="modal fade" id="modal-kaprodi-{{$no}}">
                                     <div class="modal-dialog">
                                         <div class="modal-content">
                                             <center>
@@ -338,7 +338,25 @@
 <!-- Page specific script -->
 <script>
     $(document).ready(function() {
-        $('#tableRps').DataTable({
+        $('#tableDosen').DataTable({
+            "autoWidth": true,
+            "ordering": true,
+        });
+    });
+    $(document).ready(function() {
+        $('#tableDetailDosen').DataTable({
+            "autoWidth": true,
+            "ordering": true,
+        });
+    });
+    $(document).ready(function() {
+        $('#tableKalab').DataTable({
+            "autoWidth": true,
+            "ordering": true,
+        });
+    });
+    $(document).ready(function() {
+        $('#tableKaprodi').DataTable({
             "autoWidth": true,
             "ordering": true,
         });
