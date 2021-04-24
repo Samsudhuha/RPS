@@ -3,7 +3,6 @@
 namespace App\Services;
 
 use App\Repositories\Contracts\TaksonomiRepository;
-use Illuminate\Support\Facades\Hash;
 
 class TaksonomiService
 {
@@ -47,5 +46,22 @@ class TaksonomiService
     public function delete($id)
     {
         return $this->taksonomiRepository->delete($id);
+    }
+
+    public function cekTaksonomi($data)
+    {
+        $taksonomi = $this->taksonomiRepository->getAllRole();
+        $flag = 0;
+        for ($i=0; $i < count($taksonomi); $i++) { 
+            if (strpos(strtolower($data['kemampuan_akhir']), strtolower($taksonomi[$i]->name)) !== false) {
+                $flag = $taksonomi[$i]->role;
+                break;
+            }
+        }
+        if ($flag == 0) {
+            return "error";
+        } else{
+            return $flag;
+        }
     }
 }

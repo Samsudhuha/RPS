@@ -176,6 +176,11 @@ class MataKuliahService
         return $this->mataKuliahRepository->getByRmkId($rmk_id);
     }
 
+    public function getMataKuliahByMkSyarat($mk_id)
+    {
+        return $this->mataKuliahRepository->getById($mk_id);
+    }
+
     public function getMataKuliahSyaratByMk($mk_id)
     {
         $mk = $this->mataKuliahRepository->getById($mk_id);

@@ -23,11 +23,11 @@
 <body>
     <table width="100%" class="table table-bordered">
         <tr class="font-weight-bold text-center" style="background-color: #deeaf6;">
-            <td><img src="{{ public_path('img/logo-its.png') }}" alt="logo" height=100 width=100></td>
+            <td><img src="{{ public_path($perguruan_tinggi->logo) }}" alt="logo" height=100 width=100></td>
             <td colspan="6">
-                INSTITUT TEKNOLOGI SEPULUH NOPEMBER (ITS)
+                {{ $perguruan_tinggi->name }}
                 <br>
-                Teknologi Elektro dan Informatika Cerdas
+                {{ $fakultas["name"] }}
                 <br>
                 Departemen {{ $mata_kuliah["jurusan"]["name"] }}
             </td>
@@ -196,7 +196,17 @@
         <tr>
             <td class="font-weight-bold">Matakuliah syarat</td>
             <td colspan="7">
-                -
+                @if(count($mata_kuliah['mata_kuliah_syarat']) != 0)
+                    @foreach($mata_kuliah["mata_kuliah_syarat"] as $key => $mk_syarat)
+                        @if($key == (count($mata_kuliah['mata_kuliah_syarat']) - 1))
+                            {{ $mk_syarat }}
+                        @else
+                            {{ $mk_syarat }}, 
+                        @endif
+                    @endforeach
+                @else
+                    -
+                @endif
             </td>
         </tr>
     </table>
@@ -224,18 +234,18 @@
                 <td>{{ $silabus->metode_pembelajaran }}</td>
                 <td>
                     @if($silabus->estimasi_waktu->tm != null)
-                    TM : {{$silabus->estimasi_waktu->tm}} <br>
+                    TM : {{$silabus->estimasi_waktu->tm}} &deg; <br>
                     @endif
                     @if($silabus->estimasi_waktu->pt != null)
-                    PT : {{$silabus->estimasi_waktu->pt}} <br>
+                    PT : {{$silabus->estimasi_waktu->pt}} &deg; <br>
                     @endif
                     @if($silabus->estimasi_waktu->bm != null)
-                    BM: {{$silabus->estimasi_waktu->bm}} <br>
+                    BM: {{$silabus->estimasi_waktu->bm}} &deg; <br>
                     @endif
                 </td>
                 <td>{{$silabus->kriteria_penilaian}}</td>
                 <td>{{$silabus->pengamalan}}</td>
-                <td>{{$silabus->bobot}}</td>
+                <td>{{$silabus->bobot}} %</td>
             </tr>
             @endforeach
         </tbody>

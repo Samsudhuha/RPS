@@ -31,4 +31,9 @@ class EloquentTaksonomiRepository implements TaksonomiRepository
     {
         return Taksonomi::where('role', $role)->get();
     }
+
+    public function getAllRole()
+    {
+        return Taksonomi::all();
+    }
 }

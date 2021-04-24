@@ -3,56 +3,62 @@
 namespace App\Services;
 
 use App\Repositories\Contracts\SilabusRepository;
+use App\Repositories\Contracts\TaksonomiRepository;
 
 class SilabusService
 {
     protected $silabusRepository;
+    protected $taksonomiRepository;
 
     public function __construct(
-        SilabusRepository $silabusRepository
+        SilabusRepository $silabusRepository,
+        TaksonomiRepository $taksonomiRepository
     ) {
         $this->silabusRepository = $silabusRepository;
+        $this->taksonomiRepository = $taksonomiRepository;
     }
 
-    public function create($data, $id)
+    public function create($data, $id, $role)
     {
-        $tatap_muka = implode(',', $data->tatap_muka);
+        $tatap_muka = implode(',', $data['tatap_muka']);
         $waktu = [
-            'tm' => $data->tm,
-            'pt' => $data->pt,
-            'bm' => $data->bm,
+            'tm' => $data['tm'],
+            'pt' => $data['pt'],
+            'bm' => $data['bm'],
         ];
         $params = [
             'mata_kuliah_id' => $id,
             'tatap_muka' => $tatap_muka,
-            'kemampuan_akhir' => $data->kemampuan_akhir,
-            'keluasan' => $data->keluasan,
-            'metode_pembelajaran' => $data->metode_pembelajaran,
+            'kemampuan_akhir' => $data['kemampuan_akhir'],
+            'keluasan' => $data['keluasan'],
+            'metode_pembelajaran' => $data['metode_pembelajaran'],
             'estimasi_waktu' => json_encode($waktu, true),
-            'kriteria_penilaian' => $data->kriteria_penilaian,
-            'pengamalan' => $data->pengamalan,
-            'bobot' => $data->bobot,
+            'kriteria_penilaian' => $data['kriteria_penilaian'],
+            'pengamalan' => $data['pengamalan'],
+            'bobot' => $data['bobot'],
+            'role' => $role
         ];
         return $this->silabusRepository->create($params);
     }
 
-    public function update($data, $id)
+    public function update($data, $id, $role)
     {
-        $tatap_muka = implode(',', $data->tatap_muka);
+        $tatap_muka = implode(',', $data['tatap_muka']);
         $waktu = [
-            'tm' => $data->tm,
-            'pt' => $data->pt,
-            'bm' => $data->bm,
+            'tm' => $data['tm'],
+            'pt' => $data['pt'],
+            'bm' => $data['bm'],
         ];
         $params = [
             'tatap_muka' => $tatap_muka,
-            'kemampuan_akhir' => $data->kemampuan_akhir,
-            'keluasan' => $data->keluasan,
-            'metode_pembelajaran' => $data->metode_pembelajaran,
+            'kemampuan_akhir' => $data['kemampuan_akhir'],
+            'keluasan' => $data['keluasan'],
+            'metode_pembelajaran' => $data['metode_pembelajaran'],
             'estimasi_waktu' => json_encode($waktu, true),
-            'kriteria_penilaian' => $data->kriteria_penilaian,
-            'pengamalan' => $data->pengamalan,
-            'bobot' => $data->bobot,
+            'kriteria_penilaian' => $data['kriteria_penilaian'],
+            'pengamalan' => $data['pengamalan'],
+            'bobot' => $data['bobot'],
+            'role' => $role
         ];
         return $this->silabusRepository->update($params, $id);
     }

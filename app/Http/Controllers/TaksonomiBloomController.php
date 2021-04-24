@@ -8,22 +8,22 @@ use Illuminate\Http\Request;
 
 class TaksonomiBloomController extends Controller
 {
-    protected $taksonomiRepository;
+    protected $taksonomiService;
 
     public function __construct(TaksonomiService $taksonomiService)
     {
-        $this->taksonomiRepository = $taksonomiService;
+        $this->taksonomiService = $taksonomiService;
     }
 
     public function index()
     {
         try {
-            $data['remembers'] = $this->taksonomiRepository->getAll('remember');
-            $data['understands'] = $this->taksonomiRepository->getAll('understand');
-            $data['applys'] = $this->taksonomiRepository->getAll('apply');
-            $data['analyzes'] = $this->taksonomiRepository->getAll('analyze');
-            $data['evaluates'] = $this->taksonomiRepository->getAll('evaluate');
-            $data['creates'] = $this->taksonomiRepository->getAll('create');
+            $data['remembers'] = $this->taksonomiService->getAll('remember');
+            $data['understands'] = $this->taksonomiService->getAll('understand');
+            $data['applys'] = $this->taksonomiService->getAll('apply');
+            $data['analyzes'] = $this->taksonomiService->getAll('analyze');
+            $data['evaluates'] = $this->taksonomiService->getAll('evaluate');
+            $data['creates'] = $this->taksonomiService->getAll('create');
             return view('admin.taksonomi.index', $data);
         } catch (Exception $e) {
             return $this->handleException($e);
@@ -44,7 +44,7 @@ class TaksonomiBloomController extends Controller
     public function store(CreateTaksonomiRequest $request)
     {
         try {
-            $this->taksonomiRepository->create($request->validated());
+            $this->taksonomiService->create($request->validated());
 
             return redirect('admin/taksonomi-bloom');
         } catch (Exception $e) {
@@ -55,7 +55,7 @@ class TaksonomiBloomController extends Controller
     public function delete($id)
     {
         try {
-            $this->taksonomiRepository->delete($id);
+            $this->taksonomiService->delete($id);
 
             return redirect('admin/taksonomi-bloom');
         } catch (Exception $e) {

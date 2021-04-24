@@ -458,18 +458,21 @@
                                     <td>{{$silabus->metode_pembelajaran}}</td>
                                     <td>
                                         @if($silabus->estimasi_waktu->tm != null)
-                                        TM : {{$silabus->estimasi_waktu->tm}}
+                                        TM : {{$silabus->estimasi_waktu->tm}} &deg;
+                                        <br>
                                         @endif
                                         @if($silabus->estimasi_waktu->pt != null)
-                                        PT : {{$silabus->estimasi_waktu->pt}}
+                                        PT : {{$silabus->estimasi_waktu->pt}} &deg;
+                                        <br>
                                         @endif
                                         @if($silabus->estimasi_waktu->bm != null)
-                                        BM: {{$silabus->estimasi_waktu->bm}}
+                                        BM: {{$silabus->estimasi_waktu->bm}} &deg;
+                                        <br>
                                         @endif
                                     </td>
                                     <td>{{$silabus->kriteria_penilaian}}</td>
                                     <td>{{$silabus->pengamalan}}</td>
-                                    <td>{{$silabus->bobot}}</td>
+                                    <td>{{$silabus->bobot}} %</td>
                                     <td>
                                         <a class="btn btn-warning" href="/rps/silabus/{{$silabus->id}}">Edit</a>
                                         <button type="button" class="btn btn-danger" data-toggle="modal" data-target="#modal-default">Delete</button>

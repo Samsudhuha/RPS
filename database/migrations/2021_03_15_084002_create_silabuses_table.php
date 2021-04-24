@@ -24,6 +24,7 @@ class CreateSilabusesTable extends Migration
             $table->text('kriteria_penilaian');
             $table->text('pengamalan');
             $table->string('bobot', 4)->nullable();
+            $table->string('role');
             $table->timestamps();
         });
     }

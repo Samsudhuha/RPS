@@ -9,4 +9,5 @@ interface TaksonomiRepository
     public function getById($id);
     public function delete($id);
     public function getAll($role);
+    public function getAllRole();
 }
