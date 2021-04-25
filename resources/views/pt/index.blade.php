@@ -85,7 +85,7 @@
                         <a href="/jurusan">
                             <div class="card bg-light">
                                 <div class="card-header text-muted border-bottom-0">
-                                    Data Jurusan
+                                    Data Departemen
                                 </div>
                                 <div class="card-body">
                                     <i class="far fa-building" style="font-size:100px"></i>

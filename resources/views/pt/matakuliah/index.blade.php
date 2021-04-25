@@ -31,7 +31,7 @@
             <div class="col-sm-6">
                 <ol class="breadcrumb float-sm-right">
                     <li class="breadcrumb-item"><a href="/home">Home</a></li>
-                    <li class="breadcrumb-item active">List - Jurusan</li>
+                    <li class="breadcrumb-item active">List - Departemen</li>
                 </ol>
             </div>
         </div>
@@ -72,7 +72,7 @@
                             <th>#</th>
                             <th>Program Studi</th>
                             <th>Fakultas</th>
-                            <th>Jurusan</th>
+                            <th>Departemen</th>
                             <th>Rumpun Mata Kuliah</th>
                             <th>Mata Kuliah</th>
                             <th>SKS</th>

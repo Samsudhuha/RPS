@@ -25,7 +25,7 @@
             <div class="col-sm-6">
                 <ol class="breadcrumb float-sm-right">
                     <li class="breadcrumb-item"><a href="/home">Home</a></li>
-                    <li class="breadcrumb-item active">Create - Jurusan</li>
+                    <li class="breadcrumb-item active">Create - Departemen</li>
                 </ol>
             </div>
         </div>
@@ -52,7 +52,7 @@
             @endif
             <div class="card card-default">
                 <div class="card-header">
-                    <h3 class="card-title">Data Jurusan</h3>
+                    <h3 class="card-title">Data Departemen</h3>
                     <div class="card-tools">
                         <button type="button" class="btn btn-tool" data-card-widget="collapse">
                             <i class="fas fa-minus"></i>
@@ -76,7 +76,7 @@
                             </div>
                             <div class="col-md-6">
                                 <div class="form-group">
-                                    <label>Jurusan</label>
+                                    <label>Departemen</label>
                                     <input type="text" name="user" class="form-control" value="{{ $user_id }}" hidden />
                                     <input type="text" name="jurusan" class="form-control" placeholder="Nama Jurusan" />
                                 </div>

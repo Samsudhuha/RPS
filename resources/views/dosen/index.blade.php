@@ -64,7 +64,7 @@
                                     Data Dosen
                                 </div>
                                 <div class="card-body">
-                                    <i class="fas fa-home" style="font-size:100px"></i>
+                                    <i class="fas fa-user" style="font-size:100px"></i>
                                 </div>
                             </div>
                         </a>
@@ -76,7 +76,7 @@
                                     Rencana Pembelajaran Semester
                                 </div>
                                 <div class="card-body">
-                                    <i class="fas fa-home" style="font-size:100px"></i>
+                                    <i class="fas fa-file-alt" style="font-size:100px"></i>
                                 </div>
                             </div>
                         </a>

@@ -98,7 +98,7 @@
                         </div>
                         <div class="col-md-4">
                             <div class="form-group">
-                                <label>Jurusan</label>
+                                <label>Departemen</label>
                                 <select class="form-control select2" style="width: 100%;">
                                     <option selected="selected">Teknik Informatika</option>
                                     <option>Sistem Informasi</option>

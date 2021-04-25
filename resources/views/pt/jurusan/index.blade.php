@@ -31,7 +31,7 @@
             <div class="col-sm-6">
                 <ol class="breadcrumb float-sm-right">
                     <li class="breadcrumb-item"><a href="/home">Home</a></li>
-                    <li class="breadcrumb-item active">List - Jurusan</li>
+                    <li class="breadcrumb-item active">List - Departemen</li>
                 </ol>
             </div>
         </div>
@@ -59,9 +59,9 @@
         </div>
         <div class="card">
             <div class="card-header">
-                <h3 class="card-title">Data Jurusan</h3>
+                <h3 class="card-title">Data Departemen</h3>
                 <div class="float-right">
-                    <a class="btn btn-success" href="/jurusan/create">Tambah Data Jurusan</a>
+                    <a class="btn btn-success" href="/jurusan/create">Tambah Data Departemen</a>
                 </div>
             </div>
             <!-- /.card-header -->
@@ -71,7 +71,7 @@
                         <tr>
                             <th>#</th>
                             <th>Fakultas</th>
-                            <th>Jurusan</th>
+                            <th>Departemen</th>
                             <th>Aksi</th>
                         </tr>
                     </thead>
@@ -90,13 +90,13 @@
                                         <div class="modal-content">
                                             <center>
                                                 <div class="modal-header">
-                                                    <h4 class="modal-title">Menghapus Data Jurusan</h4>
+                                                    <h4 class="modal-title">Menghapus Data Departemen</h4>
                                                     <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                                                         <span aria-hidden="true">&times;</span>
                                                     </button>
                                                 </div>
                                                 <div class="modal-body">
-                                                    <p>Apakah anda yakin untuk menghapus data jurusan
+                                                    <p>Apakah anda yakin untuk menghapus data departemen
                                                     <pre>{{ $data["name"] }}?</pre>
                                                     </p>
                                                 </div>

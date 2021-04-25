@@ -70,7 +70,7 @@
                     <thead>
                         <tr>
                             <th>#</th>
-                            <th>Jurusan</th>
+                            <th>Departemen</th>
                             <th>Rumpun Mata Kuliah</th>
                             <th>Aksi</th>
                         </tr>

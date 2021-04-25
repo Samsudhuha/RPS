@@ -65,9 +65,9 @@
                         <div class="row">
                             <div class="col-md-6">
                                 <div class="form-group">
-                                    <label>Jurusan</label>
+                                    <label>Departemen</label>
                                     <select name="jurusan" class="form-control-lg select2" style="width: 100%;" value="{{ old('rmk') }}">
-                                        <option disabled selected>Pilih Jurusan</option>
+                                        <option disabled selected>Pilih Departemen</option>
                                         @foreach($jurusans as $jurusan)
                                         <option value="{{ $jurusan['id'] }}" @if($jurusan['id']==$rmk->jurusan_id) selected @endif>{{ $jurusan['name'] }}</option>
                                         @endforeach

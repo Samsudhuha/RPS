@@ -132,7 +132,7 @@
                     <thead>
                         <tr>
                             <th>#</th>
-                            <th>Jurusan</th>
+                            <th>Departemen</th>
                             <th>Rumpun Mata Kuliah</th>
                             <th>Nama</th>
                             <th>Aksi</th>
@@ -261,7 +261,7 @@
                         <tr>
                             <th>#</th>
                             <th>Program Studi</th>
-                            <th>Jurusan</th>
+                            <th>Departemen</th>
                             <th>Nama</th>
                             <th>Aksi</th>
                         </tr>

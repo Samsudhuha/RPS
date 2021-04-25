@@ -38,7 +38,7 @@
                 <li class="nav-item">
                     <a href="/jurusan" class="nav-link" id='sidebar-pt-jurusan'>
                         <i class="far fa-building"></i>
-                        <p>Jurusan</p>
+                        <p>Departemen</p>
                     </a>
                 </li>
                 <li class="nav-item">
@@ -64,13 +64,13 @@
                 <li class="nav-header">Data</li>
                 <li class="nav-item">
                     <a href="/rps/dosen" class="nav-link" id='sidebar-dosen-dosen'>
-                        <i class="fas fa-home"></i>
+                        <i class="fas fa-user"></i>
                         <p>Dosen</p>
                     </a>
                 </li>
                 <li class="nav-item">
                     <a href="/rps" class="nav-link" id='sidebar-dosen-rps'>
-                        <i class="fas fa-home"></i>
+                        <i class="fas fa-file-alt"></i>
                         <p>Rencana Pembelajaran Semester</p>
                     </a>
                 </li>

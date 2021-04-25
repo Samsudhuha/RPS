@@ -85,7 +85,7 @@
                         <div class="row">
                             <div class="col-md-6 jurusan">
                                 <div class="form-group">
-                                    <label>Jurusan</label>
+                                    <label>Departemen</label>
                                     <select name="jurusan" class="form-control-lg select2" style="width: 100%;">
                                     </select>
                                 </div>
@@ -220,7 +220,7 @@
                     success: function(data) {
                         $(".jurusan").show();
                         jQuery('select[name="jurusan"]').empty();
-                        $('select[name="jurusan"]').append('<option disabled selected>Pilih Jurusan</option>');
+                        $('select[name="jurusan"]').append('<option disabled selected>Pilih Departemen</option>');
                         jQuery.each(data, function(key, value) {
                             $('select[name="jurusan"]').append('<option value="' + value['id'] + '">' + value['name'] + '</option>');
                         });
