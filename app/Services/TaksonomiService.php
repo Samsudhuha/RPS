@@ -54,14 +54,19 @@ class TaksonomiService
         $flag = 0;
         for ($i=0; $i < count($taksonomi); $i++) { 
             if (strpos(strtolower($data['kemampuan_akhir']), strtolower($taksonomi[$i]->name)) !== false) {
-                $flag = $taksonomi[$i]->role;
+                $role = $taksonomi[$i]->role;
+                $flag += 1;
+            }
+            if ($flag > 1) {
                 break;
             }
         }
         if ($flag == 0) {
-            return "error";
-        } else{
-            return $flag;
+            return "kurang--";
+        } elseif ($flag == 1) {
+            return $role;
+        } else {
+            return "lebih--";
         }
     }
 }

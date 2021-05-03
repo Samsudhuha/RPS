@@ -117,8 +117,10 @@ class SilabusController extends Controller
     {
         try {
             $role = $this->taksonomiService->cekTaksonomi($request->validated());
-            if ($role == "error") {
+            if ($role == "kurang--") {
                 return redirect('rps/silabus/create/' . $id)->withErrors(["error" => "Kata kunci tidak terdeteksi."]);
+            } elseif ($role == "lebih--") {
+                return redirect('rps/silabus/create/' . $id)->withErrors(["error" => "Kata kunci tidak boleh lebih dari 1."]);
             }
             $this->silabusService->create($request->validated(), $id, $role);
             $mata_kuliah = $this->mataKuliahService->getMataKuliahById($id, Auth::user()->level);
@@ -133,8 +135,10 @@ class SilabusController extends Controller
     {
         try {
             $role = $this->taksonomiService->cekTaksonomi($request->validated());
-            if ($role == "error") {
+            if ($role == "kurang--") {
                 return redirect('rps/silabus/' . $id)->withErrors(["error" => "Kata kunci tidak terdeteksi."]);
+            } elseif ($role == "lebih--") {
+                return redirect('rps/silabus/create/' . $id)->withErrors(["error" => "Kata kunci tidak boleh lebih dari 1."]);
             }
             $this->silabusService->update($request->validated(), $id, $role);
             $id = $this->silabusService->getById($id)->mata_kuliah_id;
