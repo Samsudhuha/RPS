@@ -27,6 +27,16 @@ class PTController extends Controller
         }
     }
 
+    public function adminPt()
+    {
+        try {
+            $data['datas'] = $this->userService->getAllPT();
+            return view('admin.pt.index', $data);
+        } catch (Exception $e) {
+            return $this->handleException($e);
+        }
+    }
+
     public function viewCreate()
     {
         try {
@@ -41,7 +51,7 @@ class PTController extends Controller
         try {
             $this->userService->create($request->validated());
 
-            return redirect('fakultas');
+            return redirect('admin/pt');
         } catch (Exception $e) {
             return $this->handleException($e);
         }

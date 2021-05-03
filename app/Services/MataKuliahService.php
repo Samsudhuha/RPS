@@ -52,6 +52,15 @@ class MataKuliahService
                 'pustaka' => $pustaka
             ];
 
+            if (isset($data['mata_kuliah_syarat'])) {
+                for ($i=0; $i < count($data['mata_kuliah_syarat']); $i++) { 
+                    $mata_kuliah_syarat = [
+                        'mata_kuliah_id' => $id,
+                        'mata_kuliah_syarat_id' => $data['mata_kuliah_syarat'][$i],
+                    ];
+                    $this->mataKuliahRepository->createMKSyarat($mata_kuliah_syarat);
+                }
+            }
             for ($i = 0; $i < count($data["dosen"]); $i++) {
                 $dosen_mata_kuliah = [
                     'dosen_id' => $data["dosen"][$i],
@@ -110,6 +119,17 @@ class MataKuliahService
                 $this->dosenMataKuliahRepository->create($dosen_mata_kuliah);
             }
 
+            $this->mataKuliahRepository->deleteMKSyarat($mata_kuliah_id);
+            if (isset($data['mata_kuliah_syarat'])) {
+                for ($i=0; $i < count($data['mata_kuliah_syarat']); $i++) { 
+                    $mata_kuliah_syarat = [
+                        'mata_kuliah_id' => $mata_kuliah_id,
+                        'mata_kuliah_syarat_id' => $data['mata_kuliah_syarat'][$i],
+                    ];
+                    $this->mataKuliahRepository->createMKSyarat($mata_kuliah_syarat);
+                }
+            }
+
             return $this->mataKuliahRepository->update($mata_kuliah, $mata_kuliah_id);
         }
     }
@@ -154,6 +174,27 @@ class MataKuliahService
     public function getMataKuliahByRmk($rmk_id)
     {
         return $this->mataKuliahRepository->getByRmkId($rmk_id);
+    }
+
+    public function getMataKuliahByMkSyarat($mk_id)
+    {
+        return $this->mataKuliahRepository->getById($mk_id);
+    }
+
+    public function getMataKuliahSyaratByMk($mk_id)
+    {
+        $mk = $this->mataKuliahRepository->getById($mk_id);
+        return $this->mataKuliahRepository->getMKSyarat($mk->semester, $mk->jurusan_id);
+    }
+
+    public function getMataKuliahSyaratById($mk_id)
+    {
+        $mk = $this->mataKuliahRepository->getMKSyaratById($mk_id);
+        $data = [];
+        for ($i=0; $i < count($mk); $i++) { 
+            $data[$i] = $mk[$i]->mata_kuliah_syarat_id;
+        }
+        return $data;
     }
 
     public function getMataKuliahById($id, $level)

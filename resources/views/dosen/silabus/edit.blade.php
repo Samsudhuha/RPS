@@ -52,6 +52,117 @@
             @endif
             <div class="card card-default">
                 <div class="card-header">
+                    <center>
+                        <h3 >Kata Kunci</h3>
+                        <p><small class="bg-warning text-white p-1"><b>*Wajib menggunakan kata kunci yang telah disediakan pada sub "Kemampuan Akhir Sub CP MK"*</b> </small></p>
+                    </center>
+                </div>
+                <div class="card-body">
+                    @if($flag_remember == 0)
+                        <h4 class="form-control-label">Remember | <div class="badge bg-danger">Belum digunakan</div> </h4>
+                    @else
+                        <h4 class="form-control-label">Remember | <div class="badge bg-success">Sudah digunakan</div> </h4>
+                    @endif
+                    <div class="row">
+                        @foreach($remembers as $key => $r)
+                            <div class="col-md-4">
+                                <ul>
+                                    <li>
+                                        {{$r->name}}
+                                    </li>
+                                </ul>
+                            </div>
+                        @endforeach
+                    </div>
+                    <br>
+                    @if($flag_understand == 0)
+                        <h4 class="form-control-label">Understand | <div class="badge bg-danger">Belum digunakan</div> </h4>
+                    @else
+                        <h4 class="form-control-label">Understand | <div class="badge bg-success">Sudah digunakan</div> </h4>
+                    @endif
+                    <div class="row">
+                        @foreach($understands as $key => $u)
+                            <div class="col-md-4">
+                                <ul>
+                                    <li>
+                                        {{$u->name}}
+                                    </li>
+                                </ul>
+                            </div>
+                        @endforeach
+                    </div>
+                    <br>
+                    @if($flag_apply == 0)
+                        <h4 class="form-control-label">Apply | <div class="badge bg-danger">Belum digunakan</div> </h4>
+                    @else
+                        <h4 class="form-control-label">Apply | <div class="badge bg-success">Sudah digunakan</div> </h4>
+                    @endif
+                    <div class="row">
+                        @foreach($applys as $key => $a)
+                            <div class="col-md-4">
+                                <ul>
+                                    <li>
+                                        {{$a->name}}
+                                    </li>
+                                </ul>
+                            </div>
+                        @endforeach
+                    </div>
+                    <br>
+                    @if($flag_analyze == 0)
+                        <h4 class="form-control-label">Analyze | <div class="badge bg-danger">Belum digunakan</div> </h4>
+                    @else
+                        <h4 class="form-control-label">Analyze | <div class="badge bg-success">Sudah digunakan</div> </h4>
+                    @endif
+                    <div class="row">
+                        @foreach($analyzes as $key => $an)
+                            <div class="col-md-4">
+                                <ul>
+                                    <li>
+                                        {{$an->name}}
+                                    </li>
+                                </ul>
+                            </div>
+                        @endforeach
+                    </div>
+                    <br>
+                    @if($flag_evaluate == 0)
+                        <h4 class="form-control-label">Evaluate | <div class="badge bg-danger">Belum digunakan</div> </h4>
+                    @else
+                        <h4 class="form-control-label">Evaluate | <div class="badge bg-success">Sudah digunakan</div> </h4>
+                    @endif
+                    <div class="row">
+                        @foreach($evaluates as $key => $e)
+                            <div class="col-md-4">
+                                <ul>
+                                    <li>
+                                        {{$e->name}}
+                                    </li>
+                                </ul>
+                            </div>
+                        @endforeach
+                    </div>
+                    <br>
+                    @if($flag_create == 0)
+                        <h4 class="form-control-label">Create | <div class="badge bg-danger">Belum digunakan</div> </h4>
+                    @else
+                        <h4 class="form-control-label">Create | <div class="badge bg-success">Sudah digunakan</div> </h4>
+                    @endif
+                    <div class="row">
+                        @foreach($creates as $key => $c)
+                            <div class="col-md-4">
+                                <ul>
+                                    <li>
+                                        {{$c->name}}
+                                    </li>
+                                </ul>
+                            </div>
+                        @endforeach
+                    </div>
+                </div>
+            </div>
+            <div class="card card-default">
+                <div class="card-header">
                     <h3 class="card-title">Silabus</h3>
                 </div>
                 <form action="/rps/silabus/{{$silabus['id']}}" method="post">
@@ -197,7 +308,7 @@
 @section('custom-js')
 
 <script type="text/javascript">
-    $("#sidebar-silabus-create").addClass("active");
+    $("#sidebar-dosen-rps").addClass("active");
 </script>
 
 

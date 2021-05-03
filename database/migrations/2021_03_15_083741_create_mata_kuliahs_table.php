@@ -20,8 +20,8 @@ class CreateMataKuliahsTable extends Migration
             $table->foreignUuid('fakultas_id')->references('id')->on('fakultases')->cascadeOnDelete();
             $table->foreignUuid('jurusan_id')->references('id')->on('jurusans')->cascadeOnDelete();
             $table->foreignUuid('rmk_id')->references('id')->on('rmks')->cascadeOnDelete();
-            $table->string('kode', 10)->unique();
-            $table->string('name', 150)->unique();
+            $table->string('kode', 10);
+            $table->string('name', 150);
             $table->string('bobot', 1);
             $table->string('semester', 1);
             $table->longText('deskripsi')->nullable();

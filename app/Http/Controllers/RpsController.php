@@ -4,44 +4,53 @@ namespace App\Http\Controllers;
 
 use App\Services\CplCpmkService;
 use App\Services\DosenService;
+use App\Services\FakultasService;
 use App\Services\JurusanService;
 use App\Services\MataKuliahService;
 use App\Services\ProgramStudiService;
 use App\Services\RmkService;
 use App\Services\SilabusService;
+use App\Services\UserService;
 use Illuminate\Http\Request;
 use PDF;
 use DateTime;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\URL;
 
 class RpsController extends Controller
 {
     protected $jurusanService;
     protected $programStudiService;
+    protected $fakultasService;
     protected $mataKuliahService;
     protected $dosenService;
     protected $cplCpmkService;
     protected $rmkService;
     protected $silabusService;
+    protected $userService;
     protected $dosenController;
 
     public function __construct(
         JurusanService $jurusanService,
         ProgramStudiService $programStudiService,
+        FakultasService $fakultasService,
         MataKuliahService $mataKuliahService,
         DosenService $dosenService,
         CplCpmkService $cplCpmkService,
         RmkService $rmkService,
         SilabusService $silabusService,
+        UserService $userService,
         DosenController $dosenController
     ) {
         $this->jurusanService = $jurusanService;
         $this->programStudiService = $programStudiService;
+        $this->fakultasService = $fakultasService;
         $this->mataKuliahService = $mataKuliahService;
         $this->dosenService = $dosenService;
         $this->cplCpmkService = $cplCpmkService;
         $this->rmkService = $rmkService;
         $this->silabusService = $silabusService;
+        $this->userService = $userService;
         $this->dosenController = $dosenController;
     }
 
@@ -61,7 +70,10 @@ class RpsController extends Controller
         try {
             $data['mata_kuliah'] = $this->mataKuliahService->getMataKuliahById($id, 'Dosen');
             $data['mata_kuliah']['bahan_kajian'] = json_decode($data['mata_kuliah']['bahan_kajian']);
+            $data['mata_kuliah_syarat_all'] = $this->mataKuliahService->getMataKuliahSyaratByMk($id);
+            $data['mata_kuliah_syarat'] = $this->mataKuliahService->getMataKuliahSyaratById($id);
             $data['program_studi'] = $this->programStudiService->getById($data["mata_kuliah"]["program_studi_id"]);
+            $data['fakultas'] = $this->fakultasService->getById($data["mata_kuliah"]["fakultas_id"]);
             $data['jurusan'] = $this->jurusanService->getById($data["mata_kuliah"]["jurusan_id"]);
             $data['rmk'] = $this->rmkService->getRmkById($data['mata_kuliah']["rmk_id"]);
             $data['all_dosens'] = $this->dosenController->getSubDosen($data['mata_kuliah']["jurusan_id"])->toArray();
@@ -101,10 +113,18 @@ class RpsController extends Controller
     {
         try {
             $data['mata_kuliah'] = $this->mataKuliahService->getMataKuliahById($id, 'Dosen');
+            $data['perguruan_tinggi'] = $this->userService->getById($data['mata_kuliah']['pt_id']);
             $data['mata_kuliah']['bahan_kajian'] = json_decode($data['mata_kuliah']['bahan_kajian']);
             $datetime = new DateTime($data['mata_kuliah']['updated_at']);
             $data['mata_kuliah']['waktu'] = $this->tgl_indo($datetime->format('Y-m-d'));
             $data['mata_kuliah']['kaprodi'] = $this->dosenService->getKaprodiByJurusan($data["mata_kuliah"]["jurusan_id"]);
+            $data['fakultas'] = $this->fakultasService->getById($data["mata_kuliah"]["fakultas_id"]);
+            $mata_kuliah_syarat = $this->mataKuliahService->getMataKuliahSyaratById($data["mata_kuliah"]["id"]);
+            $mk_syarat = [];
+            for ($i=0; $i < count($mata_kuliah_syarat); $i++) { 
+                $mk_syarat[$i] = $this->mataKuliahService->getMataKuliahByMkSyarat($mata_kuliah_syarat[$i])->name;
+            }
+            $data['mata_kuliah']['mata_kuliah_syarat'] = $mk_syarat;
             $data['mata_kuliah']['kalabs'] = $this->dosenService->getKalabsByRmk($data["mata_kuliah"]["rmk_id"]);
             $data['mata_kuliah']['program_studi'] = $this->programStudiService->getById($data["mata_kuliah"]["program_studi_id"]);
             $data['mata_kuliah']['jurusan'] = $this->jurusanService->getById($data["mata_kuliah"]["jurusan_id"]);
@@ -115,6 +135,33 @@ class RpsController extends Controller
             $data['cpls_array'] = $this->cplCpmkService->getCplByJurusanAll($data["mata_kuliah"]["jurusan_id"])->toArray();
             $data['cpl_cpmks'] = $this->cplCpmkService->getCplCpmkAll($data['mata_kuliah']["id"]);
             $data['silabuses'] = $this->silabusService->getAll($data['mata_kuliah']["id"]);
+            $remember = 0;
+            $understand = 0;
+            $apply = 0;
+            $analyze = 0;
+            $evaluate = 0;
+            $create = 0;
+
+            for ($i=0; $i < count($data['silabuses']); $i++) { 
+                if ($data['silabuses'][$i]['role'] == 'remember') {
+                    $remember = 1;
+                }
+                if ($data['silabuses'][$i]['role'] == 'understand') {
+                    $understand = 1;
+                }
+                if ($data['silabuses'][$i]['role'] == 'apply') {
+                    $apply = 1;
+                }
+                if ($data['silabuses'][$i]['role'] == 'analyze') {
+                    $analyze = 1;
+                }
+                if ($data['silabuses'][$i]['role'] == 'evaluate') {
+                    $evaluate = 1;
+                }
+                if ($data['silabuses'][$i]['role'] == 'create') {
+                    $create = 1;
+                }
+            }
             $flag = 0;
             if (count($data["mata_kuliah"]["cpl_matakuliahs"]) == 0) {
                 $flag = 1;
@@ -139,6 +186,14 @@ class RpsController extends Controller
             if ($data['mata_kuliah']["kalabs"] == 0) {
                 $flag = 1;
                 $errors[5] = "Tidak ada data Kepala Lab.";
+            }
+            if ($remember == 0 || $analyze == 0 || $understand == 0 || $apply == 0 || $evaluate == 0 || $create == 0) {
+                $flag = 1;
+                $errors[6] = "Data silabus belum memenuhi semua sub kata kunci.";
+            }
+            if ($data['perguruan_tinggi']['logo'] == null) {
+                $flag = 1;
+                $errors[7] = "Tidak ada logo perguruan tinggi";
             }
             if ($flag == 1) {
                 return redirect('rps')->withErrors(["errors" => $errors]);

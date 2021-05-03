@@ -31,7 +31,7 @@
             <div class="col-sm-6">
                 <ol class="breadcrumb float-sm-right">
                     <li class="breadcrumb-item"><a href="/home">Home</a></li>
-                    <li class="breadcrumb-item active">List - Rumpun Mata Kuliah</li>
+                    <li class="breadcrumb-item active">List - Perguruan Tinggi</li>
                 </ol>
             </div>
         </div>
@@ -57,11 +57,12 @@
             </div>
             @endif
         </div>
+
         <div class="card">
             <div class="card-header">
-                <h3 class="card-title">Data Rumpun Mata Kuliah</h3>
+                <h3 class="card-title">Perguruan Tinggi</h3>
                 <div class="float-right">
-                    <a class="btn btn-success" href="/rmk/create">Tambah Data Rumpun Mata Kuliah</a>
+                    <a class="btn btn-success" href="/admin/pt/create">Tambah Data Perguruan Tinggi</a>
                 </div>
             </div>
             <!-- /.card-header -->
@@ -69,51 +70,16 @@
                 <table id="tableRps" class="table table-bordered table-striped">
                     <thead>
                         <tr>
-                            <th>#</th>
-                            <th>Departemen</th>
-                            <th>Rumpun Mata Kuliah</th>
-                            <th>Aksi</th>
+                            <th>Nama</th>
+                            <th>Username</th>
                         </tr>
                     </thead>
                     <tbody>
-                        @foreach($rmks as $data)
+                        @foreach($datas as $data)
                         <tr>
-                            <td>{{ $no }}</td>
-                            <td>{{ $data['jurusan_name'] }}</td>
                             <td>{{ $data["name"] }}</td>
-                            <td>
-                                <a href="/rmk/{{$data['id']}}" class="btn btn-primary">Edit</a>
-                                <button type="button" class="btn btn-danger" data-toggle="modal" data-target="#modal-default-{{$no}}">Delete</button>
-                                <!-- Modal -->
-                                <div class="modal fade" id="modal-default-{{$no}}">
-                                    <div class="modal-dialog">
-                                        <div class="modal-content">
-                                            <center>
-                                                <div class="modal-header">
-                                                    <h4 class="modal-title">Menghapus Data Mata Kuliah</h4>
-                                                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                                                        <span aria-hidden="true">&times;</span>
-                                                    </button>
-                                                </div>
-                                                <div class="modal-body">
-                                                    <p>Apakah anda yakin untuk menghapus data Rumpun Mata Kuliah
-                                                    <pre>{{ $data["name"] }}?</pre>
-                                                    </p>
-                                                </div>
-                                                <div class="modal-footer justify-content-between">
-                                                    <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-                                                    <form action="/rmk/delete/{{$data['id']}}" method="post">
-                                                        {{ csrf_field() }}
-                                                        <button class=" btn btn-danger" type="submit">delete</button>
-                                                    </form>
-                                                </div>
-                                            </center>
-                                        </div>
-                                    </div>
-                                </div>
-                            </td>
+                            <td>{{ $data["username"] }}</td>
                         </tr>
-                        <?php $no++ ?>
                         @endforeach
                     </tbody>
                 </table>
@@ -153,7 +119,7 @@
     });
 </script>
 <script type="text/javascript">
-    $("#sidebar-pt-rmk").addClass("active");
+    $("#sidebar-admin-pt").addClass("active");
 </script>
 
 <!-- Sweet Alert -->

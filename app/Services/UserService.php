@@ -4,9 +4,6 @@ namespace App\Services;
 
 use App\Repositories\Contracts\UserRepository;
 use Illuminate\Support\Facades\Hash;
-use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Storage;
-use Illuminate\Support\Facades\URL;
 
 class UserService
 {

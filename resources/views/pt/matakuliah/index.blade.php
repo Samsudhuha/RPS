@@ -93,9 +93,9 @@
                             <td>{{ $data["semester"] }}</td>
                             <td>
                                 <a href="/matakuliah/{{$data['id']}}" class="btn btn-primary">Edit</a>
-                                <button type="button" class="btn btn-danger" data-toggle="modal" data-target="#modal-default">Delete</button>
+                                <button type="button" class="btn btn-danger" data-toggle="modal" data-target="#modal-default-{{$no}}">Delete</button>
                                 <!-- Modal -->
-                                <div class="modal fade" id="modal-default">
+                                <div class="modal fade" id="modal-default-{{$no}}">
                                     <div class="modal-dialog">
                                         <div class="modal-content">
                                             <center>

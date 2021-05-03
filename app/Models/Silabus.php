@@ -23,7 +23,8 @@ class Silabus extends Model
         'estimasi_waktu',
         'kriteria_penilaian',
         'pengamalan',
-        'bobot'
+        'bobot',
+        'role'
     ];
     protected $casts = [
         'id' => 'string',

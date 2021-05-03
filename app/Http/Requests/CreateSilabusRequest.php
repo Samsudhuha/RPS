@@ -28,8 +28,12 @@ class CreateSilabusRequest extends FormRequest
             'kemampuan_akhir' => 'required',
             'keluasan' => 'required',
             'metode_pembelajaran' => 'required',
+            'tm' => 'required',
+            'pt' => 'required',
+            'bm' => 'required',
             'kriteria_penilaian' => 'required',
             'pengamalan' => 'required',
+            'bobot' => 'required',
         ];
     }
 }

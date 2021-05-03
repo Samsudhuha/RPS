@@ -1,6 +1,6 @@
 @extends('layouts.home')
 
-@section('title','Create Perguruan Tinggi')
+@section('title','Create Taksonomi Bloom')
 
 @section('navbar')
 @include('layouts.navbar')
@@ -25,7 +25,7 @@
             <div class="col-sm-6">
                 <ol class="breadcrumb float-sm-right">
                     <li class="breadcrumb-item"><a href="/home">Home</a></li>
-                    <li class="breadcrumb-item active">Create - Perguruan Tinggi</li>
+                    <li class="breadcrumb-item active">Create - Taksonomi Bloom | {{$role}}</li>
                 </ol>
             </div>
         </div>
@@ -52,30 +52,23 @@
             @endif
             <div class="card card-default">
                 <div class="card-header">
-                    <h3 class="card-title">Data Perguruan Tinggi</h3>
+                    <h3 class="card-title">Data Taksonomi Bloom | {{$role}}</h3>
                     <div class="card-tools">
                         <button type="button" class="btn btn-tool" data-card-widget="collapse">
                             <i class="fas fa-minus"></i>
                         </button>
                     </div>
                 </div>
-                <form action="/admin/pt/store" method="post">
+                <form action="/admin/taksonomi-bloom/store" method="post">
                     {{ csrf_field() }}
                     <div class="card-body">
                         <div class="row">
                             <div class="col-md-6">
-                                <label>NPSN</label>
-                                <div id="npsn">
-                                    <div class="form-group">
-                                        <input type="text" name="npsn" class="form-control" placeholder="NPSN Perguruan Tinggi" />
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="col-md-6">
-                                <label>NAMA</label>
+                                <label>Nama Kata Kunci</label>
                                 <div id="nama">
                                     <div class="form-group">
-                                        <input type="text" name="nama" class="form-control" placeholder="Nama Perguruan Tinggi" />
+                                        <input type="text" name="role" class="form-control" hidden value="{{$role}}" />
+                                        <input type="text" name="name" class="form-control" placeholder="Nama Kata Kunci" required/>
                                     </div>
                                 </div>
                             </div>
@@ -97,7 +90,7 @@
 @section('custom-js')
 
 <script type="text/javascript">
-    $("#sidebar-admin-create").addClass("active");
+    $("#sidebar-admin-taksonomi").addClass("active");
 </script>
 
 

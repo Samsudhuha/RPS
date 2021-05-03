@@ -3,6 +3,7 @@
 namespace App\Repositories;
 
 use App\Models\MataKuliah;
+use App\Models\MataKuliahSyarat;
 use App\Repositories\Contracts\MataKuliahRepository;
 
 class EloquentMataKuliahRepository implements MataKuliahRepository
@@ -10,6 +11,11 @@ class EloquentMataKuliahRepository implements MataKuliahRepository
     public function create($data)
     {
         return MataKuliah::create($data);
+    }
+
+    public function createMKSyarat($data)
+    {
+        return MataKuliahSyarat::create($data);
     }
 
     public function update($data, $id)
@@ -42,6 +48,19 @@ class EloquentMataKuliahRepository implements MataKuliahRepository
             ->get();
     }
 
+    public function getMKSyarat($semester, $jurusan_id)
+    {
+        return MataKuliah::where('semester', '<' , $semester)
+            ->where('jurusan_id', $jurusan_id)
+            ->orderBy('kode')
+            ->get();
+    }
+
+    public function getMKSyaratById($id)
+    {
+        return MataKuliahSyarat::where('mata_kuliah_id', $id)->get();
+    }
+
     public function getById($id)
     {
         return MataKuliah::where('id', $id)->first();
@@ -50,5 +69,10 @@ class EloquentMataKuliahRepository implements MataKuliahRepository
     public function delete($id)
     {
         return MataKuliah::where('id', $id)->delete();
+    }
+
+    public function deleteMKSyarat($id)
+    {
+        return MataKuliahSyarat::where('mata_kuliah_id', $id)->delete();
     }
 }

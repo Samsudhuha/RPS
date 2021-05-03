@@ -73,24 +73,46 @@
                                 <input type="text" name="program_studi" class="form-control" value="{{ $program_studi->name }}" style="margin-bottom: 5px;" disabled />
                             </div>
                         </div>
+                        <div class="col-md-6 fakultas">
+                            <div class="form-group">
+                                <label>Fakultas</label>
+                                <input type="text" name="fakultas" class="form-control" value="{{ $fakultas->name }}" style="margin-bottom: 5px;" disabled />
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
                         <div class="col-md-6 jurusan">
                             <div class="form-group">
                                 <label>Departemen</label>
                                 <input type="text" name="program_studi" class="form-control" value="{{ $jurusan->name }}" style="margin-bottom: 5px;" disabled />
                             </div>
                         </div>
-                    </div>
-                    <div class="row">
                         <div class="col-md-6 rmk">
                             <div class="form-group">
                                 <label>RMK</label>
                                 <input type="text" name="program_studi" class="form-control" value="{{ $rmk->name }}" style="margin-bottom: 5px;" disabled />
                             </div>
                         </div>
+                    </div>
+                    <div class="row">
                         <div class="col-md-6 mata-kuliah">
                             <div class="form-group">
                                 <label>Mata Kuliah</label>
                                 <input type="text" name="program_studi" class="form-control" value="{{ $mata_kuliah['name'] }}" style="margin-bottom: 5px;" disabled />
+                            </div>
+                        </div>
+                        <div class="col-md-6 mata-kuliah-syarat">
+                            <div class="form-group">
+                                <label>Mata Kuliah Syarat</label>
+                                <select name="mata_kuliah_syarat[]" class="form-control-lg select2 data-mata-kuliah" multiple="multiple" data-placeholder="Pilih Mata Kuliah Syarat" style="width: 100%;" disabled>
+                                    @foreach($mata_kuliah_syarat_all as $mk)
+                                    @if(in_array($mk["id"], $mata_kuliah_syarat))
+                                    <option value="{{ $mk['id'] }}" selected>{{ $mk['name'] }}</option>
+                                    @else
+                                    <option value="{{ $mk['id'] }}">{{ $mk['name'] }}</option>
+                                    @endif
+                                    @endforeach
+                                </select>
                             </div>
                         </div>
                     </div>
@@ -436,25 +458,52 @@
                                     <td>{{$silabus->metode_pembelajaran}}</td>
                                     <td>
                                         @if($silabus->estimasi_waktu->tm != null)
-                                        TM : {{$silabus->estimasi_waktu->tm}}
+                                        TM : {{$silabus->estimasi_waktu->tm}} &deg;
+                                        <br>
                                         @endif
                                         @if($silabus->estimasi_waktu->pt != null)
-                                        PT : {{$silabus->estimasi_waktu->pt}}
+                                        PT : {{$silabus->estimasi_waktu->pt}} &deg;
+                                        <br>
                                         @endif
                                         @if($silabus->estimasi_waktu->bm != null)
-                                        BM: {{$silabus->estimasi_waktu->bm}}
+                                        BM: {{$silabus->estimasi_waktu->bm}} &deg;
+                                        <br>
                                         @endif
                                     </td>
                                     <td>{{$silabus->kriteria_penilaian}}</td>
                                     <td>{{$silabus->pengamalan}}</td>
-                                    <td>{{$silabus->bobot}}</td>
+                                    <td>{{$silabus->bobot}} %</td>
                                     <td>
                                         <a class="btn btn-warning" href="/rps/silabus/{{$silabus->id}}">Edit</a>
-                                        <form action="/rps/silabus/delete/{{$silabus->id}}" method="post">
-                                            {{ csrf_field() }}
-                                            <input type="text" name="mata_kuliah_id" value="{{$mata_kuliah['id']}}" hidden>
-                                            <button class=" btn btn-danger" type="submit">delete</button>
-                                        </form>
+                                        <button type="button" class="btn btn-danger" data-toggle="modal" data-target="#modal-default">Delete</button>
+                                        <!-- Modal -->
+                                        <div class="modal fade" id="modal-default">
+                                            <div class="modal-dialog">
+                                                <div class="modal-content">
+                                                    <center>
+                                                        <div class="modal-header">
+                                                            <h4 class="modal-title">Menghapus Data Mata Kuliah</h4>
+                                                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                                                <span aria-hidden="true">&times;</span>
+                                                            </button>
+                                                        </div>
+                                                        <div class="modal-body">
+                                                            <p>Apakah anda yakin untuk menghapus data silabus pada tatap muka
+                                                            <pre>{{ $silabus->tatap_muka }}?</pre>
+                                                            </p>
+                                                        </div>
+                                                        <div class="modal-footer justify-content-between">
+                                                            <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                                                            <form action="/rps/silabus/delete/{{$silabus->id}}" method="post">
+                                                                {{ csrf_field() }}
+                                                                <input type="text" name="mata_kuliah_id" value="{{$mata_kuliah['id']}}" hidden>
+                                                                <button class=" btn btn-danger" type="submit">delete</button>
+                                                            </form>
+                                                        </div>
+                                                    </center>
+                                                </div>
+                                            </div>
+                                        </div>
                                     </td>
                                 </tr>
                                 @endforeach
@@ -607,99 +656,27 @@
         $(".simpan-peta-cpl-cpmk").hide();
     });
 
-    // Jurusan
+    // Fakultas
     jQuery(document).ready(function() {
         jQuery('select[name="program_studi"]').on('change', function() {
             $(".jurusan").hide();
             $(".rmk").hide();
             $(".mata-kuliah").hide();
             $(".dosen").hide();
+            $(".mata-kuliah-syarat").hide();
             var programStudiID = jQuery(this).val();
+            console.log(programStudiID);
             if (programStudiID) {
                 jQuery.ajax({
-                    url: '/rps/dropdownlist/getjurusan/' + programStudiID,
+                    url: '/dropdownlist/getfakultas/' + programStudiID,
                     type: "GET",
                     dataType: "json",
                     success: function(data) {
-                        $(".jurusan").show();
-                        jQuery('select[name="jurusan"]').empty();
-                        $('select[name="jurusan"]').append('<option disabled selected>Pilih Departemen</option>');
+                        $(".fakultas").show();
+                        jQuery('select[name="fakultas"]').empty();
+                        $('select[name="fakultas"]').append('<option disabled selected>Pilih Fakultas</option>');
                         jQuery.each(data, function(key, value) {
-                            $('select[name="jurusan"]').append('<option value="' + value['id'] + '">' + value['name'] + '</option>');
-                        });
-                    }
-                });
-            }
-        });
-    });
-
-    // RMK
-    jQuery(document).ready(function() {
-        jQuery('select[name="jurusan"]').on('change', function() {
-            $(".rmk").hide();
-            $(".mata-kuliah").hide();
-            $(".dosen").hide();
-            var jurusanID = jQuery(this).val();
-            if (jurusanID) {
-                jQuery.ajax({
-                    url: '/rps/dropdownlist/getrmk/' + jurusanID,
-                    type: "GET",
-                    dataType: "json",
-                    success: function(data) {
-                        $(".rmk").show();
-                        jQuery('select[name="rmk"]').empty();
-                        $('select[name="rmk"]').append('<option disabled selected>Pilih RMK</option>');
-                        jQuery.each(data, function(key, value) {
-                            $('select[name="rmk"]').append('<option value="' + value['id'] + '">' + value['name'] + '</option>');
-                        });
-                    },
-                });
-            }
-        });
-    });
-
-    // Mata Kuliah
-    jQuery(document).ready(function() {
-        jQuery('select[name="rmk"]').on('change', function() {
-            $(".mata-kuliah").hide();
-            $(".dosen").hide();
-            var rmkID = jQuery(this).val();
-            if (rmkID) {
-                jQuery.ajax({
-                    url: '/rps/dropdownlist/getmatakuliah/' + rmkID,
-                    type: "GET",
-                    dataType: "json",
-                    success: function(data) {
-                        $(".mata-kuliah").show();
-                        jQuery('select[name="mata_kuliah"]').empty();
-                        $('select[name="mata_kuliah"]').append('<option disabled selected>Pilih Mata Kuliah</option>');
-                        jQuery.each(data, function(key, value) {
-                            $('select[name="mata_kuliah"]').append('<option value="' + value['id'] + '">' + value['name'] + '</option>');
-                        });
-                    },
-                });
-            }
-        });
-    });
-
-    // Dosen
-    jQuery(document).ready(function() {
-        jQuery('select[name="mata_kuliah"]').on('change', function() {
-            $(".dosen").show();
-        });
-    });
-    jQuery(document).ready(function() {
-        jQuery('select[name="jurusan"]').on('change', function() {
-            var jurusanID = jQuery(this).val();
-            if (jurusanID) {
-                jQuery.ajax({
-                    url: '/rps/dropdownlist/getdosen/' + jurusanID,
-                    type: "GET",
-                    dataType: "json",
-                    success: function(data) {
-                        jQuery('select[name="dosen[]"]').empty();
-                        jQuery.each(data, function(key, value) {
-                            $('select[name="dosen[]"]').append('<option value="' + value['id'] + '">' + value['name'] + '</option>');
+                            $('select[name="fakultas"]').append('<option value="' + value['id'] + '">' + value['name'] + '</option>');
                         });
                     }
                 });
@@ -830,5 +807,7 @@
         });
     });
 </script>
-
+<script type="text/javascript">
+    $("#sidebar-dosen-rps").addClass("active");
+</script>
 @endsection
