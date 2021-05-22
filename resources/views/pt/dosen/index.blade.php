@@ -30,8 +30,8 @@
             </div>
             <div class="col-sm-6">
                 <ol class="breadcrumb float-sm-right">
-                    <li class="breadcrumb-item"><a href="/home">Home</a></li>
-                    <li class="breadcrumb-item active">List - Dosen</li>
+                    <li class="breadcrumb-item"><a href="/home">Beranda</a></li>
+                    <li class="breadcrumb-item active">Daftar - Dosen</li>
                 </ol>
             </div>
         </div>
@@ -82,7 +82,7 @@
                             <td>{{ $data["name"] }}</td>
                             <td>{{ $data["username"] }}</td>
                             <td>
-                                <button type="button" class="btn btn-danger" data-toggle="modal" data-target="#modal-default-{{$no}}">Delete</button>
+                                <button type="button" class="btn btn-danger" data-toggle="modal" data-target="#modal-default-{{$no}}">Hapus</button>
                                 <!-- Modal -->
                                 <div class="modal fade" id="modal-default-{{$no}}">
                                     <div class="modal-dialog">
@@ -100,10 +100,10 @@
                                                     </p>
                                                 </div>
                                                 <div class="modal-footer justify-content-between">
-                                                    <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                                                    <button type="button" class="btn btn-default" data-dismiss="modal">Batal</button>
                                                     <form action="/dosen/user/delete/{{$data['id']}}" method="post">
                                                         {{ csrf_field() }}
-                                                        <button class=" btn btn-danger" type="submit">delete</button>
+                                                        <button class=" btn btn-danger" type="submit">Hapus</button>
                                                     </form>
                                                 </div>
                                             </center>
@@ -147,7 +147,7 @@
                             <td>{{ $data['rmk_name'] }}</td>
                             <td>{{ $data["name"] }}</td>
                             <td>
-                                <button type="button" class="btn btn-danger" data-toggle="modal" data-target="#modal-detail-{{$no}}">Delete</button>
+                                <button type="button" class="btn btn-danger" data-toggle="modal" data-target="#modal-detail-{{$no}}">Hapus</button>
                                 <!-- Modal -->
                                 <div class="modal fade" id="modal-detail-{{$no}}">
                                     <div class="modal-dialog">
@@ -168,7 +168,7 @@
                                                     <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
                                                     <form action="/dosen/delete/{{$data['id']}}" method="post">
                                                         {{ csrf_field() }}
-                                                        <button class=" btn btn-danger" type="submit">delete</button>
+                                                        <button class=" btn btn-danger" type="submit">Hapus</button>
                                                     </form>
                                                 </div>
                                             </center>
@@ -210,7 +210,7 @@
                             <td>{{ $data['name'] }}</td>
                             <td>{{ $data["dosen_name"] }}</td>
                             <td>
-                                <button type="button" class="btn btn-danger" data-toggle="modal" data-target="#modal-kalabs-{{$no}}">Delete</button>
+                                <button type="button" class="btn btn-danger" data-toggle="modal" data-target="#modal-kalabs-{{$no}}">Hapus</button>
                                 <!-- Modal -->
                                 <div class="modal fade" id="modal-kalabs-{{$no}}">
                                     <div class="modal-dialog">
@@ -231,7 +231,7 @@
                                                     <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
                                                     <form action="/kalab/delete/{{$data['dosen_id']}}" method="post">
                                                         {{ csrf_field() }}
-                                                        <button class=" btn btn-danger" type="submit">delete</button>
+                                                        <button class=" btn btn-danger" type="submit">Hapus</button>
                                                     </form>
                                                 </div>
                                             </center>
@@ -275,7 +275,7 @@
                             <td>{{ $data['jurusan_name'] }}</td>
                             <td>{{ $data["dosen_name"] }}</td>
                             <td>
-                                <button type="button" class="btn btn-danger" data-toggle="modal" data-target="#modal-kaprodi-{{$no}}">Delete</button>
+                                <button type="button" class="btn btn-danger" data-toggle="modal" data-target="#modal-kaprodi-{{$no}}">Hapus</button>
                                 <!-- Modal -->
                                 <div class="modal fade" id="modal-kaprodi-{{$no}}">
                                     <div class="modal-dialog">
@@ -296,7 +296,7 @@
                                                     <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
                                                     <form action="/kaprodi/delete/{{$data['dosen_id']}}" method="post">
                                                         {{ csrf_field() }}
-                                                        <button class=" btn btn-danger" type="submit">delete</button>
+                                                        <button class=" btn btn-danger" type="submit">Hapus</button>
                                                     </form>
                                                 </div>
                                             </center>

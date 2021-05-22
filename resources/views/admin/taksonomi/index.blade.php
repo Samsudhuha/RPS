@@ -30,8 +30,8 @@
             </div>
             <div class="col-sm-6">
                 <ol class="breadcrumb float-sm-right">
-                    <li class="breadcrumb-item"><a href="/home">Home</a></li>
-                    <li class="breadcrumb-item active">List - Taksonomi Bloom</li>
+                    <li class="breadcrumb-item"><a href="/home">Beranda</a></li>
+                    <li class="breadcrumb-item active">Daftar - Taksonomi Bloom</li>
                 </ol>
             </div>
         </div>
@@ -87,7 +87,7 @@
                                     <td>{{ $data["name"] }}</td>
                                     <td>
                                         {{-- <a href="/admin/taksonomi-bloom/{{$data['id']}}" class="btn btn-warning">Edit</a> --}}
-                                        <button type="button" class="btn btn-danger" data-toggle="modal" data-target="#modal-remember-{{$data['id']}}">Delete</button>
+                                        <button type="button" class="btn btn-danger" data-toggle="modal" data-target="#modal-remember-{{$data['id']}}">Hapus</button>
                                         <!-- Modal -->
                                         <div class="modal fade" id="modal-remember-{{$data['id']}}">
                                             <div class="modal-dialog">
@@ -105,10 +105,10 @@
                                                             </p>
                                                         </div>
                                                         <div class="modal-footer justify-content-between">
-                                                            <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                                                            <button type="button" class="btn btn-default" data-dismiss="modal">Batal</button>
                                                             <form action="/admin/taksonomi-bloom/delete/{{$data['id']}}" method="post">
                                                                 {{ csrf_field() }}
-                                                                <button class=" btn btn-danger" type="submit">delete</button>
+                                                                <button class=" btn btn-danger" type="submit">Hapus</button>
                                                             </form>
                                                         </div>
                                                     </center>
@@ -147,7 +147,7 @@
                                     <td>{{ $data["name"] }}</td>
                                     <td>
                                         {{-- <a href="/admin/taksonomi-bloom/{{$data['id']}}" class="btn btn-warning">Edit</a> --}}
-                                        <button type="button" class="btn btn-danger" data-toggle="modal" data-target="#modal-understand-{{$data['id']}}">Delete</button>
+                                        <button type="button" class="btn btn-danger" data-toggle="modal" data-target="#modal-understand-{{$data['id']}}">Hapus</button>
                                         <!-- Modal -->
                                         <div class="modal fade" id="modal-understand-{{$data['id']}}">
                                             <div class="modal-dialog">
@@ -165,10 +165,10 @@
                                                             </p>
                                                         </div>
                                                         <div class="modal-footer justify-content-between">
-                                                            <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                                                            <button type="button" class="btn btn-default" data-dismiss="modal">Batal</button>
                                                             <form action="/admin/taksonomi-bloom/delete/{{$data['id']}}" method="post">
                                                                 {{ csrf_field() }}
-                                                                <button class=" btn btn-danger" type="submit">delete</button>
+                                                                <button class=" btn btn-danger" type="submit">Hapus</button>
                                                             </form>
                                                         </div>
                                                     </center>
@@ -209,7 +209,7 @@
                                     <td>{{ $data["name"] }}</td>
                                     <td>
                                         {{-- <a href="/admin/taksonomi-bloom/{{$data['id']}}" class="btn btn-warning">Edit</a> --}}
-                                        <button type="button" class="btn btn-danger" data-toggle="modal" data-target="#modal-apply-{{$data['id']}}">Delete</button>
+                                        <button type="button" class="btn btn-danger" data-toggle="modal" data-target="#modal-apply-{{$data['id']}}">Hapus</button>
                                         <!-- Modal -->
                                         <div class="modal fade" id="modal-apply-{{$data['id']}}">
                                             <div class="modal-dialog">
@@ -227,10 +227,10 @@
                                                             </p>
                                                         </div>
                                                         <div class="modal-footer justify-content-between">
-                                                            <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                                                            <button type="button" class="btn btn-default" data-dismiss="modal">Batal</button>
                                                             <form action="/admin/taksonomi-bloom/delete/{{$data['id']}}" method="post">
                                                                 {{ csrf_field() }}
-                                                                <button class=" btn btn-danger" type="submit">delete</button>
+                                                                <button class=" btn btn-danger" type="submit">Hapus</button>
                                                             </form>
                                                         </div>
                                                     </center>
@@ -269,7 +269,7 @@
                                     <td>{{ $data["name"] }}</td>
                                     <td>
                                         {{-- <a href="/admin/taksonomi-bloom/{{$data['id']}}" class="btn btn-warning">Edit</a> --}}
-                                        <button type="button" class="btn btn-danger" data-toggle="modal" data-target="#modal-analyze-{{$data['id']}}">Delete</button>
+                                        <button type="button" class="btn btn-danger" data-toggle="modal" data-target="#modal-analyze-{{$data['id']}}">Hapus</button>
                                         <!-- Modal -->
                                         <div class="modal fade" id="modal-analyze-{{$data['id']}}">
                                             <div class="modal-dialog">
@@ -287,10 +287,10 @@
                                                             </p>
                                                         </div>
                                                         <div class="modal-footer justify-content-between">
-                                                            <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                                                            <button type="button" class="btn btn-default" data-dismiss="modal">Batal</button>
                                                             <form action="/admin/taksonomi-bloom/delete/{{$data['id']}}" method="post">
                                                                 {{ csrf_field() }}
-                                                                <button class=" btn btn-danger" type="submit">delete</button>
+                                                                <button class=" btn btn-danger" type="submit">Hapus</button>
                                                             </form>
                                                         </div>
                                                     </center>
@@ -331,7 +331,7 @@
                                     <td>{{ $data["name"] }}</td>
                                     <td>
                                         {{-- <a href="/admin/taksonomi-bloom/{{$data['id']}}" class="btn btn-warning">Edit</a> --}}
-                                        <button type="button" class="btn btn-danger" data-toggle="modal" data-target="#modal-evaluate-{{$data['id']}}">Delete</button>
+                                        <button type="button" class="btn btn-danger" data-toggle="modal" data-target="#modal-evaluate-{{$data['id']}}">Hapus</button>
                                         <!-- Modal -->
                                         <div class="modal fade" id="modal-evaluate-{{$data['id']}}">
                                             <div class="modal-dialog">
@@ -349,10 +349,10 @@
                                                             </p>
                                                         </div>
                                                         <div class="modal-footer justify-content-between">
-                                                            <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                                                            <button type="button" class="btn btn-default" data-dismiss="modal">Batal</button>
                                                             <form action="/admin/taksonomi-bloom/delete/{{$data['id']}}" method="post">
                                                                 {{ csrf_field() }}
-                                                                <button class=" btn btn-danger" type="submit">delete</button>
+                                                                <button class=" btn btn-danger" type="submit">Hapus</button>
                                                             </form>
                                                         </div>
                                                     </center>
@@ -391,7 +391,7 @@
                                     <td>{{ $data["name"] }}</td>
                                     <td>
                                         {{-- <a href="/admin/taksonomi-bloom/{{$data['id']}}" class="btn btn-warning">Edit</a> --}}
-                                        <button type="button" class="btn btn-danger" data-toggle="modal" data-target="#modal-create-{{$data['id']}}">Delete</button>
+                                        <button type="button" class="btn btn-danger" data-toggle="modal" data-target="#modal-create-{{$data['id']}}">Hapus</button>
                                         <!-- Modal -->
                                         <div class="modal fade" id="modal-create-{{$data['id']}}">
                                             <div class="modal-dialog">
@@ -409,10 +409,10 @@
                                                             </p>
                                                         </div>
                                                         <div class="modal-footer justify-content-between">
-                                                            <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                                                            <button type="button" class="btn btn-default" data-dismiss="modal">Batal</button>
                                                             <form action="/admin/taksonomi-bloom/delete/{{$data['id']}}" method="post">
                                                                 {{ csrf_field() }}
-                                                                <button class=" btn btn-danger" type="submit">delete</button>
+                                                                <button class=" btn btn-danger" type="submit">Hapus</button>
                                                             </form>
                                                         </div>
                                                     </center>

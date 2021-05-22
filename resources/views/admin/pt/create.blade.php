@@ -24,8 +24,8 @@
             </div>
             <div class="col-sm-6">
                 <ol class="breadcrumb float-sm-right">
-                    <li class="breadcrumb-item"><a href="/home">Home</a></li>
-                    <li class="breadcrumb-item active">Create - Perguruan Tinggi</li>
+                    <li class="breadcrumb-item"><a href="/home">Beranda</a></li>
+                    <li class="breadcrumb-item active">Buat - Perguruan Tinggi</li>
                 </ol>
             </div>
         </div>
@@ -72,7 +72,7 @@
                                 </div>
                             </div>
                             <div class="col-md-6">
-                                <label>NAMA</label>
+                                <label>Nama Perguruan Tinggi</label>
                                 <div id="nama">
                                     <div class="form-group">
                                         <input type="text" name="nama" class="form-control" placeholder="Nama Perguruan Tinggi" />

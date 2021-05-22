@@ -24,8 +24,8 @@
             </div>
             <div class="col-sm-6">
                 <ol class="breadcrumb float-sm-right">
-                    <li class="breadcrumb-item"><a href="/home">Home</a></li>
-                    <li class="breadcrumb-item active">List - RPS</li>
+                    <li class="breadcrumb-item"><a href="/home">Beranda</a></li>
+                    <li class="breadcrumb-item active">Daftar - RPS</li>
                 </ol>
             </div>
         </div>
@@ -317,7 +317,7 @@
             }
         });
     });
-    
+
     // Mata Kuliah Syarat
     jQuery(document).ready(function() {
         jQuery('select[name="mata_kuliah"]').on('change', function() {

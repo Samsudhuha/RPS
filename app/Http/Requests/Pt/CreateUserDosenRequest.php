@@ -25,7 +25,7 @@ class CreateUserDosenRequest extends FormRequest
     {
         return [
             'dosen' => 'required',
-            'nidn' => 'required|unique:users,username|integer',
+            'nidn' => 'required|unique:users,username',
             'user' => 'required',
         ];
     }

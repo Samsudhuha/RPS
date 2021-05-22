@@ -30,8 +30,8 @@
             </div>
             <div class="col-sm-6">
                 <ol class="breadcrumb float-sm-right">
-                    <li class="breadcrumb-item"><a href="/home">Home</a></li>
-                    <li class="breadcrumb-item active">List - Capaian Pembelajaran Semester</li>
+                    <li class="breadcrumb-item"><a href="/home">Beranda</a></li>
+                    <li class="breadcrumb-item active">Daftar - Capaian Pembelajaran Semester</li>
                 </ol>
             </div>
         </div>
@@ -81,7 +81,7 @@
                             <td>{{ $cpl['name'] }}</td>
                             <td>
                                 <a href="/cpl/edit/{{$cpl['id']}}" class="btn btn-primary">Edit</a>
-                                <button type="button" class="btn btn-danger" data-toggle="modal" data-target="#modal-default-{{$cpl['no']}}">Delete</button>
+                                <button type="button" class="btn btn-danger" data-toggle="modal" data-target="#modal-default-{{$cpl['no']}}">Hapus</button>
                                 <!-- Modal -->
                                 <div class="modal fade" id="modal-default-{{$cpl['no']}}">
                                     <div class="modal-dialog">
@@ -99,10 +99,10 @@
                                                     </p>
                                                 </div>
                                                 <div class="modal-footer justify-content-between">
-                                                    <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                                                    <button type="button" class="btn btn-default" data-dismiss="modal">Batal</button>
                                                     <form action="/cpl/delete/{{$cpl['id']}}" method="post">
                                                         {{ csrf_field() }}
-                                                        <button class=" btn btn-danger" type="submit">delete</button>
+                                                        <button class=" btn btn-danger" type="submit">Hapus</button>
                                                     </form>
                                                 </div>
                                             </center>

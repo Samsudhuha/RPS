@@ -28,7 +28,7 @@
             </div>
             <div class="col-sm-6">
                 <ol class="breadcrumb float-sm-right">
-                    <li class="breadcrumb-item"><a href="/home">Home</a></li>
+                    <li class="breadcrumb-item"><a href="/home">Beranda</a></li>
                 </ol>
             </div>
         </div>
@@ -101,16 +101,18 @@
                                         </div>
                                     </div>
                                     <br>
-                                    <div class="row">
+                                    <div class="float-right">
+                                        <button class="btn btn-danger" id="batalEdit" type="button">Batal</button>
                                         <button class="btn btn-success" id="simpan" type="submit">Simpan</button>
-                                        <button class="btn btn-warning" id="batalEdit" type="button">Batal</button>
                                     </div>
                                 </form>
                             </div>
                             <br>
-                            <div class="row">
-                                <button class="btn btn-warning" id="edit">Edit</button>
-                            </div>
+                            <!-- <div class="card-footer"> -->
+                                <div class="float-right mb-2">
+                                    <button class="btn btn-warning" id="edit">Edit</button>
+                                </div>
+                            <!-- </div> -->
                             <br>
                         </div>
                     </div>

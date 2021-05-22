@@ -26,7 +26,7 @@
             </div>
             <div class="col-sm-6">
                 <ol class="breadcrumb float-sm-right">
-                    <li class="breadcrumb-item"><a href="/home">Home</a></li>
+                    <li class="breadcrumb-item"><a href="/home">Beranda</a></li>
                 </ol>
             </div>
         </div>
@@ -76,7 +76,7 @@
                                     Data Taksonomi Bloom
                                 </div>
                                 <div class="card-body">
-                                    <i class="fas fa-school" style="font-size:100px"></i>
+                                    <i class="fas fa-layer-group" style="font-size:100px"></i>
                                 </div>
                             </div>
                         </a>

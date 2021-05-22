@@ -1,6 +1,6 @@
 <aside class="main-sidebar sidebar-dark-primary elevation-4">
     <a class="brand-link">
-        <img src="../../dist/img/AdminLTELogo.png" alt="AdminLTE Logo" class="brand-image img-circle elevation-3" style="opacity: .8">
+        <img src="/dist/img/AdminLTELogo.png" alt="AdminLTE Logo" class="brand-image img-circle elevation-3" style="opacity: .8">
         <span class="brand-text font-weight-light">RPS - {{ Auth::user()->level }}</span>
     </a>
     <div class="sidebar">
@@ -17,7 +17,7 @@
                 <li class="nav-item">
                     <a href="/home" class="nav-link" id='sidebar-home'>
                         <i class="fas fa-home"></i>
-                        <p>Home</p>
+                        <p>Beranda</p>
                     </a>
                 </li>
                 @switch(Auth::user()->level)
@@ -31,7 +31,7 @@
                 </li>
                 <li class="nav-item">
                     <a href="/admin/taksonomi-bloom" class="nav-link" id='sidebar-admin-taksonomi'>
-                        <i class="fas fa-school"></i>
+                        <i class="fas fa-layer-group"></i>
                         <p>Taksonomi Bloom</p>
                     </a>
                 </li>

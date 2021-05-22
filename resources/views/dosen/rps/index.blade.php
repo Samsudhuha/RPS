@@ -30,8 +30,8 @@
             </div>
             <div class="col-sm-6">
                 <ol class="breadcrumb float-sm-right">
-                    <li class="breadcrumb-item"><a href="/home">Home</a></li>
-                    <li class="breadcrumb-item active">List - RPS</li>
+                    <li class="breadcrumb-item"><a href="/home">Beranda</a></li>
+                    <li class="breadcrumb-item active">Daftar - RPS</li>
                 </ol>
             </div>
         </div>
@@ -148,7 +148,7 @@
                             </td>
                             <td>
                                 <a href="/rps/{{$data['id']}}" class="btn btn-primary">Lihat</a>
-                                <button type="button" class="btn btn-danger" data-toggle="modal" data-target="#modal-default">Delete</button>
+                                <button type="button" class="btn btn-danger" data-toggle="modal" data-target="#modal-default">Hapus</button>
                                 <!-- Modal -->
                                 <div class="modal fade" id="modal-default">
                                     <div class="modal-dialog">
@@ -166,17 +166,17 @@
                                                     </p>
                                                 </div>
                                                 <div class="modal-footer justify-content-between">
-                                                    <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                                                    <button type="button" class="btn btn-default" data-dismiss="modal">Batal</button>
                                                     <form action="/rps/delete/{{$data['id']}}" method="post">
                                                         {{ csrf_field() }}
-                                                        <button class=" btn btn-danger" type="submit">delete</button>
+                                                        <button class=" btn btn-danger" type="submit">Hapus</button>
                                                     </form>
                                                 </div>
                                             </center>
                                         </div>
                                     </div>
                                 </div>
-                                <a class="btn btn-success" href="/rps/cetakRPS/{{$data['id']}}"> Cetak PDF</a>
+                                <a class="btn btn-success mt-1" href="/rps/cetakRPS/{{$data['id']}}"> Cetak PDF</a>
                             </td>
                         </tr>
                         <?php $no++ ?>

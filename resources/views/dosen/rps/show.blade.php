@@ -26,7 +26,7 @@
             </div>
             <div class="col-sm-6">
                 <ol class="breadcrumb float-sm-right">
-                    <li class="breadcrumb-item"><a href="/home">Home</a></li>
+                    <li class="breadcrumb-item"><a href="/home">Beranda</a></li>
                     <li class="breadcrumb-item active">RPS - {{ $mata_kuliah["name"] }}</li>
                 </ol>
             </div>
@@ -475,7 +475,7 @@
                                     <td>{{$silabus->bobot}} %</td>
                                     <td>
                                         <a class="btn btn-warning" href="/rps/silabus/{{$silabus->id}}">Edit</a>
-                                        <button type="button" class="btn btn-danger" data-toggle="modal" data-target="#modal-default">Delete</button>
+                                        <button type="button" class="btn btn-danger" data-toggle="modal" data-target="#modal-default">Hapus</button>
                                         <!-- Modal -->
                                         <div class="modal fade" id="modal-default">
                                             <div class="modal-dialog">
@@ -497,7 +497,7 @@
                                                             <form action="/rps/silabus/delete/{{$silabus->id}}" method="post">
                                                                 {{ csrf_field() }}
                                                                 <input type="text" name="mata_kuliah_id" value="{{$mata_kuliah['id']}}" hidden>
-                                                                <button class=" btn btn-danger" type="submit">delete</button>
+                                                                <button class=" btn btn-danger" type="submit">Hapus</button>
                                                             </form>
                                                         </div>
                                                     </center>

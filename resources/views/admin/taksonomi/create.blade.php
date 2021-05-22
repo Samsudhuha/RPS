@@ -1,6 +1,6 @@
 @extends('layouts.home')
 
-@section('title','Create Taksonomi Bloom')
+@section('title','Buat Taksonomi Bloom')
 
 @section('navbar')
 @include('layouts.navbar')
@@ -24,8 +24,8 @@
             </div>
             <div class="col-sm-6">
                 <ol class="breadcrumb float-sm-right">
-                    <li class="breadcrumb-item"><a href="/home">Home</a></li>
-                    <li class="breadcrumb-item active">Create - Taksonomi Bloom | {{$role}}</li>
+                    <li class="breadcrumb-item"><a href="/home">Beranda</a></li>
+                    <li class="breadcrumb-item active">Buat - Taksonomi Bloom | {{$role}}</li>
                 </ol>
             </div>
         </div>

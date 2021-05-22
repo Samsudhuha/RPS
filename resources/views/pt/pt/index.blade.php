@@ -28,7 +28,7 @@
             </div>
             <div class="col-sm-6">
                 <ol class="breadcrumb float-sm-right">
-                    <li class="breadcrumb-item"><a href="/home">Home</a></li>
+                    <li class="breadcrumb-item"><a href="/home">Beranda</a></li>
                 </ol>
             </div>
         </div>
@@ -115,7 +115,6 @@
                                             <div class="float-right mb-2">
                                                 <button class="btn btn-warning" id="batalEditLogo">Batal Edit Logo</button>
                                                 <button class="btn btn-success" type="submit"> Simpan</button>
-
                                             <!-- </div> -->
                                         </form>
                                     <img id="blah" src="#" alt="your image" />
@@ -128,6 +127,8 @@
                 </div>
             </div>
         </div>
+    </div>
+
         <div class="card card-default">
             <div class="card-header">
                 <h3 class="card-title">Ubah Password</h3>

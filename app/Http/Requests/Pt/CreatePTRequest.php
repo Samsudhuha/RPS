@@ -24,7 +24,7 @@ class CreatePTRequest extends FormRequest
     public function rules()
     {
         return [
-            'npsn' => 'required|unique:users,username|integer',
+            'npsn' => 'required|unique:users,username',
             'nama' => 'required|unique:users,name',
         ];
     }

@@ -24,8 +24,8 @@
             </div>
             <div class="col-sm-6">
                 <ol class="breadcrumb float-sm-right">
-                    <li class="breadcrumb-item"><a href="/home">Home</a></li>
-                    <li class="breadcrumb-item active">Create - Kepala Program Studi</li>
+                    <li class="breadcrumb-item"><a href="/home">Beranda</a></li>
+                    <li class="breadcrumb-item active">Buat - Kepala Program Studi</li>
                 </ol>
             </div>
         </div>
@@ -52,7 +52,7 @@
             @endif
             <div class="card card-default">
                 <div class="card-header">
-                    <h3 class="card-title">Data Dosen</h3>
+                    <h3 class="card-title">Data Kepala Program Studi</h3>
                     <div class="card-tools">
                         <button type="button" class="btn btn-tool" data-card-widget="collapse">
                             <i class="fas fa-minus"></i>
