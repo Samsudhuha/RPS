@@ -26,12 +26,7 @@ class UpdateRmkRequest extends FormRequest
     {
         return [
             'jurusan' => 'required',
-            'rmk' => [
-                "required",
-                "string",
-                Rule::unique('rmks', 'name')
-                    ->ignore($this->route('id'), 'id'),
-            ],
+            'rmk' => 'required|string'
         ];
     }
 }

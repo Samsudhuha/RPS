@@ -70,7 +70,6 @@
                     <thead>
                         <tr>
                             <th>#</th>
-                            <th>Program Studi</th>
                             <th>Fakultas</th>
                             <th>Aksi</th>
                         </tr>
@@ -79,7 +78,6 @@
                         @foreach($fakultas as $data)
                         <tr>
                             <td>{{ $no }}</td>
-                            <td>{{ $data['program_studi_name'] }}</td>
                             <td>{{ $data["name"] }}</td>
                             <td>
                                 <a href="/fakultas/{{$data['id']}}" class="btn btn-primary">Edit</a>

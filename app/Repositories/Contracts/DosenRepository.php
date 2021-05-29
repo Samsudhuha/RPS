@@ -15,6 +15,7 @@ interface DosenRepository
     public function getByJurusan($jurusan_id);
     public function getByFakultas($fakultas_id);
     public function getByRmk($rmk_id);
+    public function getByProgramStudiAndJurusan($jurusan_id, $program_studi_id);
     public function getKaprodiByJurusan($jurusan_id);
     public function getKaprodiByDosenId($id);
     public function getKaprodisByAll($jurusan_id, $program_studi_id);

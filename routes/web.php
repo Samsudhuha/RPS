@@ -154,6 +154,7 @@ Route::middleware(['auth'])->group(function () {
         Route::get('/getmatakuliah/{id}', [MataKuliahController::class, 'getSubMataKuliah']);
         Route::get('/getmatakuliahsyarat/{id}', [MataKuliahController::class, 'getSubMataKuliahSyarat']);
         Route::get('/getdosen/{id}', [DosenController::class, 'getSubDosen']);
+        Route::get('/getdosenprogramstudiandjurusan/{jurusan_id}/{program_studi_id}', [DosenController::class, 'getSubDosenByProgramStudiAndJurusan']);
         Route::get('/getdosenfakultas/{id}', [DosenController::class, 'getSubDosenByFakultas']);
         Route::get('/getdosenrmk/{id}', [DosenController::class, 'getSubDosenByRmk']);
     });

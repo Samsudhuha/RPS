@@ -65,17 +65,6 @@
                         <div class="row">
                             <div class="col-md-6">
                                 <div class="form-group">
-                                    <label>Program Studi</label>
-                                    <select name="program_studi" class="form-control-lg select2" style="width: 100%;" value="{{ old('program_studi') }}">
-                                        <option disabled selected>Pilih Program Studi</option>
-                                        @foreach($program_studis as $program_studi)
-                                        <option value="{{ $program_studi->id }}" @if($program_studi->id==$fakultas->program_studi_id) selected @endif>{{ $program_studi->name }}</option>
-                                        @endforeach
-                                    </select>
-                                </div>
-                            </div>
-                            <div class="col-md-6">
-                                <div class="form-group">
                                     <label>Fakultas</label>
                                     <input type="text" name="fakultas" class="form-control" value="{{ $fakultas->name }}" />
                                 </div>

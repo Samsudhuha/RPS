@@ -188,7 +188,7 @@
                             </div>
                         </div>
                         <div class="col-md-6">
-                            <label>Daftar Pustaka Pendukung</label>
+                            <label>Daftar Pustaka Pendukung <small class="bg-warning text-white p-1"><b> Tulis '-' jika tidak ada daftar pustaka pendukung</b> </small></label>
                             <div class="form-group">
                                 <div class="form-check">
                                     @foreach($mata_kuliah["pustaka_pendukung"] as $pustaka_pendukung)
@@ -284,30 +284,31 @@
                                 <div class="form-group">
                                     <div class="form-check">
                                         @if(count($cpmks)!=0)
+                                        @php $i = 1 @endphp
                                         @foreach($cpmks as $cpmk)
                                         <div class="cpmk-static">
                                             <div class="form-group">
-                                                <input type="text" class="form-control data-cpmk" value="{{$cpmk['name']}}" style="margin-bottom: 5px;" disabled />
+                                                <input type="text" class="form-control data-cpmk" value="{{$cpmk['name']}}" name="cpmk{{$i}}" style="margin-bottom: 5px;" disabled />
                                             </div>
                                         </div>
-                                        <div class="cpmk-dinamic">
-                                            <div id="form-cpmk-list">
-                                                <div class="form-group">
-                                                    <input type="text" name="cpmk[]" class="form-control data-cpmk" value="{{$cpmk['name']}}" style="margin-bottom: 5px;" disabled />
-                                                    <button class="btn btn-danger js-remove--cpmk-row">Remove</button>
-                                                </div>
-                                            </div>
-                                        </div>
+                                        @php $i += 1 @endphp
                                         @endforeach
                                         @else
                                         <div id="form-cpmk-list">
                                             <div class="form-group">
-                                                <input type="text" name="cpmk[]" class="form-control data-cpmk" style="margin-bottom: 5px;" />
+                                                <input type="text" name="cpmk1" class="form-control" style="margin-bottom: 5px;" />
+                                            </div>
+                                            <div class="form-group">
+                                                <input type="text" name="cpmk2" class="form-control" style="margin-bottom: 5px;" />
+                                            </div>
+                                            <div class="form-group">
+                                                <input type="text" name="cpmk3" class="form-control" style="margin-bottom: 5px;" />
+                                            </div>
+                                            <div class="form-group">
+                                                <input type="text" name="cpmk4" class="form-control" style="margin-bottom: 5px;" />
                                             </div>
                                         </div>
-                                        <button class="btn btn-primary js-add--cpmk-simpan-row">Tambah CPMK</button>
                                         @endif
-                                        <button class="btn btn-primary js-add--cpmk-row">Tambah CPMK</button>
                                     </div>
                                 </div>
                             </div>
@@ -472,7 +473,11 @@
                                     </td>
                                     <td>{{$silabus->kriteria_penilaian}}</td>
                                     <td>{{$silabus->pengamalan}}</td>
-                                    <td>{{$silabus->bobot}} %</td>
+                                    @if($silabus->bobot != null)
+                                        <td>{{$silabus->bobot}} %</td>
+                                        @else
+                                        <td></td>
+                                    @endif
                                     <td>
                                         <a class="btn btn-warning" href="/rps/silabus/{{$silabus->id}}">Edit</a>
                                         <button type="button" class="btn btn-danger" data-toggle="modal" data-target="#modal-default">Hapus</button>
@@ -620,8 +625,6 @@
         $('.data-cpmk').prop("disabled", false);
         $(".static-cpl").hide();
         $(".edit-cpl").show();
-        $(".cpmk-static").hide();
-        $(".cpmk-dinamic").show();
         $(".edit-cpl-cpmk").hide();
         $(".batal-cpl-cpmk").show();
         $(".simpan-cpl-cpmk").show();
@@ -633,8 +636,6 @@
         $('.data-cpmk').prop("disabled", true);
         $(".static-cpl").show();
         $(".edit-cpl").hide();
-        $(".cpmk-static").show();
-        $(".cpmk-dinamic").hide();
         $(".edit-cpl-cpmk").show();
         $(".batal-cpl-cpmk").hide();
         $(".simpan-cpl-cpmk").hide();

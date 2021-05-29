@@ -256,4 +256,13 @@ class DosenController extends Controller
             return $this->handleException($e);
         }
     }
+
+    public function getSubDosenByProgramStudiAndJurusan($jurusan_id, $program_studi_id)
+    {
+        try {
+            return $this->dosenService->getByProgramStudiAndJurusan($jurusan_id, $program_studi_id);
+        } catch (Exception $e) {
+            return $this->handleException($e);
+        }
+    }
 }

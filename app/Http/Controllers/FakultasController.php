@@ -101,7 +101,7 @@ class FakultasController extends Controller
             } elseif ($level == 'PT') {
                 $id = Auth::user()->id;
             }
-            return $this->fakultasService->getByProgramStudi($program_studi_id, $id);
+            return $this->fakultasService->getAll($id);
         } catch (Exception $e) {
             return $this->handleException($e);
         }

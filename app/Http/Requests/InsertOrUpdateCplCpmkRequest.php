@@ -25,7 +25,10 @@ class InsertOrUpdateCplCpmkRequest extends FormRequest
     {
         return [
             'cpl' => 'required',
-            'cpmk' => 'required',
+            'cpmk1' => 'required',
+            'cpmk2' => 'required',
+            'cpmk3' => 'required',
+            'cpmk4' => 'required',
         ];
     }
 }

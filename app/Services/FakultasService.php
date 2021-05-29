@@ -20,14 +20,7 @@ class FakultasService
 
     public function getAll($pt_id)
     {
-        $fakultas = $this->fakultasRepository->getAll($pt_id);
-        $data = [];
-        for ($i = 0; $i < count($fakultas); $i++) {
-            $program_studi = ['program_studi_name' => $this->programStudiRepository->getById($fakultas[$i]['program_studi_id'])->name];
-            $data[$i] = array_merge(json_decode(json_encode($program_studi), true), json_decode(json_encode($fakultas[$i]), true));
-        }
-
-        return $data;
+        return $this->fakultasRepository->getAll($pt_id);
     }
 
     public function getById($id)
@@ -40,7 +33,6 @@ class FakultasService
         $data = [
             'name' => $params['fakultas'],
             'user_id' => $params['user'],
-            'program_studi_id' => $params['program_studi'],
         ];
         return $this->fakultasRepository->store($data);
     }
@@ -49,7 +41,6 @@ class FakultasService
     {
         $data = [
             'name' => $params['fakultas'],
-            'program_studi_id' => $params['program_studi'],
         ];
         return $this->fakultasRepository->update($data, $id);
     }

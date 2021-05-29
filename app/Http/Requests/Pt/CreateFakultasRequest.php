@@ -24,8 +24,7 @@ class CreateFakultasRequest extends FormRequest
     public function rules()
     {
         return [
-            'program_studi' => 'required',
-            'fakultas' => 'required|string|unique:fakultases,name',
+            'fakultas' => 'required|string',
             'user' => 'required',
         ];
     }

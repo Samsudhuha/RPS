@@ -25,13 +25,7 @@ class UpdateFakultasRequest extends FormRequest
     public function rules()
     {
         return [
-            'program_studi' => 'required',
-            'fakultas' => [
-                "required",
-                "string",
-                Rule::unique('fakultases', 'name')
-                    ->ignore($this->route('id'), 'id'),
-            ],
+            'fakultas' => 'required|string'
         ];
     }
 }

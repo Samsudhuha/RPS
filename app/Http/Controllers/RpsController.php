@@ -141,6 +141,7 @@ class RpsController extends Controller
             $analyze = 0;
             $evaluate = 0;
             $create = 0;
+            $bobot = 0;
 
             for ($i=0; $i < count($data['silabuses']); $i++) { 
                 if ($data['silabuses'][$i]['role'] == 'remember') {
@@ -161,6 +162,8 @@ class RpsController extends Controller
                 if ($data['silabuses'][$i]['role'] == 'create') {
                     $create = 1;
                 }
+                $bobot = $bobot + (double) $data['silabuses'][$i]['bobot'];
+
             }
             $flag = 0;
             if (count($data["mata_kuliah"]["cpl_matakuliahs"]) == 0) {
@@ -194,6 +197,10 @@ class RpsController extends Controller
             if ($data['perguruan_tinggi']['logo'] == null) {
                 $flag = 1;
                 $errors[7] = "Tidak ada logo perguruan tinggi";
+            }
+            if ((int)$bobot != 100) {
+                $flag = 1;
+                $errors[8] = "Bobot silabus tidak sama dengan 100";
             }
             if ($flag == 1) {
                 return redirect('rps')->withErrors(["errors" => $errors]);

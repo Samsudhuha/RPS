@@ -28,6 +28,7 @@ class CreateDosenRequest extends FormRequest
             'fakultas' => 'required',
             'rmk' => 'required',
             'dosen' => 'required|unique:dosens,id',
+            'program_studi' => 'required',
         ];
     }
 }

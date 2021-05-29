@@ -25,7 +25,7 @@ class CreateJurusanRequest extends FormRequest
     {
         return [
             'fakultas' => 'required',
-            'jurusan' => 'required|string|unique:jurusans,name',
+            'jurusan' => 'required|string',
             'user' => 'required',
         ];
     }

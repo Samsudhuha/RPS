@@ -151,7 +151,7 @@
                                 <button class="btn btn-primary js-add--daftar-pustaka-utama-row">Tambah Daftar Pustaka Utama</button>
                             </div>
                             <div class="col-md-6">
-                                <label>Daftar Pustaka Pendukung</label>
+                                <label>Daftar Pustaka Pendukung <small class="bg-warning text-white p-1"><b> Tulis '-' jika tidak ada daftar pustaka pendukung</b></label>
                                 <div id="form-daftar-pustaka-pendukung-list">
                                     <div class="form-group">
                                         <input type="text" name="daftar_pustaka_pendukung[]" class="form-control" placeholder="e.g. Exam 1, Mid Term" />

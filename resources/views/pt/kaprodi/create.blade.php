@@ -66,7 +66,7 @@
                             <div class="col-md-6">
                                 <div class="form-group">
                                     <label>Program Studi</label>
-                                    <select name="program_studi" class="form-control-lg select2" style="width: 100%;" value="{{ old('program_studi') }}">
+                                    <select name="program_studi" class="form-control-lg select2 program_studi" style="width: 100%;" value="{{ old('program_studi') }}">
                                         <option disabled selected>Pilih Program Studi</option>
                                         @foreach($program_studis as $program_studi)
                                         <option value="{{ $program_studi->id }}">{{ $program_studi->name }}</option>
@@ -175,12 +175,14 @@
         jQuery('select[name="jurusan"]').on('change', function() {
             $(".dosen").hide();
             var jurusanID = jQuery(this).val();
-            if (jurusanID) {
+            var ProgramStudiID = $('.program_studi').val();
+            if (jurusanID && ProgramStudiID) {
                 jQuery.ajax({
-                    url: '/dropdownlist/getdosen/' + jurusanID,
+                    url: '/dropdownlist/getdosenprogramstudiandjurusan/' + jurusanID + '/' + ProgramStudiID,
                     type: "GET",
                     dataType: "json",
                     success: function(data) {
+                        console.log(data);
                         $(".dosen").show();
                         jQuery('select[name="dosen"]').empty();
                         $('select[name="dosen"]').append('<option disabled selected>Pilih Kepala Program Studi</option>');

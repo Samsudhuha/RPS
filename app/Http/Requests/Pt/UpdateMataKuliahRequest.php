@@ -29,12 +29,7 @@ class UpdateMataKuliahRequest extends FormRequest
             'fakultas' => 'required',
             'jurusan' => 'required',
             'rmk' => 'required',
-            'matakuliah' => [
-                "required",
-                "string",
-                Rule::unique('mata_kuliahs', 'name')
-                    ->ignore($this->route('id'), 'id'),
-            ],
+            'matakuliah' => 'required|string',
             'kode' => [
                 "required",
                 "max:10",

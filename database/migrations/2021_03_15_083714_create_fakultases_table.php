@@ -17,7 +17,6 @@ class CreateFakultasesTable extends Migration
             $table->uuid('id')->primary();
             $table->string('name', 150);
             $table->foreignUuid('user_id')->references('id')->on('users')->cascadeOnDelete();
-            $table->foreignUuid('program_studi_id')->references('id')->on('program_studis')->cascadeOnDelete();
             $table->timestamps();
         });
     }

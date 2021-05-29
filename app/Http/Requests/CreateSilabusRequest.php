@@ -33,7 +33,7 @@ class CreateSilabusRequest extends FormRequest
             'bm' => 'required',
             'kriteria_penilaian' => 'required',
             'pengamalan' => 'required',
-            'bobot' => 'required',
+            'bobot' => '',
         ];
     }
 }

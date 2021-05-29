@@ -29,6 +29,11 @@ class EloquentDosenRepository implements DosenRepository
         return Dosen::where('fakultas_id', $fakultas_id)->get();
     }
 
+    public function getByProgramStudiAndJurusan($jurusan_id, $program_studi_id)
+    {
+        return Dosen::where('jurusan_id', $jurusan_id)->where('program_studi_id', $program_studi_id)->get();
+    }
+
     public function getById($id)
     {
         return Dosen::where('id', $id)->first();

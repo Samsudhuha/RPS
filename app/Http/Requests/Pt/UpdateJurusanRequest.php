@@ -26,12 +26,7 @@ class UpdateJurusanRequest extends FormRequest
     {
         return [
             'fakultas' => 'required',
-            'jurusan' => [
-                "required",
-                "string",
-                Rule::unique('jurusans', 'name')
-                    ->ignore($this->route('id'), 'id'),
-            ],
+            'jurusan' => 'required|string'
         ];
     }
 }

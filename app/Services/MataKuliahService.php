@@ -141,6 +141,7 @@ class MataKuliahService
             $params = [];
             for ($i = 0; $i < count($mata_kuliah); $i++) {
                 $dosen = $this->dosenMataKuliahRepository->getByMataKuliahId($mata_kuliah[$i]["id"]);
+                $nama_dosen = [];
                 for ($j = 0; $j < count($dosen); $j++) {
                     $nama_dosen[$j] =  $this->userService->getById($dosen[$j]["dosen_id"])->name;
                 }
@@ -204,6 +205,7 @@ class MataKuliahService
         } else if ($level == 'Dosen') {
             $mata_kuliah = $this->mataKuliahRepository->getById($id);
             $dosen = $this->dosenMataKuliahRepository->getByMataKuliahId($mata_kuliah["id"]);
+            $nama_dosen = [];
             for ($j = 0; $j < count($dosen); $j++) {
                 $nama_dosen[$j] =  $this->userService->getById($dosen[$j]["dosen_id"])->name;
             }

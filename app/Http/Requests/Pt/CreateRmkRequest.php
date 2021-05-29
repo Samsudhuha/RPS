@@ -25,7 +25,7 @@ class CreateRmkRequest extends FormRequest
     {
         return [
             'jurusan' => 'required',
-            'rmk' => 'required|string|unique:rmks,name',
+            'rmk' => 'required|string',
             'user' => 'required',
         ];
     }

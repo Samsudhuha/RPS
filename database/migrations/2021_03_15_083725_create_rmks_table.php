@@ -15,7 +15,7 @@ class CreateRmksTable extends Migration
     {
         Schema::create('rmks', function (Blueprint $table) {
             $table->uuid('id')->primary();
-            $table->string('name', 150)->unique();
+            $table->string('name', 150);
             $table->foreignUuid('jurusan_id')->references('id')->on('jurusans')->cascadeOnDelete();
             $table->timestamps();
         });

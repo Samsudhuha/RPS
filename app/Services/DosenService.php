@@ -67,6 +67,7 @@ class DosenService
             'jurusan_id' => $params['jurusan'],
             'rmk_id' => $params['rmk'],
             'fakultas_id' => $params['fakultas'],
+            'program_studi_id' => $params['program_studi'],
         ];
         return $this->dosenRepository->store($dosen_jurusan);
     }
@@ -189,6 +190,20 @@ class DosenService
     public function getByRmk($rmk_id)
     {
         $dosen = $this->dosenRepository->getByRmk($rmk_id);
+        for ($i = 0; $i < count($dosen); $i++) {
+            $user = $this->userService->getById($dosen[$i]->id);
+            $dosen[$i] = [
+                "id" => json_decode(json_encode($dosen[$i]["id"], true)),
+                "name" => json_decode(json_encode($user->name, true)),
+            ];
+        }
+
+        return $dosen;
+    }
+
+    public function getByProgramStudiAndJurusan($jurusan_id, $program_studi_id)
+    {
+        $dosen = $this->dosenRepository->getByProgramStudiAndJurusan($jurusan_id, $program_studi_id);
         for ($i = 0; $i < count($dosen); $i++) {
             $user = $this->userService->getById($dosen[$i]->id);
             $dosen[$i] = [
