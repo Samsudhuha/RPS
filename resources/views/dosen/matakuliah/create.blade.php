@@ -151,13 +151,15 @@
                                 <button class="btn btn-primary js-add--daftar-pustaka-utama-row">Tambah Daftar Pustaka Utama</button>
                             </div>
                             <div class="col-md-6">
-                                <label>Daftar Pustaka Pendukung <small class="bg-warning text-white p-1"><b> Tulis '-' jika tidak ada daftar pustaka pendukung</b></label>
+                                <label>Daftar Pustaka Pendukung </label><br>
+                                <a class=" bg-gradient-warning p-1 mt-5"><b> Tulis '-' jika tidak ada daftar pustaka pendukung</b></a>
+
                                 <div id="form-daftar-pustaka-pendukung-list">
-                                    <div class="form-group">
+                                    <div class="form-group mt-1">
                                         <input type="text" name="daftar_pustaka_pendukung[]" class="form-control" placeholder="e.g. Exam 1, Mid Term" />
                                     </div>
                                 </div>
-                                <button class="btn btn-primary js-add--daftar-pustaka-pendukung-row">Tambah Daftar Pustaka Pendukung</button>
+                                <button class="btn btn-primary js-add--daftar-pustaka-pendukung-row">Tambah Daftar Pustaka Pendukung</button><br>
                             </div>
                         </div>
                     </div>
@@ -353,7 +355,7 @@
             e.preventDefault();
             examsList = $('#form-bahan-kajian-list');
             clone = examsList.children('.form-group:first').clone(true);
-            clone.append($('<button>').addClass('btn btn-danger js-remove--bahan-kajian-row').html('Remove'));
+            clone.append($('<button>').addClass('btn btn-danger js-remove--bahan-kajian-row mt-1').html('Remove'));
             //reset values in cloned inputs and
             //add enumerated ID's to input fields
             clone.find('input').val('').attr('id', function() {
@@ -378,7 +380,7 @@
             e.preventDefault();
             examsList = $('#form-daftar-pustaka-utama-list');
             clone = examsList.children('.form-group:first').clone(true);
-            clone.append($('<button>').addClass('btn btn-danger js-remove--daftar-pustaka-utama-row').html('Remove'));
+            clone.append($('<button>').addClass('btn btn-danger js-remove--daftar-pustaka-utama-row mt-1').html('Remove'));
             //reset values in cloned inputs and
             //add enumerated ID's to input fields
             clone.find('input').val('').attr('id', function() {
@@ -403,7 +405,7 @@
             e.preventDefault();
             examsList = $('#form-daftar-pustaka-pendukung-list');
             clone = examsList.children('.form-group:first').clone(true);
-            clone.append($('<button>').addClass('btn btn-danger js-remove--daftar-pustaka-pendukung-row').html('Remove'));
+            clone.append($('<button>').addClass('btn btn-danger js-remove--daftar-pustaka-pendukung-row mt-1').html('Remove'));
             //reset values in cloned inputs and
             //add enumerated ID's to input fields
             clone.find('input').val('').attr('id', function() {

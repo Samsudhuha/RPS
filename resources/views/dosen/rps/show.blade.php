@@ -697,6 +697,15 @@
             e.preventDefault();
             examsList = $('#form-bahan-kajian-list');
             clone = examsList.children('.form-group:first').clone(true);
+            if (clone.length == 0) {
+                // console.log(examsList);
+                clone = `
+                    <div class="form-group">
+                        <input id="undefined_1" type="text" name="bahan_kajian[]" class="form-control data-mata-kuliah" style="margin-bottom: 5px;"/>
+                        <button class="btn btn-danger js-remove--bahan-kajian-row">Remove</button>
+                    </div>`
+                return examsList.append(clone)
+            }
             //reset values in cloned inputs and
             //add enumerated ID's to input fields
             clone.find('input').val('').attr('id', function() {
@@ -721,12 +730,23 @@
             e.preventDefault();
             examsList = $('#form-daftar-pustaka-utama-list');
             clone = examsList.children('.form-group:first').clone(true);
-            //reset values in cloned inputs and
-            //add enumerated ID's to input fields
-            clone.find('input').val('').attr('id', function() {
-                return $(this).attr('id') + '_' + (examsList.children('.form-group').length + 1);
-            });
-            return examsList.append(clone);
+            // console.log(clone);
+            if (clone.length == 0) {
+                // console.log(examsList);
+                clone = `
+                    <div class="form-group">
+                        <input id="undefined_1" type="text" name="daftar_pustaka_utama[]" class="form-control data-mata-kuliah" style="margin-bottom: 5px;" />
+                        <button class="btn btn-danger js-remove--daftar-pustaka-utama-row">Remove</button>
+                    </div>`
+                return examsList.append(clone)
+            }else{
+                //reset values in cloned inputs and
+                //add enumerated ID's to input fields
+                clone.find('input').val('').attr('id', function() {
+                    return $(this).attr('id') + '_' + (examsList.children('.form-group').length + 1);
+                });
+                return examsList.append(clone);
+            }
         });
 
         //remove rows when remove button is clicked
@@ -745,12 +765,22 @@
             e.preventDefault();
             examsList = $('#form-daftar-pustaka-pendukung-list');
             clone = examsList.children('.form-group:first').clone(true);
+            if (clone.length == 0) {
+                // console.log(examsList);
+                clone = `
+                    <div class="form-group">
+                        <input id="undefined_1" type="text" name="daftar_pustaka_pendukung[]" class="form-control data-mata-kuliah" style="margin-bottom: 5px;" />
+                        <button class="btn btn-danger js-remove--daftar-pustaka-pendukung-row">Remove</button>
+                    </div>`
+                return examsList.append(clone)
+            }else {
             //reset values in cloned inputs and
             //add enumerated ID's to input fields
             clone.find('input').val('').attr('id', function() {
                 return $(this).attr('id') + '_' + (examsList.children('.form-group').length + 1);
             });
             return examsList.append(clone);
+            }
         });
 
         //remove rows when remove button is clicked

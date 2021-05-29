@@ -176,7 +176,7 @@
                                         </div>
                                     </div>
                                 </div>
-                                <a class="btn btn-success mt-1" href="/rps/cetakRPS/{{$data['id']}}"> Cetak PDF</a>
+                                <a class="btn btn-success" href="/rps/cetakRPS/{{$data['id']}}"> Cetak PDF</a>
                             </td>
                         </tr>
                         <?php $no++ ?>
