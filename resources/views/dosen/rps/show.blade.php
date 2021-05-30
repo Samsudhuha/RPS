@@ -480,7 +480,7 @@
                                     @endif
                                     <td>
                                         <a class="btn btn-warning" href="/rps/silabus/{{$silabus->id}}">Edit</a>
-                                        <button type="button" class="btn btn-danger" data-toggle="modal" data-target="#modal-default">Hapus</button>
+                                        <button type="button" class="btn btn-danger mt-1" data-toggle="modal" data-target="#modal-default">Hapus</button>
                                         <!-- Modal -->
                                         <div class="modal fade" id="modal-default">
                                             <div class="modal-dialog">
