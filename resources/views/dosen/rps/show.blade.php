@@ -280,7 +280,7 @@
                         </div>
                         <div class="col-md-6">
                             <div class="form-group">
-                                <label>Capaian Pembelajaran Lulusan</label>
+                                <label>Capaian Pembelajaran Mata Kuliah</label>
                                 <div class="form-group">
                                     <div class="form-check">
                                         @if(count($cpmks)!=0)
