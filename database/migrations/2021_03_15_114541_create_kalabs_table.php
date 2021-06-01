@@ -14,7 +14,7 @@ class CreateKalabsTable extends Migration
     public function up()
     {
         Schema::create('kalabs', function (Blueprint $table) {
-            $table->foreignUuid('dosen_id')->references('id')->on('dosens')->cascadeOnDelete();
+            $table->foreignUuid('dosen_id')->references('id')->on('users')->cascadeOnDelete();
             $table->foreignUuid('rmk_id')->references('id')->on('rmks')->cascadeOnDelete();
         });
     }

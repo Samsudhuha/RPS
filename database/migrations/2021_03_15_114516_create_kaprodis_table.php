@@ -14,7 +14,7 @@ class CreateKaprodisTable extends Migration
     public function up()
     {
         Schema::create('kaprodis', function (Blueprint $table) {
-            $table->foreignUuid('dosen_id')->references('id')->on('dosens')->cascadeOnDelete();
+            $table->foreignUuid('dosen_id')->references('id')->on('users')->cascadeOnDelete();
             $table->foreignUuid('jurusan_id')->references('id')->on('jurusans')->cascadeOnDelete();
             $table->foreignUuid('program_studi_id')->references('id')->on('program_studis')->cascadeOnDelete();
         });
