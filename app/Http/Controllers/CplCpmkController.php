@@ -7,14 +7,17 @@ use App\Http\Requests\InsertOrUpdatePetaCplCpmkRequest;
 use App\Http\Requests\Pt\CreateCPLRequest;
 use App\Http\Requests\Pt\UpdateCPLRequest;
 use App\Services\CplCpmkService;
+use App\Services\TaksonomiService;
 
 class CplCpmkController extends Controller
 {
     protected $cplCpmkService;
+    protected $taksonomiService;
 
-    public function __construct(CplCpmkService $cplCpmkService)
+    public function __construct(CplCpmkService $cplCpmkService, TaksonomiService $taksonomiService)
     {
         $this->cplCpmkService = $cplCpmkService;
+        $this->taksonomiService = $taksonomiService;
     }
 
     public function getAll($id)
@@ -89,6 +92,12 @@ class CplCpmkController extends Controller
     public function insertOrUpdate(InsertOrUpdateCplCpmkRequest $request, $id)
     {
         try {
+            $role = $this->taksonomiService->cekTaksonomi($request->validated(), 'cpmk');
+
+            if ($role != "berhasil") {
+                return redirect('rps/' . $id)->withErrors(["error" => "Kata kunci tidak terdeteksi pada CPMK ". $role . "."]);
+            } 
+
             $cplCplmk = $this->cplCpmkService->insertOrUpdateCplCpmk($id, $request->validated());
             if ($cplCplmk) {
                 return redirect('rps/' . $id)

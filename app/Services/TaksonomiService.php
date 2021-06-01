@@ -48,25 +48,61 @@ class TaksonomiService
         return $this->taksonomiRepository->delete($id);
     }
 
-    public function cekTaksonomi($data)
+    public function cekTaksonomi($data, $column)
     {
         $taksonomi = $this->taksonomiRepository->getAllRole();
-        $flag = 0;
-        for ($i=0; $i < count($taksonomi); $i++) { 
-            if (strpos(strtolower($data['kemampuan_akhir']), strtolower($taksonomi[$i]->name)) !== false) {
-                $role = $taksonomi[$i]->role;
-                $flag += 1;
+        if ($column == "silabus") {
+            $flag = 0;
+            for ($i=0; $i < count($taksonomi); $i++) { 
+                if (strpos(strtolower($data['kemampuan_akhir']), strtolower($taksonomi[$i]->name)) !== false) {
+                    $role = $taksonomi[$i]->role;
+                    $flag += 1;
+                }
+                if ($flag > 1) {
+                    break;
+                }
             }
-            if ($flag > 1) {
-                break;
+            if ($flag == 0) {
+                return "kurang--";
+            } elseif ($flag == 1) {
+                return $role;
+            } else {
+                return "lebih--";
             }
-        }
-        if ($flag == 0) {
-            return "kurang--";
-        } elseif ($flag == 1) {
-            return $role;
-        } else {
-            return "lebih--";
+        } elseif ($column == "cpmk") {
+            $flag_cpkm1 = 0;
+            $flag_cpkm2 = 0;
+            $flag_cpkm3 = 0;
+            $flag_cpkm4 = 0;
+            for ($i=0; $i < count($taksonomi); $i++) { 
+                if (strpos(strtolower($data['cpmk1']), strtolower($taksonomi[$i]->name)) !== false) {
+                    $role = $taksonomi[$i]->role;
+                    $flag_cpkm1 += 1;
+                }
+                if (strpos(strtolower($data['cpmk2']), strtolower($taksonomi[$i]->name)) !== false) {
+                    $role = $taksonomi[$i]->role;
+                    $flag_cpkm2 += 1;
+                }
+                if (strpos(strtolower($data['cpmk3']), strtolower($taksonomi[$i]->name)) !== false) {
+                    $role = $taksonomi[$i]->role;
+                    $flag_cpkm3 += 1;
+                }
+                if (strpos(strtolower($data['cpmk4']), strtolower($taksonomi[$i]->name)) !== false) {
+                    $role = $taksonomi[$i]->role;
+                    $flag_cpkm4 += 1;
+                }
+            }
+            if ($flag_cpkm1 == 0) {
+                return 1;
+            } elseif ($flag_cpkm2 == 0) {
+                return 2;
+            } elseif ($flag_cpkm3 == 0) {
+                return 3;
+            } elseif ($flag_cpkm4 == 0) {
+                return 4;
+            } else {
+                return "berhasil";
+            }
         }
     }
 }

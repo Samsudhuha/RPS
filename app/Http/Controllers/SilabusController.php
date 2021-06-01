@@ -116,7 +116,7 @@ class SilabusController extends Controller
     public function create(CreateSilabusRequest $request, $id)
     {
         try {
-            $role = $this->taksonomiService->cekTaksonomi($request->validated());
+            $role = $this->taksonomiService->cekTaksonomi($request->validated(), "silabus");
             if ($role == "kurang--") {
                 return redirect('rps/silabus/create/' . $id)->withErrors(["error" => "Kata kunci tidak terdeteksi."]);
             } elseif ($role == "lebih--") {
@@ -134,7 +134,7 @@ class SilabusController extends Controller
     public function update(CreateSilabusRequest $request, $id)
     {
         try {
-            $role = $this->taksonomiService->cekTaksonomi($request->validated());
+            $role = $this->taksonomiService->cekTaksonomi($request->validated(), "silabus");
             if ($role == "kurang--") {
                 return redirect('rps/silabus/' . $id)->withErrors(["error" => "Kata kunci tidak terdeteksi."]);
             } elseif ($role == "lebih--") {
