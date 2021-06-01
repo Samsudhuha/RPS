@@ -14,7 +14,7 @@ class CreateDosenMataKuliahsTable extends Migration
     public function up()
     {
         Schema::create('dosen_mata_kuliahs', function (Blueprint $table) {
-            $table->foreignUuid('dosen_id')->references('id')->on('dosens')->cascadeOnDelete();
+            $table->foreignUuid('dosen_id')->references('id')->on('users')->cascadeOnDelete();
             $table->foreignUuid('mata_kuliah_id')->references('id')->on('mata_kuliahs')->cascadeOnDelete();
         });
     }
