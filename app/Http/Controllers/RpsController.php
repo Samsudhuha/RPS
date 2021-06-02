@@ -207,8 +207,12 @@ class RpsController extends Controller
             } else {
                 // dd($data);
                 // return view('rps.cetakPDF', $data);
-                $pdf = PDF::loadview('dosen.rps.cetakPDF', $data);
-                return $pdf->download('RPS - ' . $data['mata_kuliah']['name'] . '.pdf');
+                try{
+                    $pdf = PDF::loadview('dosen.rps.cetakPDF', $data);
+                    return $pdf->download('RPS - ' . $data['mata_kuliah']['name'] . '.pdf');
+                }catch(DOMPDF_Exception $e){
+                    return redirect('rps')->withErrors(["errors" => $e]);
+                }
             }
         } catch (Exception $e) {
             return $this->handleException($e);
