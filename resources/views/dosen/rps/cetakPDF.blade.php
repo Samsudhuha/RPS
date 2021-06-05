@@ -245,7 +245,11 @@
                 </td>
                 <td>{{$silabus->kriteria_penilaian}}</td>
                 <td>{{$silabus->pengamalan}}</td>
+                @if($silabus->bobot != null)
                 <td>{{$silabus->bobot}} %</td>
+                @else
+                <td></td>
+            @endif
             </tr>
             @endforeach
         </tbody>

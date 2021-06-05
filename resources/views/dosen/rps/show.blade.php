@@ -281,7 +281,107 @@
                         <div class="col-md-6">
                             <div class="form-group">
                                 <label>Capaian Pembelajaran Mata Kuliah</label>
+                                <button type="button" class="btn btn-warning mt-1" data-toggle="modal" data-target="#modal-default">Data Taksonomi</button>
+                                <!-- Modal -->
+                                <div class="modal fade" id="modal-default">
+                                    <div class="modal-dialog modal-lg">
+                                        <div class="modal-content">
+                                            <div class="modal-header">
+                                                <h4 class="modal-title">Data Taksonomi Bloom</h4>
+                                                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                                    <span aria-hidden="true">&times;</span>
+                                                </button>
+                                            </div>
+                                            <div class="modal-body">
+                                                <div class="card-body">
+                                                    <h4 class="form-control-label">Remember</h4>
+                                                    <div class="row">
+                                                        @foreach($remembers as $key => $r)
+                                                            <div class="col-md-4">
+                                                                <ul>
+                                                                    <li>
+                                                                        {{$r->name}}
+                                                                    </li>
+                                                                </ul>
+                                                            </div>
+                                                        @endforeach
+                                                    </div>
+                                                    <br>
+                                                    <h4 class="form-control-label">Understand</h4>
+                                                    <div class="row">
+                                                        @foreach($understands as $key => $u)
+                                                            <div class="col-md-4">
+                                                                <ul>
+                                                                    <li>
+                                                                        {{$u->name}}
+                                                                    </li>
+                                                                </ul>
+                                                            </div>
+                                                        @endforeach
+                                                    </div>
+                                                    <br>
+                                                    <h4 class="form-control-label">Apply </h4>
+                                                    <div class="row">
+                                                        @foreach($applys as $key => $a)
+                                                            <div class="col-md-4">
+                                                                <ul>
+                                                                    <li>
+                                                                        {{$a->name}}
+                                                                    </li>
+                                                                </ul>
+                                                            </div>
+                                                        @endforeach
+                                                    </div>
+                                                    <br>
+                                                    <h4 class="form-control-label">Analyze</h4>
+                                                    <div class="row">
+                                                        @foreach($analyzes as $key => $an)
+                                                            <div class="col-md-4">
+                                                                <ul>
+                                                                    <li>
+                                                                        {{$an->name}}
+                                                                    </li>
+                                                                </ul>
+                                                            </div>
+                                                        @endforeach
+                                                    </div>
+                                                    <br>
+                                                    <h4 class="form-control-label">Evaluate</h4>
+                                                    <div class="row">
+                                                        @foreach($evaluates as $key => $e)
+                                                            <div class="col-md-4">
+                                                                <ul>
+                                                                    <li>
+                                                                        {{$e->name}}
+                                                                    </li>
+                                                                </ul>
+                                                            </div>
+                                                        @endforeach
+                                                    </div>
+                                                    <br>
+                                                    <h4 class="form-control-label">Create</h4>
+                                                    <div class="row">
+                                                        @foreach($creates as $key => $c)
+                                                            <div class="col-md-4">
+                                                                <ul>
+                                                                    <li>
+                                                                        {{$c->name}}
+                                                                    </li>
+                                                                </ul>
+                                                            </div>
+                                                        @endforeach
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="modal-footer justify-content-between">
+                                                <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <br>
                                 <div class="form-group">
+                                    <br>
                                     <div class="form-check">
                                         @if(count($cpmks)!=0)
                                         @php $i = 1 @endphp
@@ -436,6 +536,23 @@
                 <div class="row">
                     <div class="col-12">
                         @if(count($silabuses)!=0)
+                        <br>
+                        @if($flag_role == 0)
+                            <h4 class="form-control-label">Data Taksonomi | <div class="badge bg-danger">Belum terpenuhi</div> </h4>
+                        @else
+                            <h4 class="form-control-label">Data Taksonomi | <div class="badge bg-success">Sudah terpenuh</div> </h4>
+                        @endif
+                        @if($flag_role_error == 1)
+                            <h4 class="form-control-label">Data Taksonomi | <div class="badge bg-danger">Tidak urut</div> </h4>
+                        @else
+                            <h4 class="form-control-label">Data Taksonomi | <div class="badge bg-success">Sudah urut</div> </h4>
+                        @endif
+                        @if($flag_bobot != 100)
+                            <h4 class="form-control-label">Bobot | <div class="badge bg-danger">Tidak sama dengan 100</div> </h4>
+                        @else
+                            <h4 class="form-control-label">Bobot | <div class="badge bg-success">Sama dengan 100</div> </h4>
+                        @endif
+                        <br>
                         <table class="table table-bordered table-hover">
                             <thead>
                                 <tr>
@@ -480,9 +597,9 @@
                                     @endif
                                     <td>
                                         <a class="btn btn-warning" href="/rps/silabus/{{$silabus->id}}">Edit</a>
-                                        <button type="button" class="btn btn-danger mt-1" data-toggle="modal" data-target="#modal-default">Hapus</button>
+                                        <button type="button" class="btn btn-danger mt-1" data-toggle="modal" data-target="#modal-default{{$silabus->id}}">Hapus</button>
                                         <!-- Modal -->
-                                        <div class="modal fade" id="modal-default">
+                                        <div class="modal fade" id="modal-default{{$silabus->id}}">
                                             <div class="modal-dialog">
                                                 <div class="modal-content">
                                                     <center>

@@ -10,6 +10,7 @@ use App\Services\MataKuliahService;
 use App\Services\ProgramStudiService;
 use App\Services\RmkService;
 use App\Services\SilabusService;
+use App\Services\TaksonomiService;
 use App\Services\UserService;
 use Illuminate\Http\Request;
 use PDF;
@@ -28,6 +29,7 @@ class RpsController extends Controller
     protected $rmkService;
     protected $silabusService;
     protected $userService;
+    protected $taksonomiService;
     protected $dosenController;
 
     public function __construct(
@@ -40,6 +42,7 @@ class RpsController extends Controller
         RmkService $rmkService,
         SilabusService $silabusService,
         UserService $userService,
+        TaksonomiService $taksonomiService,
         DosenController $dosenController
     ) {
         $this->jurusanService = $jurusanService;
@@ -51,6 +54,7 @@ class RpsController extends Controller
         $this->rmkService = $rmkService;
         $this->silabusService = $silabusService;
         $this->userService = $userService;
+        $this->taksonomiService = $taksonomiService;
         $this->dosenController = $dosenController;
     }
 
@@ -81,6 +85,13 @@ class RpsController extends Controller
             $data['cpls'] = $this->cplCpmkService->getCplByJurusanAll($data["mata_kuliah"]["jurusan_id"]);
             $data['cpls_array'] = $this->cplCpmkService->getCplByJurusanAll($data["mata_kuliah"]["jurusan_id"])->toArray();
             $data['cpmks'] = $this->cplCpmkService->getCpmkMataKuliahAll($data['mata_kuliah']["id"]);
+            $data['remembers'] = $this->taksonomiService->getAll('remember');
+            $data['understands'] = $this->taksonomiService->getAll('understand');
+            $data['applys'] = $this->taksonomiService->getAll('apply');
+            $data['analyzes'] = $this->taksonomiService->getAll('analyze');
+            $data['evaluates'] = $this->taksonomiService->getAll('evaluate');
+            $data['creates'] = $this->taksonomiService->getAll('create');
+
             if ($cpl_matakuliahs_id = $this->cplCpmkService->getCplMataKuliahAll($data['mata_kuliah']["id"])) {
                 $data['cpl_matakuliahs_id'] = $cpl_matakuliahs_id->pluck("cpl_id")->toArray();
             } else {
@@ -88,7 +99,133 @@ class RpsController extends Controller
             }
             $data['cpl_cpmks'] = $this->cplCpmkService->getCplCpmkAll($data['mata_kuliah']["id"]);
             $data['silabuses'] = $this->silabusService->getAll($data['mata_kuliah']["id"]);
+            
+            $flag_before_role = 'remember';
+            if ($data['silabuses'][0]['role'] != $flag_before_role) {
+                $flag_role_error = 1;
+            }else {
+                $flag_role_error = 0;
+            }
 
+            for ($i=0; $i < count($data['silabuses']); $i++) { 
+                if ($data['silabuses'][$i]['role'] == 'remember') {
+                    if ($i != 0) {
+                        if ('create' != $flag_before_role) {
+                            $flag_role_error = 1;
+                        }
+                    } else {
+                        if ('remember' != $flag_before_role) {
+                            $flag_role_error = 1;
+                        }
+                    }
+                    $flag_before_role = 'remember';
+                }
+                else if ($data['silabuses'][$i]['role'] == 'understand') {
+                    if ('remember' != $flag_before_role) {
+                        $flag_role_error = 1;
+                    }
+                    $flag_before_role = 'understand';
+                }
+                else if ($data['silabuses'][$i]['role'] == 'apply') {
+                    if ('understand' != $flag_before_role) {
+                        $flag_role_error = 1;
+                    }
+                    $flag_before_role = 'apply';
+                }
+                else if ($data['silabuses'][$i]['role'] == 'analyze') {
+                    if ('apply' != $flag_before_role) {
+                        $flag_role_error = 1;
+                    }
+                    $flag_before_role = 'analyze';
+                }
+                else if ($data['silabuses'][$i]['role'] == 'evaluate') {
+                    if ('analyze' != $flag_before_role) {
+                        $flag_role_error = 1;
+                    }
+                    $flag_before_role = 'evaluate';
+                }
+                else if ($data['silabuses'][$i]['role'] == 'create') {
+                    if ('evaluate' != $flag_before_role) {
+                        $flag_role_error = 1;
+                    }
+                    $flag_before_role = 'create';
+                }
+            }
+
+            $remember = 0;
+            $understand = 0;
+            $apply = 0;
+            $analyze = 0;
+            $evaluate = 0;
+            $create = 0;
+            $bobot = 0;
+            $flag_before_role = 'remember';
+            if ($data['silabuses'][0]['role'] != $flag_before_role) {
+                $flag_role_error = 1;
+            }else {
+                $flag_role_error = 0;
+            }
+
+            for ($i=0; $i < count($data['silabuses']); $i++) { 
+                if ($data['silabuses'][$i]['role'] == 'remember') {
+                    if ($i != 0) {
+                        if ('create' != $flag_before_role) {
+                            $flag_role_error = 1;
+                        }
+                    } else {
+                        if ('remember' != $flag_before_role) {
+                            $flag_role_error = 1;
+                        }
+                    }
+                    $flag_before_role = 'remember';
+                    $remember = 1;
+                }
+                else if ($data['silabuses'][$i]['role'] == 'understand') {
+                    if ('remember' != $flag_before_role) {
+                        $flag_role_error = 1;
+                    }
+                    $flag_before_role = 'understand';
+                    $understand = 1;
+                }
+                else if ($data['silabuses'][$i]['role'] == 'apply') {
+                    if ('understand' != $flag_before_role) {
+                        $flag_role_error = 1;
+                    }
+                    $flag_before_role = 'apply';
+                    $apply = 1;
+                }
+                else if ($data['silabuses'][$i]['role'] == 'analyze') {
+                    if ('apply' != $flag_before_role) {
+                        $flag_role_error = 1;
+                    }
+                    $flag_before_role = 'analyze';
+                    $analyze = 1;
+                }
+                else if ($data['silabuses'][$i]['role'] == 'evaluate') {
+                    if ('analyze' != $flag_before_role) {
+                        $flag_role_error = 1;
+                    }
+                    $flag_before_role = 'evaluate';
+                    $evaluate = 1;
+                }
+                else if ($data['silabuses'][$i]['role'] == 'create') {
+                    if ('evaluate' != $flag_before_role) {
+                        $flag_role_error = 1;
+                    }
+                    $flag_before_role = 'create';
+                    $create = 1;
+                }
+                $bobot = $bobot + (double) $data['silabuses'][$i]['bobot'];
+
+            }
+
+            $data['flag_role_error'] = $flag_role_error;
+            if ($remember == 0 || $analyze == 0 || $understand == 0 || $apply == 0 || $evaluate == 0 || $create == 0) {
+                $data['flag_role'] = 0;
+            } else {
+                $data['flag_role'] = 1;
+            }
+            $data['flag_bobot'] = $bobot;
             return view('dosen.rps.show', $data);
         } catch (Exception $e) {
             return $this->handleException($e);
@@ -142,24 +279,60 @@ class RpsController extends Controller
             $evaluate = 0;
             $create = 0;
             $bobot = 0;
+            $flag_before_role = 'remember';
+            if ($data['silabuses'][0]['role'] != $flag_before_role) {
+                $flag_role_error = 1;
+            }else {
+                $flag_role_error = 0;
+            }
 
             for ($i=0; $i < count($data['silabuses']); $i++) { 
                 if ($data['silabuses'][$i]['role'] == 'remember') {
+                    if ($i != 0) {
+                        if ('create' != $flag_before_role) {
+                            $flag_role_error = 1;
+                        }
+                    } else {
+                        if ('remember' != $flag_before_role) {
+                            $flag_role_error = 1;
+                        }
+                    }
+                    $flag_before_role = 'remember';
                     $remember = 1;
                 }
-                if ($data['silabuses'][$i]['role'] == 'understand') {
+                else if ($data['silabuses'][$i]['role'] == 'understand') {
+                    if ('remember' != $flag_before_role) {
+                        $flag_role_error = 1;
+                    }
+                    $flag_before_role = 'understand';
                     $understand = 1;
                 }
-                if ($data['silabuses'][$i]['role'] == 'apply') {
+                else if ($data['silabuses'][$i]['role'] == 'apply') {
+                    if ('understand' != $flag_before_role) {
+                        $flag_role_error = 1;
+                    }
+                    $flag_before_role = 'apply';
                     $apply = 1;
                 }
-                if ($data['silabuses'][$i]['role'] == 'analyze') {
+                else if ($data['silabuses'][$i]['role'] == 'analyze') {
+                    if ('apply' != $flag_before_role) {
+                        $flag_role_error = 1;
+                    }
+                    $flag_before_role = 'analyze';
                     $analyze = 1;
                 }
-                if ($data['silabuses'][$i]['role'] == 'evaluate') {
+                else if ($data['silabuses'][$i]['role'] == 'evaluate') {
+                    if ('analyze' != $flag_before_role) {
+                        $flag_role_error = 1;
+                    }
+                    $flag_before_role = 'evaluate';
                     $evaluate = 1;
                 }
-                if ($data['silabuses'][$i]['role'] == 'create') {
+                else if ($data['silabuses'][$i]['role'] == 'create') {
+                    if ('evaluate' != $flag_before_role) {
+                        $flag_role_error = 1;
+                    }
+                    $flag_before_role = 'create';
                     $create = 1;
                 }
                 $bobot = $bobot + (double) $data['silabuses'][$i]['bobot'];
@@ -201,6 +374,10 @@ class RpsController extends Controller
             if ((int)$bobot != 100) {
                 $flag = 1;
                 $errors[8] = "Bobot silabus tidak sama dengan 100";
+            }
+            if ($flag_role_error == 1) {
+                $flag = 1;
+                $errors[9] = "Data tatap muka silabus tidak sesuai dengan urutak taksonomi bloom";
             }
             if ($flag == 1) {
                 return redirect('rps')->withErrors(["errors" => $errors]);
