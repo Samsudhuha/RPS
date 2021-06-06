@@ -194,13 +194,13 @@
                             <div class="col-md-6">
                                 <div class="form-group">
                                     <label>Kemampuan Akhir Sub CP MK</label>
-                                    <textarea type="text" name="kemampuan_akhir" rows="5" class="form-control" placeholder="" required value="{{ old('kemampuan_akhir') }}"></textarea>
+                                    <textarea type="text" name="kemampuan_akhir" rows="5" class="form-control" required value="{{ old('kemampuan_akhir') }}"></textarea>
                                 </div>
                             </div>
                             <div class="col-md-6">
                                 <div class="form-group">
                                     <label>Keluasan (Materi Pembelajaran)</label>
-                                    <textarea type="text" name="keluasan" rows="5" class="form-control" placeholder="" value="{{ old('keluasan') }}" required></textarea>
+                                    <textarea type="text" name="keluasan" rows="5" class="form-control" value="{{ old('keluasan') }}" required></textarea>
                                 </div>
                             </div>
                         </div>
@@ -208,7 +208,7 @@
                             <div class="col-md-6">
                                 <div class="form-group">
                                     <label>Metode Pembelajaran</label>
-                                    <textarea type="text" name="metode_pembelajaran" rows="5" class="form-control" placeholder="" value="{{ old('metode_pembelajaran') }}" required></textarea>
+                                    <textarea type="text" name="metode_pembelajaran" rows="5" class="form-control" value="{{ old('metode_pembelajaran') }}" required></textarea>
                                 </div>
                             </div>
                             <div class="col-md-6">
@@ -218,19 +218,19 @@
                                         <div class="col-md-3">
                                             <div class="form-group">
                                                 <label>Tatap Muka</label>
-                                                <input type="number" name="tm" class="form-control" placeholder="150" value="{{ old('tm') }}" />
+                                                <input type="number" name="tm" class="form-control" value="{{ old('tm') }}" />
                                             </div>
                                         </div>
                                         <div class="col-md-5">
                                             <div class="form-group">
                                                 <label>Penugasan Terstruktur</label>
-                                                <input type="number" name="pt" class="form-control" placeholder="120" value="{{ old('pt') }}" />
+                                                <input type="number" name="pt" class="form-control" value="{{ old('pt') }}" />
                                             </div>
                                         </div>
                                         <div class="col-md-4">
                                             <div class="form-group">
                                                 <label>Belajar Mandiri</label>
-                                                <input type="number" name="bm" class="form-control" placeholder="360" value="{{ old('bm') }}" />
+                                                <input type="number" name="bm" class="form-control" value="{{ old('bm') }}" />
                                             </div>
                                         </div>
                                     </div>
@@ -241,14 +241,14 @@
                             <div class="col-md-6">
                                 <div class="form-group">
                                     <label>Kriteria dan Indikator Penilaian</label>
-                                    <textarea type="text" name="kriteria_penilaian" rows="5" class="form-control" placeholder="" value="{{ old('kriteria_penilaian') }}" required></textarea>
+                                    <textarea type="text" name="kriteria_penilaian" rows="5" class="form-control" value="{{ old('kriteria_penilaian') }}" required></textarea>
                                 </div>
                             </div>
                             <div class="col-md-6">
                                 <label>Pengamalan Belajar Mahasiswa</label>
                                 <div id="form-bahan-kajian-list">
                                     <div class="form-group">
-                                        <textarea type="text" name="pengamalan" rows="5" class="form-control" placeholder="" value="{{ old('pengamalan') }}" required></textarea>
+                                        <textarea type="text" name="pengamalan" rows="5" class="form-control" value="{{ old('pengamalan') }}" required></textarea>
                                     </div>
                                 </div>
                             </div>
@@ -258,7 +258,7 @@
                                 <label>Bobot</label>
                                 <div id="form-daftar-pustaka-utama-list">
                                     <div class="form-group">
-                                        <input type="number" name="bobot" class="form-control" value="{{ old('bobot') }}" placeholder="4" />
+                                        <input type="number" name="bobot" class="form-control" value="{{ old('bobot') }}" />
                                     </div>
                                 </div>
                             </div>

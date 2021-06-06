@@ -127,14 +127,14 @@
                             <div class="col-md-6">
                                 <div class="form-group">
                                     <label>Deskripsi</label>
-                                    <textarea type="text" name="deskripsi" rows="5" class="form-control" placeholder=" e.g. Exam 1, Mid Term"></textarea>
+                                    <textarea type="text" name="deskripsi" rows="5" class="form-control"></textarea>
                                 </div>
                             </div>
                             <div class="col-md-6">
                                 <label>Bahan Kajian</label>
                                 <div id="form-bahan-kajian-list">
                                     <div class="form-group">
-                                        <input type="text" name="bahan_kajian[]" class="form-control" placeholder="e.g. Exam 1, Mid Term" />
+                                        <input type="text" name="bahan_kajian[]" class="form-control" />
                                     </div>
                                 </div>
                                 <button class="btn btn-primary js-add--bahan-kajian-row">Tambah Bahan kajian</button>
@@ -145,7 +145,7 @@
                                 <label>Daftar Pustaka Utama</label>
                                 <div id="form-daftar-pustaka-utama-list">
                                     <div class="form-group">
-                                        <input type="text" name="daftar_pustaka_utama[]" class="form-control" placeholder="e.g. Exam 1, Mid Term" />
+                                        <input type="text" name="daftar_pustaka_utama[]" class="form-control"/>
                                     </div>
                                 </div>
                                 <button class="btn btn-primary js-add--daftar-pustaka-utama-row">Tambah Daftar Pustaka Utama</button>
@@ -156,7 +156,7 @@
 
                                 <div id="form-daftar-pustaka-pendukung-list">
                                     <div class="form-group mt-1">
-                                        <input type="text" name="daftar_pustaka_pendukung[]" class="form-control" placeholder="e.g. Exam 1, Mid Term" />
+                                        <input type="text" name="daftar_pustaka_pendukung[]" class="form-control" />
                                     </div>
                                 </div>
                                 <button class="btn btn-primary js-add--daftar-pustaka-pendukung-row">Tambah Daftar Pustaka Pendukung</button><br>

@@ -221,13 +221,13 @@
                             <div class="col-md-6">
                                 <div class="form-group">
                                     <label>Kemampuan Akhir Sub CP MK</label>
-                                    <textarea type="text" name="kemampuan_akhir" rows="5" class="form-control" placeholder="" required>{{ $silabus['kemampuan_akhir'] }}</textarea>
+                                    <textarea type="text" name="kemampuan_akhir" rows="5" class="form-control" required>{{ $silabus['kemampuan_akhir'] }}</textarea>
                                 </div>
                             </div>
                             <div class="col-md-6">
                                 <div class="form-group">
                                     <label>Keluasan (Materi Pembelajaran)</label>
-                                    <textarea type="text" name="keluasan" rows="5" class="form-control" placeholder="" required>{{ $silabus['keluasan'] }}</textarea>
+                                    <textarea type="text" name="keluasan" rows="5" class="form-control" required>{{ $silabus['keluasan'] }}</textarea>
                                 </div>
                             </div>
                         </div>
@@ -235,7 +235,7 @@
                             <div class="col-md-6">
                                 <div class="form-group">
                                     <label>Metode Pembelajaran</label>
-                                    <textarea type="text" name="metode_pembelajaran" rows="5" class="form-control" placeholder="" required>{{ $silabus['metode_pembelajaran'] }}</textarea>
+                                    <textarea type="text" name="metode_pembelajaran" rows="5" class="form-control" required>{{ $silabus['metode_pembelajaran'] }}</textarea>
                                 </div>
                             </div>
                             <div class="col-md-6">
@@ -245,19 +245,19 @@
                                         <div class="col-md-3">
                                             <div class="form-group">
                                                 <label>Tatap Muka</label>
-                                                <input type="text" name="tm" class="form-control" placeholder="150" value="{{ $silabus['estimasi_waktu']->tm }}" />
+                                                <input type="text" name="tm" class="form-control" value="{{ $silabus['estimasi_waktu']->tm }}" />
                                             </div>
                                         </div>
                                         <div class="col-md-5">
                                             <div class="form-group">
                                                 <label>Penugasan Terstruktur</label>
-                                                <input type="text" name="pt" class="form-control" placeholder="120" value="{{ $silabus['estimasi_waktu']->pt }}" />
+                                                <input type="text" name="pt" class="form-control" value="{{ $silabus['estimasi_waktu']->pt }}" />
                                             </div>
                                         </div>
                                         <div class="col-md-4">
                                             <div class="form-group">
                                                 <label>Belajar Mandiri</label>
-                                                <input type="text" name="bm" class="form-control" placeholder="360" value="{{ $silabus['estimasi_waktu']->bm }}" />
+                                                <input type="text" name="bm" class="form-control" value="{{ $silabus['estimasi_waktu']->bm }}" />
                                             </div>
                                         </div>
                                     </div>
@@ -268,14 +268,14 @@
                             <div class="col-md-6">
                                 <div class="form-group">
                                     <label>Kriteria dan Indikator Penilaian</label>
-                                    <textarea type="text" name="kriteria_penilaian" rows="5" class="form-control" placeholder="" required>{{ $silabus['kriteria_penilaian'] }}</textarea>
+                                    <textarea type="text" name="kriteria_penilaian" rows="5" class="form-control" required>{{ $silabus['kriteria_penilaian'] }}</textarea>
                                 </div>
                             </div>
                             <div class="col-md-6">
                                 <label>Pengamalan Belajar Mahasiswa</label>
                                 <div id="form-bahan-kajian-list">
                                     <div class="form-group">
-                                        <textarea type="text" name="pengamalan" rows="5" class="form-control" placeholder="" required>{{ $silabus['pengamalan'] }}</textarea>
+                                        <textarea type="text" name="pengamalan" rows="5" class="form-control" required>{{ $silabus['pengamalan'] }}</textarea>
                                     </div>
                                 </div>
                             </div>
@@ -285,7 +285,7 @@
                                 <label>Bobot</label>
                                 <div id="form-daftar-pustaka-utama-list">
                                     <div class="form-group">
-                                        <input type="text" name="bobot" class="form-control" value="{{ $silabus['bobot'] }}" placeholder="4%" />
+                                        <input type="text" name="bobot" class="form-control" value="{{ $silabus['bobot'] }}" />
                                     </div>
                                 </div>
                             </div>
