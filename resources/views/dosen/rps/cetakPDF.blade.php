@@ -18,6 +18,10 @@
     td {
         font-size: 9pt;
     }
+
+    .page-break {
+        page-break-after: always;
+    }
 </style>
 
 <body>
@@ -210,7 +214,7 @@
             </td>
         </tr>
     </table>
-
+    <div class="page-break"></div>
     <h2>Silabus</h2>
     <table width="100%" class="table table-bordered ">
         <thead class="text-center" style="background-color: #deeaf6; ">

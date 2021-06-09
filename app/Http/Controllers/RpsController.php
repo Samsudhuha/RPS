@@ -160,6 +160,9 @@ class RpsController extends Controller
             $create = 0;
             $bobot = 0;
             $flag_before_role = 'remember';
+            $flag_after_role = '';
+            $data['flag_role_error_description'] = [];
+
             if ($data['silabuses'][0]['role'] != $flag_before_role) {
                 $flag_role_error = 1;
             }else {
@@ -169,50 +172,70 @@ class RpsController extends Controller
             for ($i=0; $i < count($data['silabuses']); $i++) { 
                 if ($data['silabuses'][$i]['role'] == 'remember') {
                     if ($i != 0) {
-                        if ('create' != $flag_before_role) {
+                        if ('create' != $flag_before_role && $flag_before_role != 'remember') {
+                            $data['flag_role_error_description'][$i]['tatap_muka'] = $data['silabuses'][$i]['tatap_muka'];
+                            $data['flag_role_error_description'][$i]['role'] = $flag_before_role . ' atau ' . $flag_after_role;
                             $flag_role_error = 1;
                         }
                     } else {
                         if ('remember' != $flag_before_role) {
+                            $data['flag_role_error_description'][$i]['tatap_muka'] = $data['silabuses'][$i]['tatap_muka'];
+                            $data['flag_role_error_description'][$i]['role'] = $flag_before_role;
                             $flag_role_error = 1;
                         }
                     }
                     $flag_before_role = 'remember';
+                    $flag_after_role = 'understand';
                     $remember = 1;
                 }
                 else if ($data['silabuses'][$i]['role'] == 'understand') {
-                    if ('remember' != $flag_before_role) {
+                    if ('remember' != $flag_before_role && $flag_before_role != 'understand') {
+                        $data['flag_role_error_description'][$i]['tatap_muka'] = $data['silabuses'][$i]['tatap_muka'];
+                        $data['flag_role_error_description'][$i]['role'] = $flag_before_role . ' atau ' . $flag_after_role;
                         $flag_role_error = 1;
                     }
                     $flag_before_role = 'understand';
+                    $flag_after_role = 'apply';
                     $understand = 1;
                 }
                 else if ($data['silabuses'][$i]['role'] == 'apply') {
-                    if ('understand' != $flag_before_role) {
+                    if ('understand' != $flag_before_role && $flag_before_role != 'apply') {
+                        $data['flag_role_error_description'][$i]['tatap_muka'] = $data['silabuses'][$i]['tatap_muka'];
+                        $data['flag_role_error_description'][$i]['role'] = $flag_before_role . ' atau ' . $flag_after_role;
                         $flag_role_error = 1;
                     }
                     $flag_before_role = 'apply';
+                    $flag_after_role = 'analyze';
                     $apply = 1;
                 }
                 else if ($data['silabuses'][$i]['role'] == 'analyze') {
-                    if ('apply' != $flag_before_role) {
+                    if ('apply' != $flag_before_role && $flag_before_role != 'analyze') {
+                        $data['flag_role_error_description'][$i]['tatap_muka'] = $data['silabuses'][$i]['tatap_muka'];
+                        $data['flag_role_error_description'][$i]['role'] = $flag_before_role . ' atau ' . $flag_after_role;
                         $flag_role_error = 1;
                     }
                     $flag_before_role = 'analyze';
+                    $flag_after_role = 'evaluate';
                     $analyze = 1;
                 }
                 else if ($data['silabuses'][$i]['role'] == 'evaluate') {
-                    if ('analyze' != $flag_before_role) {
+                    if ('analyze' != $flag_before_role && $flag_before_role != 'evaluate') {
+                        $data['flag_role_error_description'][$i]['tatap_muka'] = $data['silabuses'][$i]['tatap_muka'];
+                        $data['flag_role_error_description'][$i]['role'] = $flag_before_role . ' atau ' . $flag_after_role;
                         $flag_role_error = 1;
                     }
                     $flag_before_role = 'evaluate';
+                    $flag_after_role = 'create';
                     $evaluate = 1;
                 }
                 else if ($data['silabuses'][$i]['role'] == 'create') {
-                    if ('evaluate' != $flag_before_role) {
+                    if ('evaluate' != $flag_before_role && $flag_before_role != 'create') {
+                        $data['flag_role_error_description'][$i]['tatap_muka'] = $data['silabuses'][$i]['tatap_muka'];
+                        $data['flag_role_error_description'][$i]['role'] = $flag_before_role . ' atau ' . $flag_after_role;
                         $flag_role_error = 1;
                     }
                     $flag_before_role = 'create';
+                    $flag_after_role = 'remember';
                     $create = 1;
                 }
                 $bobot = $bobot + (double) $data['silabuses'][$i]['bobot'];
@@ -385,7 +408,7 @@ class RpsController extends Controller
                 // dd($data);
                 // return view('rps.cetakPDF', $data);
                 try{
-                    $pdf = PDF::loadview('dosen.rps.cetakPDF', $data);
+                    $pdf = PDF::loadview('dosen.rps.cetakPDF', $data)->setPaper('a4', 'landscape');;
                     return $pdf->download('RPS - ' . $data['mata_kuliah']['name'] . '.pdf');
                 }catch(DOMPDF_Exception $e){
                     return redirect('rps')->withErrors(["errors" => $e]);

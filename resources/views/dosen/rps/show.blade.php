@@ -540,10 +540,18 @@
                         @if($flag_role == 0)
                             <h4 class="form-control-label">Data Taksonomi | <div class="badge bg-danger">Belum terpenuhi</div> </h4>
                         @else
-                            <h4 class="form-control-label">Data Taksonomi | <div class="badge bg-success">Sudah terpenuh</div> </h4>
+                            <h4 class="form-control-label">Data Taksonomi | <div class="badge bg-success">Sudah terpenuhi</div> </h4>
                         @endif
                         @if($flag_role_error == 1)
                             <h4 class="form-control-label">Data Taksonomi | <div class="badge bg-danger">Tidak urut</div> </h4>
+                            <ul>
+                                @foreach($flag_role_error_description as $key => $value)
+                                    <li>
+                                        <small class="bg-warning text-white p-1">Pada tatap muka {{$value['tatap_muka']}} seharusya diisi dengan Taksonomi Bloom sub - {{$value['role']}}</small>
+                                    </li>
+                                @endforeach
+                            </ul>
+                            <br>
                         @else
                             <h4 class="form-control-label">Data Taksonomi | <div class="badge bg-success">Sudah urut</div> </h4>
                         @endif
