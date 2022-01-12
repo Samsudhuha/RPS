@@ -281,7 +281,7 @@
                         <div class="col-md-6">
                             <div class="form-group">
                                 <label>Capaian Pembelajaran Mata Kuliah</label>
-                                <button type="button" class="btn btn-warning mt-1" data-toggle="modal" data-target="#modal-default">Data Taksonomi</button>
+                                <button type="button" class="btn btn-warning mt-1 float-right" data-toggle="modal" data-target="#modal-default">Data Taksonomi</button>
                                 <!-- Modal -->
                                 <div class="modal fade" id="modal-default">
                                     <div class="modal-dialog modal-lg">
@@ -396,16 +396,16 @@
                                         @else
                                         <div id="form-cpmk-list">
                                             <div class="form-group">
-                                                <input type="text" name="cpmk1" class="form-control" style="margin-bottom: 5px;" />
+                                                <input type="text" name="cpmk1" class="form-control" style="margin-bottom: 5px;" required/>
                                             </div>
                                             <div class="form-group">
-                                                <input type="text" name="cpmk2" class="form-control" style="margin-bottom: 5px;" />
+                                                <input type="text" name="cpmk2" class="form-control" style="margin-bottom: 5px;" required />
                                             </div>
                                             <div class="form-group">
-                                                <input type="text" name="cpmk3" class="form-control" style="margin-bottom: 5px;" />
+                                                <input type="text" name="cpmk3" class="form-control" style="margin-bottom: 5px;" required/>
                                             </div>
                                             <div class="form-group">
-                                                <input type="text" name="cpmk4" class="form-control" style="margin-bottom: 5px;" />
+                                                <input type="text" name="cpmk4" class="form-control" style="margin-bottom: 5px;" required/>
                                             </div>
                                         </div>
                                         @endif
@@ -531,7 +531,7 @@
             </div>
             <div class="card-body">
                 <div class="card-header">
-                    <a class="btn btn-success" href="/rps/silabus/create/{{$mata_kuliah['id']}}">Tambah Silabus</a>
+                    <a class="btn btn-success float-right" href="/rps/silabus/create/{{$mata_kuliah['id']}}">Tambah Silabus</a>
                 </div>
                 <div class="row">
                     <div class="col-12">

@@ -29,6 +29,8 @@
             <div class="col-sm-6">
                 <ol class="breadcrumb float-sm-right">
                     <li class="breadcrumb-item"><a href="/home">Beranda</a></li>
+                    <li class="breadcrumb-item active">Perguruan Tinggi</li>
+
                 </ol>
             </div>
         </div>
@@ -128,15 +130,14 @@
             </div>
         </div>
     </div>
-
         <div class="card card-default">
             <div class="card-header">
                 <h3 class="card-title">Ubah Password</h3>
-                <div class="card-tools">
+                {{-- <div class="card-tools">
                     <button type="button" class="btn btn-tool" data-card-widget="collapse">
                         <i class="fas fa-minus"></i>
                     </button>
-                </div>
+                </div> --}}
             </div>
             <form action="/pt/updatePassword" method="post">
                 {{ csrf_field() }}
@@ -145,13 +146,14 @@
                         <div class="col-md-6">
                             <label>Password Lama</label>
                             <div class="form-group">
-                                <input type="text" name="oldPassword" class="form-control" />
+                                <input type="password" id="myInput" name="oldPassword" class="form-control" />
+                                <input type="checkbox" onclick="myFunction()" class="form-check-label"> Tampilkan Password
                             </div>
                         </div>
                         <div class="col-md-6">
                             <label>Password Baru</label>
                             <div class="form-group">
-                                <input type="text" name="newPassword" class="form-control" />
+                                <input type="password" name="newPassword" class="form-control" />
                             </div>
                         </div>
                     </div>
@@ -165,7 +167,7 @@
         </div>
     </section>
     <!-- /.container-fluid -->
-</div>
+
 
 @endsection
 
@@ -208,10 +210,19 @@
         $("#editLogo").hide();
     });
 
+    function myFunction() {
+        var x = document.getElementById("myInput");
+        if (x.type === "password") {
+            x.type = "text";
+        } else {
+            x.type = "password";
+        }
+    }
+
     $(document).on('click', '#batalEditLogo', function(e) {
         $("#formEditLogo").hide();
         $("#batalEditLogo").hide();
         $("#editLogo").show();
-    });
+});
 </script>
 @endsection

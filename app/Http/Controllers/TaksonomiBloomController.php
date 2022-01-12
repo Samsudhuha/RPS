@@ -5,6 +5,9 @@ namespace App\Http\Controllers;
 use App\Http\Requests\Taksonomi\CreateTaksonomiRequest;
 use App\Services\TaksonomiService;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Redis;
+use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Cache;
 
 class TaksonomiBloomController extends Controller
 {

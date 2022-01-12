@@ -99,15 +99,20 @@ class RpsController extends Controller
             }
             $data['cpl_cpmks'] = $this->cplCpmkService->getCplCpmkAll($data['mata_kuliah']["id"]);
             $data['silabuses'] = $this->silabusService->getAll($data['mata_kuliah']["id"]);
-            
+
             $flag_before_role = 'remember';
-            if ($data['silabuses'][0]['role'] != $flag_before_role) {
-                $flag_role_error = 1;
-            }else {
+
+            if (count($data['silabuses']) == 1) {
+                if ($data['silabuses'][0]['role'] != $flag_before_role) {
+                    $flag_role_error = 1;
+                }else {
+                    $flag_role_error = 0;
+                }
+            } else {
                 $flag_role_error = 0;
             }
 
-            for ($i=0; $i < count($data['silabuses']); $i++) { 
+            for ($i=0; $i < count($data['silabuses']); $i++) {
                 if ($data['silabuses'][$i]['role'] == 'remember') {
                     if ($i != 0) {
                         if ('create' != $flag_before_role) {
@@ -163,13 +168,17 @@ class RpsController extends Controller
             $flag_after_role = '';
             $data['flag_role_error_description'] = [];
 
-            if ($data['silabuses'][0]['role'] != $flag_before_role) {
-                $flag_role_error = 1;
-            }else {
+            if (count($data['silabuses']) == 1) {
+                if ($data['silabuses'][0]['role'] != $flag_before_role) {
+                    $flag_role_error = 1;
+                }else {
+                    $flag_role_error = 0;
+                }
+            } else {
                 $flag_role_error = 0;
             }
 
-            for ($i=0; $i < count($data['silabuses']); $i++) { 
+            for ($i=0; $i < count($data['silabuses']); $i++) {
                 if ($data['silabuses'][$i]['role'] == 'remember') {
                     if ($i != 0) {
                         if ('create' != $flag_before_role && $flag_before_role != 'remember') {
@@ -281,7 +290,7 @@ class RpsController extends Controller
             $data['fakultas'] = $this->fakultasService->getById($data["mata_kuliah"]["fakultas_id"]);
             $mata_kuliah_syarat = $this->mataKuliahService->getMataKuliahSyaratById($data["mata_kuliah"]["id"]);
             $mk_syarat = [];
-            for ($i=0; $i < count($mata_kuliah_syarat); $i++) { 
+            for ($i=0; $i < count($mata_kuliah_syarat); $i++) {
                 $mk_syarat[$i] = $this->mataKuliahService->getMataKuliahByMkSyarat($mata_kuliah_syarat[$i])->name;
             }
             $data['mata_kuliah']['mata_kuliah_syarat'] = $mk_syarat;
@@ -303,13 +312,17 @@ class RpsController extends Controller
             $create = 0;
             $bobot = 0;
             $flag_before_role = 'remember';
-            if ($data['silabuses'][0]['role'] != $flag_before_role) {
-                $flag_role_error = 1;
-            }else {
+            if (count($data['silabuses']) == 1) {
+                if ($data['silabuses'][0]['role'] != $flag_before_role) {
+                    $flag_role_error = 1;
+                }else {
+                    $flag_role_error = 0;
+                }
+            } else {
                 $flag_role_error = 0;
             }
 
-            for ($i=0; $i < count($data['silabuses']); $i++) { 
+            for ($i=0; $i < count($data['silabuses']); $i++) {
                 if ($data['silabuses'][$i]['role'] == 'remember') {
                     if ($i != 0) {
                         if ('create' != $flag_before_role) {

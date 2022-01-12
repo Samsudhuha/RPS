@@ -109,7 +109,7 @@
                             <div class="col-md-6 mata-kuliah-syarat">
                                 <div class="form-group">
                                     <label>Mata Kuliah Syarat</label>
-                                    <select name="mata_kuliah_syarat[]" class="form-control-lg select2" multiple="multiple" data-placeholder="Pilih Mata Kuliah Syarat" style="width: 100%;">
+                                    <select name="mata_kuliah_syarat[]" class="form-control-lg select2" multiple="multiple select2" data-placeholder="Pilih Mata Kuliah Syarat" style="width: 100%;">
                                     </select>
                                 </div>
                             </div>
@@ -134,10 +134,10 @@
                                 <label>Bahan Kajian</label>
                                 <div id="form-bahan-kajian-list">
                                     <div class="form-group">
-                                        <input type="text" name="bahan_kajian[]" class="form-control" />
+                                        <input type="text" name="bahan_kajian[]" class="form-control" placeholder="Isi Bahan Kajian..." />
                                     </div>
                                 </div>
-                                <button class="btn btn-primary js-add--bahan-kajian-row">Tambah Bahan kajian</button>
+                                <button class="btn btn-primary js-add--bahan-kajian-row">Tambah Bahan Kajian</button>
                             </div>
                         </div>
                         <div class="row">
@@ -145,18 +145,18 @@
                                 <label>Daftar Pustaka Utama</label>
                                 <div id="form-daftar-pustaka-utama-list">
                                     <div class="form-group">
-                                        <input type="text" name="daftar_pustaka_utama[]" class="form-control"/>
+                                        <input type="text" name="daftar_pustaka_utama[]" class="form-control" placeholder="Isi Daftar Pustaka Utama..."/>
                                     </div>
                                 </div>
                                 <button class="btn btn-primary js-add--daftar-pustaka-utama-row">Tambah Daftar Pustaka Utama</button>
                             </div>
                             <div class="col-md-6">
                                 <label>Daftar Pustaka Pendukung </label><br>
-                                <a class=" bg-gradient-warning p-1 mt-5"><b> Tulis '-' jika tidak ada daftar pustaka pendukung</b></a>
+                                {{-- <a class=" bg-gradient-warning p-1 mt-5"><b> Tulis '-' jika tidak ada daftar pustaka pendukung</b></a> --}}
 
                                 <div id="form-daftar-pustaka-pendukung-list">
-                                    <div class="form-group mt-1">
-                                        <input type="text" name="daftar_pustaka_pendukung[]" class="form-control" />
+                                    <div class="form-group">
+                                        <input type="text" name="daftar_pustaka_pendukung[]" class="form-control" placeholder="Tulis '-' jika tidak ada daftar pustaka pendukung"/>
                                     </div>
                                 </div>
                                 <button class="btn btn-primary js-add--daftar-pustaka-pendukung-row">Tambah Daftar Pustaka Pendukung</button><br>
@@ -355,7 +355,7 @@
             e.preventDefault();
             examsList = $('#form-bahan-kajian-list');
             clone = examsList.children('.form-group:first').clone(true);
-            clone.append($('<button>').addClass('btn btn-danger js-remove--bahan-kajian-row mt-1').html('Remove'));
+            clone.append($('<button>').addClass('btn btn-danger js-remove--bahan-kajian-row mt-1').html('Hapus'));
             //reset values in cloned inputs and
             //add enumerated ID's to input fields
             clone.find('input').val('').attr('id', function() {
@@ -380,7 +380,7 @@
             e.preventDefault();
             examsList = $('#form-daftar-pustaka-utama-list');
             clone = examsList.children('.form-group:first').clone(true);
-            clone.append($('<button>').addClass('btn btn-danger js-remove--daftar-pustaka-utama-row mt-1').html('Remove'));
+            clone.append($('<button>').addClass('btn btn-danger js-remove--daftar-pustaka-utama-row mt-1').html('Hapus'));
             //reset values in cloned inputs and
             //add enumerated ID's to input fields
             clone.find('input').val('').attr('id', function() {
@@ -405,7 +405,7 @@
             e.preventDefault();
             examsList = $('#form-daftar-pustaka-pendukung-list');
             clone = examsList.children('.form-group:first').clone(true);
-            clone.append($('<button>').addClass('btn btn-danger js-remove--daftar-pustaka-pendukung-row mt-1').html('Remove'));
+            clone.append($('<button>').addClass('btn btn-danger js-remove--daftar-pustaka-pendukung-row mt-1').html('Hapus'));
             //reset values in cloned inputs and
             //add enumerated ID's to input fields
             clone.find('input').val('').attr('id', function() {

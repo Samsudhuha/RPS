@@ -147,7 +147,7 @@
                                 @endforeach
                             </td>
                             <td>
-                                <a href="/rps/{{$data['id']}}" class="btn btn-primary">Lihat</a>
+                                <a href="/rps/{{$data['id']}}" class="btn btn-primary">Detail</a>
                                 <button type="button" class="btn btn-danger" data-toggle="modal" data-target="#modal-default">Hapus</button>
                                 <!-- Modal -->
                                 <div class="modal fade" id="modal-default">
@@ -176,7 +176,7 @@
                                         </div>
                                     </div>
                                 </div>
-                                <a class="btn btn-success" href="/rps/cetakRPS/{{$data['id']}}"> Cetak PDF</a>
+                                <a class="btn btn-success mt-1" href="/rps/cetakRPS/{{$data['id']}}"> Cetak PDF</a>
                             </td>
                         </tr>
                         <?php $no++ ?>
