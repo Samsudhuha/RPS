@@ -153,7 +153,7 @@
                                         <div id="form-bahan-kajian-list">
                                             <div class="form-group">
                                                 <input type="text" name="bahan_kajian[]" class="form-control data-mata-kuliah" value="{{$bahan_kajian}}" style="margin-bottom: 5px;" disabled />
-                                                <button class="btn btn-danger js-remove--bahan-kajian-row">Remove</button>
+                                                <button class="btn btn-danger js-remove--bahan-kajian-row">Hapus</button>
                                             </div>
                                         </div>
                                     </div>
@@ -178,7 +178,7 @@
                                         <div id="form-daftar-pustaka-utama-list">
                                             <div class="form-group">
                                                 <input type="text" name="daftar_pustaka_utama[]" class="form-control data-mata-kuliah" value="{{$pustaka_utama}}" style="margin-bottom: 5px;" disabled />
-                                                <button class="btn btn-danger js-remove--daftar-pustaka-utama-row">Remove</button>
+                                                <button class="btn btn-danger js-remove--daftar-pustaka-utama-row">Hapus</button>
                                             </div>
                                         </div>
                                     </div>
@@ -201,7 +201,7 @@
                                         <div id="form-daftar-pustaka-pendukung-list">
                                             <div class="form-group">
                                                 <input type="text" name="daftar_pustaka_pendukung[]" class="form-control data-mata-kuliah" value="{{$pustaka_pendukung}}" style="margin-bottom: 5px;" disabled />
-                                                <button class="btn btn-danger js-remove--daftar-pustaka-pendukung-row">Remove</button>
+                                                <button class="btn btn-danger js-remove--daftar-pustaka-pendukung-row">Hapus</button>
                                             </div>
                                         </div>
                                     </div>
@@ -394,7 +394,7 @@
                                             <div id="form-cpmk-list">
                                                 <div class="form-group">
                                                     <input type="text" name="cpmk[]" class="form-control data-cpmk" value="{{$cpmk['name']}}" style="margin-bottom: 5px;" disabled />
-                                                    <button class="btn btn-danger js-remove--cpmk-row">Remove</button>
+                                                    <button class="btn btn-danger js-remove--cpmk-row">Hapus</button>
                                                 </div>
                                             </div>
                                         </div>
@@ -830,7 +830,7 @@
                 clone = `
                     <div class="form-group">
                         <input id="undefined_1" type="text" name="bahan_kajian[]" class="form-control data-mata-kuliah" style="margin-bottom: 5px;"/>
-                        <button class="btn btn-danger js-remove--bahan-kajian-row">Remove</button>
+                        <button class="btn btn-danger js-remove--bahan-kajian-row">Hapus</button>
                     </div>`
                 return examsList.append(clone)
             }
@@ -864,7 +864,7 @@
                 clone = `
                     <div class="form-group">
                         <input id="undefined_1" type="text" name="daftar_pustaka_utama[]" class="form-control data-mata-kuliah" style="margin-bottom: 5px;" />
-                        <button class="btn btn-danger js-remove--daftar-pustaka-utama-row">Remove</button>
+                        <button class="btn btn-danger js-remove--daftar-pustaka-utama-row">Hapus</button>
                     </div>`
                 return examsList.append(clone)
             }else{
@@ -898,7 +898,7 @@
                 clone = `
                     <div class="form-group">
                         <input id="undefined_1" type="text" name="daftar_pustaka_pendukung[]" class="form-control data-mata-kuliah" style="margin-bottom: 5px;" />
-                        <button class="btn btn-danger js-remove--daftar-pustaka-pendukung-row">Remove</button>
+                        <button class="btn btn-danger js-remove--daftar-pustaka-pendukung-row">Hapus</button>
                     </div>`
                 return examsList.append(clone)
             }else {
