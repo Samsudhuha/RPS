@@ -70,39 +70,19 @@ class TaksonomiService
                 return "lebih--";
             }
         } elseif ($column == "cpmk") {
-            $flag_cpkm1 = 0;
-            $flag_cpkm2 = 0;
-            $flag_cpkm3 = 0;
-            $flag_cpkm4 = 0;
-            for ($i=0; $i < count($taksonomi); $i++) { 
-                if (strpos(strtolower($data['cpmk1']), strtolower($taksonomi[$i]->name)) !== false) {
-                    $role = $taksonomi[$i]->role;
-                    $flag_cpkm1 += 1;
+            $flag = 0;
+            for ($j=0; $j < count($data['cpmk']); $j++) { 
+                for ($i=0; $i < count($taksonomi); $i++) { 
+                    if (strpos(strtolower($data['cpmk'][$j]), strtolower($taksonomi[$i]->name)) !== false) {
+                        $role = $taksonomi[$i]->role;
+                        $flag = 1;
+                    }
                 }
-                if (strpos(strtolower($data['cpmk2']), strtolower($taksonomi[$i]->name)) !== false) {
-                    $role = $taksonomi[$i]->role;
-                    $flag_cpkm2 += 1;
-                }
-                if (strpos(strtolower($data['cpmk3']), strtolower($taksonomi[$i]->name)) !== false) {
-                    $role = $taksonomi[$i]->role;
-                    $flag_cpkm3 += 1;
-                }
-                if (strpos(strtolower($data['cpmk4']), strtolower($taksonomi[$i]->name)) !== false) {
-                    $role = $taksonomi[$i]->role;
-                    $flag_cpkm4 += 1;
+                if ($flag == 0) {
+                    return $j++;
                 }
             }
-            if ($flag_cpkm1 == 0) {
-                return 1;
-            } elseif ($flag_cpkm2 == 0) {
-                return 2;
-            } elseif ($flag_cpkm3 == 0) {
-                return 3;
-            } elseif ($flag_cpkm4 == 0) {
-                return 4;
-            } else {
-                return "berhasil";
-            }
+            return "berhasil";
         }
     }
 }

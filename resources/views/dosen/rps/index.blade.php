@@ -56,7 +56,7 @@
                 </ul>
             </div>
             @endif
-            <!-- SELECT2 EXAMPLE -->
+            {{-- <!-- SELECT2 EXAMPLE -->
             <div class="card card-default">
                 <div class="card-header">
                     <h3 class="card-title">Filter<i class="fas fa-filter"></i></h3>
@@ -109,7 +109,7 @@
                     <!-- /.col -->
                 </div>
                 <!-- /.row -->
-            </div>
+            </div> --}}
         </div>
         <div class="card">
             <div class="card-header">

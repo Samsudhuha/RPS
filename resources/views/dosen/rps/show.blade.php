@@ -384,31 +384,30 @@
                                     <br>
                                     <div class="form-check">
                                         @if(count($cpmks)!=0)
-                                        @php $i = 1 @endphp
                                         @foreach($cpmks as $cpmk)
                                         <div class="cpmk-static">
                                             <div class="form-group">
-                                                <input type="text" class="form-control data-cpmk" value="{{$cpmk['name']}}" name="cpmk{{$i}}" style="margin-bottom: 5px;" disabled />
+                                                <input type="text" class="form-control data-cpmk" value="{{$cpmk['name']}}" style="margin-bottom: 5px;" disabled />
                                             </div>
                                         </div>
-                                        @php $i += 1 @endphp
+                                        <div class="cpmk-dinamic">
+                                            <div id="form-cpmk-list">
+                                                <div class="form-group">
+                                                    <input type="text" name="cpmk[]" class="form-control data-cpmk" value="{{$cpmk['name']}}" style="margin-bottom: 5px;" disabled />
+                                                    <button class="btn btn-danger js-remove--cpmk-row">Remove</button>
+                                                </div>
+                                            </div>
+                                        </div>
                                         @endforeach
                                         @else
                                         <div id="form-cpmk-list">
                                             <div class="form-group">
-                                                <input type="text" name="cpmk1" class="form-control" style="margin-bottom: 5px;" required/>
-                                            </div>
-                                            <div class="form-group">
-                                                <input type="text" name="cpmk2" class="form-control" style="margin-bottom: 5px;" required />
-                                            </div>
-                                            <div class="form-group">
-                                                <input type="text" name="cpmk3" class="form-control" style="margin-bottom: 5px;" required/>
-                                            </div>
-                                            <div class="form-group">
-                                                <input type="text" name="cpmk4" class="form-control" style="margin-bottom: 5px;" required/>
+                                                <input type="text" name="cpmk[]" class="form-control data-cpmk" style="margin-bottom: 5px;" />
                                             </div>
                                         </div>
+                                        <button class="btn btn-primary js-add--cpmk-simpan-row">Tambah CPMK</button>
                                         @endif
+                                        <button class="btn btn-primary js-add--cpmk-row">Tambah CPMK</button>
                                     </div>
                                 </div>
                             </div>
@@ -750,6 +749,8 @@
         $('.data-cpmk').prop("disabled", false);
         $(".static-cpl").hide();
         $(".edit-cpl").show();
+        $(".cpmk-static").hide();
+        $(".cpmk-dinamic").show();
         $(".edit-cpl-cpmk").hide();
         $(".batal-cpl-cpmk").show();
         $(".simpan-cpl-cpmk").show();
@@ -761,6 +762,8 @@
         $('.data-cpmk').prop("disabled", true);
         $(".static-cpl").show();
         $(".edit-cpl").hide();
+        $(".cpmk-static").show();
+        $(".cpmk-dinamic").hide();
         $(".edit-cpl-cpmk").show();
         $(".batal-cpl-cpmk").hide();
         $(".simpan-cpl-cpmk").hide();

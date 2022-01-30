@@ -66,14 +66,18 @@ class CplCpmkService
 
     public function insertOrUpdateCplCpmk($mata_kuliah_id, $data)
     {
+        if ($data['cpmk'][0] == null) {
+            return 'error';
+        }
+
         $this->cplCpmkRepository->deleteCplCpmk($mata_kuliah_id);
         $this->cplCpmkRepository->deleteCpmk($mata_kuliah_id);
         $this->cplCpmkRepository->deleteCplMatakuliah($mata_kuliah_id);
 
-        for ($i = 0; $i < 4; $i++) {
+        for ($i = 0; $i < count($data['cpmk']); $i++) {
             $cpmk = [
                 'mata_kuliah_id' => $mata_kuliah_id,
-                'name' => $data['cpmk' . $i+1],
+                'name' => $data['cpmk'][$i],
                 'no' => $i + 1
             ];
             $cpmk = $this->cplCpmkRepository->createCpmk($cpmk);
